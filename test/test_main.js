@@ -1,13 +1,13 @@
 var
-	path 		= require("path"),
-	should 		= require("should"),
-	Validator	= require("../index")
+	path 		= require('path'),
+	should 		= require('should'),
+	Validator	= require('../index')
 ;
 
 describe('main', function() {
 	var validator = new Validator({
 		newline: true,
-		indentation: "tabs",
+		indentation: 'tabs',
 		trailingspaces: true,
 		ignores: [
 			'js-comments'
@@ -15,7 +15,7 @@ describe('main', function() {
 	});
 
 	it('the validator should be valid ;-)', function() {
-		var p = path.join(__dirname, "../lib/validator.js");
+		var p = path.join(__dirname, '../lib/validator.js');
 
 		validator.validate(p);
 		validator.getInvalidLines(p).should.be.empty;

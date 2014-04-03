@@ -1,7 +1,7 @@
 var
-	path 		= require("path"),
-	should 		= require("should"),
-	Validator	= require("../index")
+	path 		= require('path'),
+	should 		= require('should'),
+	Validator	= require('../index')
 ;
 
 describe('comments', function() {
@@ -11,12 +11,12 @@ describe('comments', function() {
 				indentation: 'tabs',
 				ignores: ['js-comments', 'py-comments']
 			}),
-			p = path.join(__dirname, "fixtures/comments/javascript.js")
+			p = path.join(__dirname, 'fixtures/comments/javascript.js')
 		;
 
 		validator.validate(p);
 		var invalidLines = validator.getInvalidLines(p);
-		Object.keys(invalidLines).should.be.eql(["32","46","54"]);
+		Object.keys(invalidLines).should.be.eql(['32','46','54']);
 	});
 
 	it('fixtures/comments/python.py should have no errors', function() {
@@ -24,7 +24,7 @@ describe('comments', function() {
 			validator = new Validator({
 				ignores: ['py-comments']
 			}),
-			p = path.join(__dirname, "fixtures/comments/python.py")
+			p = path.join(__dirname, 'fixtures/comments/python.py')
 		;
 
 		validator.validate(p);
@@ -36,7 +36,7 @@ describe('comments', function() {
 			validator = new Validator({
 				ignores: ['xml-comments']
 			}),
-			p = path.join(__dirname, "fixtures/comments/xml.xml")
+			p = path.join(__dirname, 'fixtures/comments/xml.xml')
 		;
 
 		validator.validate(p);
