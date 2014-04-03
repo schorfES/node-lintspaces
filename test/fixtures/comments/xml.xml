@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<hello>
+	<!--
+		 Comment
+		Comment
+		  Comment
+		  -->
+	<world><!-- commment --></world>
+	<!--
+	Comment
+	Comment
+-->
+
+	 <!-- Comment
+	Comment -->
+
+		 <!-- Comment
+	Comment -->
+ </hello>

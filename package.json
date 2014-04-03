@@ -4,7 +4,7 @@
   "description": "Library for checking spaces in files",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "./node_modules/.bin/gulp"
   },
   "keywords": [
     "valdation",
@@ -28,6 +28,10 @@
   },
   "devDependencies": {
     "should": "^3.2.0",
-    "mocha": "^1.18.2"
+    "mocha": "^1.18.2",
+    "gulp-mocha": "^0.4.1",
+    "gulp-jscs": "^0.4.0",
+    "gulp-jshint": "^1.5.3",
+    "gulp": "^3.6.0"
   }
 }
