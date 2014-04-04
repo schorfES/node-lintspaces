@@ -30,7 +30,7 @@ var
 ;
 
 gulp.task('validate', function() {
-	return gulp.src([__filename, './lib/**/*.js', './test/**/test_*.js'])
+	return gulp.src([__filename, './index.js', './lib/**/*.js', './test/**/test_*.js'])
 		.pipe(jshint(jshintOptions))
 		.pipe(jshint.reporter('default'))
 		.pipe(jscs(__dirname + '/.jscs.json'));
