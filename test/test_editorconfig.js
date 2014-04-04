@@ -21,7 +21,7 @@ describe('editorconfig', function() {
 		validator._path = p;
 		validator._loadSettings();
 		validator._settings.newline.should.be.equal(true);
-		validator._settings.indentation.should.be.equal("tabs");
+		validator._settings.indentation.should.be.equal('tabs');
 		validator._settings.spaces.should.be.equal(4);
 		validator._settings.trailingspaces.should.be.equal(true);
 	});
