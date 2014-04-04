@@ -8,7 +8,10 @@
 		"module": true,
 		"require": true,
 		"exports": true,
-		"__dirname": true
+		"describe": true,
+		"it": true,
+		"__dirname": true,
+		"__filename": true
 	},
 	"immed": true,
 	"noarg": true,
