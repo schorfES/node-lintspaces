@@ -5,6 +5,8 @@
 	"eqnull": true,
 	"expr": true,
 	"globals": {
+		"process": true,
+		"console": true,
 		"module": true,
 		"require": true,
 		"exports": true,
