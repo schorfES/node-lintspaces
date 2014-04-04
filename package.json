@@ -2,6 +2,10 @@
 	"name": "lintspaces",
 	"version": "0.1.0",
 	"description": "Library for checking spaces in files",
+	"repository": {
+    "type": "git",
+    "url": "https://github.com/schorfES/node-lintspaces.git"
+  },
 	"main": "index.js",
 	"scripts": {
 		"test": "./node_modules/.bin/gulp"
