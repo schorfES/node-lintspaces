@@ -32,7 +32,12 @@ gulp.task('test', ['validate'], function() {
 gulp.task('default', ['test'], function() {
 	if (jshintErrors.length) {
 		console.error(jshintErrors.map(function(error) {
-			return util.format('%s\nLine: %d\nMessage: %s\n\n', error.file, error.error.line, error.error.reason);
+			return util.format(
+				'%s\nLine: %d\nMessage: %s\n\n',
+				error.file,
+				error.error.line,
+				error.error.reason
+			);
 		}).join(''));
 		process.exit(1);
 	}
