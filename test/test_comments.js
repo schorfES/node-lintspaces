@@ -1,8 +1,9 @@
 var
-	path 		= require('path'),
-	should 		= require('should'),
-	Validator	= require('../index')
+	path = require('path'),
+	Validator = require('../index')
 ;
+
+require('should');
 
 describe('comments', function() {
 	it('fixtures/comments/javascript.js should have no errors', function() {

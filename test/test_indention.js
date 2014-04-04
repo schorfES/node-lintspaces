@@ -1,8 +1,9 @@
 var
-	path 		= require('path'),
-	should 		= require('should'),
-	Validator	= require('../index')
+	path = require('path'),
+	Validator = require('../index')
 ;
+
+require('should');
 
 describe('indentation', function() {
 	it('fixtures/indentations/tabs_valid.txt should have no errors', function() {
