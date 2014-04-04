@@ -1,37 +1,37 @@
 {
-  "name": "lintspaces",
-  "version": "0.0.0",
-  "description": "Library for checking spaces in files",
-  "main": "index.js",
-  "scripts": {
-    "test": "./node_modules/.bin/gulp"
-  },
-  "keywords": [
-    "valdation",
-    "lint",
-    "spaces",
-    "trailingspaces",
-    "indent",
-    "indentation",
-    "newlines",
-    "eof",
-    "eol"
-  ],
-  "contributors": [
-    "Norman Rusch (nrmnrsh / schorfES)",
-    "Christopher Knötschke <cknoetschke@gmail.com>"
-  ],
-  "license": "MIT",
-  "dependencies": {
-    "merge": "^1.1.2",
-    "editorconfig": "^0.11.4"
-  },
-  "devDependencies": {
-    "should": "^3.2.0",
-    "mocha": "^1.18.2",
-    "gulp-mocha": "^0.4.1",
-    "gulp-jscs": "^0.4.0",
-    "gulp-jshint": "^1.5.3",
-    "gulp": "^3.6.0"
-  }
+	"name": "lintspaces",
+	"version": "0.1.0",
+	"description": "Library for checking spaces in files",
+	"main": "index.js",
+	"scripts": {
+		"test": "./node_modules/.bin/gulp"
+	},
+	"keywords": [
+		"validation",
+		"lint",
+		"spaces",
+		"trailingspaces",
+		"indent",
+		"indentation",
+		"newlines",
+		"eof",
+		"eol"
+	],
+	"contributors": [
+		"Norman Rusch (nrmnrsh / schorfES)",
+		"Christopher Knötschke <cknoetschke@gmail.com>"
+	],
+	"license": "MIT",
+	"dependencies": {
+		"merge": "^1.1.2",
+		"editorconfig": "^0.11.4"
+	},
+	"devDependencies": {
+		"should": "^3.2.0",
+		"mocha": "^1.18.2",
+		"gulp-mocha": "^0.4.1",
+		"gulp-jscs": "^0.4.0",
+		"gulp-jshint": "^1.5.3",
+		"gulp": "^3.6.0"
+	}
 }
