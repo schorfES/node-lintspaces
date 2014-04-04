@@ -1,6 +1,6 @@
 {
 	"name": "lintspaces",
-	"version": "0.1.2",
+	"version": "0.1.3",
 	"description": "Library for checking spaces in files",
 	"repository": {
     "type": "git",
