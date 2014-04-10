@@ -5,7 +5,7 @@ var
 	jscs         = require('gulp-jscs'),
 	map          = require('gulp-jshint/node_modules/map-stream'),
 	jshintErrors = []
-;;;
+;
 
 gulp.task('lint', function() {
 	return gulp.src([__filename, './index.js', './lib/**/*.js', './test/**/test_*.js'])
