@@ -1,14 +1,13 @@
 var
 	util         = require('util'),
 	gulp         = require('gulp'),
-	mocha        = require('gulp-mocha'),
 	jshint       = require('gulp-jshint'),
 	jscs         = require('gulp-jscs'),
 	map          = require('gulp-jshint/node_modules/map-stream'),
 	jshintErrors = []
-;
+;;;
 
-gulp.task('validate', function() {
+gulp.task('lint', function() {
 	return gulp.src([__filename, './index.js', './lib/**/*.js', './test/**/test_*.js'])
 		.pipe(jshint())
 		.pipe(map(function (file, cb) {
@@ -21,15 +20,7 @@ gulp.task('validate', function() {
 		.pipe(jscs(__dirname + '/.jscs.json'));
 });
 
-gulp.task('test', ['validate'], function() {
-	return gulp.src('./test/**/test_*.js')
-		.pipe(mocha({
-			resporter: 'spec',
-			bail: true
-		}));
-});
-
-gulp.task('default', ['test'], function() {
+gulp.task('default', ['lint'], function() {
 	if (jshintErrors.length) {
 		console.error(jshintErrors.map(function(error) {
 			return util.format(
