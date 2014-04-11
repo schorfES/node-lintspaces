@@ -1,4 +1,5 @@
 REPORTER = spec
+BRANCH = master
 
 test: test-unit lint
 
@@ -23,3 +24,6 @@ clean:
 
 readme:
 	@./node_modules/.bin/gulp readme
+
+push: test
+	@git push origin $(BRANCH)
