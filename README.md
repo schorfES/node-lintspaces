@@ -2,14 +2,27 @@
 
 A node module for checking spaces in files.
 
-If you're looking for a [grunt](http://gruntjs.com/) or [gulp](http://gulpjs.com/) task to validate your files, take a look at these ones:
+If you're looking for a
+[gruntjs](http://gruntjs.com/) or
+[gulpjs](http://gulpjs.com/)
+task to validate your files, take a look at these ones:
 
 * [grunt-lintspaces](https://github.com/schorfES/grunt-lintspaces)
 * [gulp-lintspaces](https://github.com/ck86/gulp-lintspaces)
 
+## Installation
+
+This package is available on [npm](https://www.npmjs.org/package/lintspaces)
+as: `lintspaces`
+
+``` sh
+	npm install lintspaces
+```
+
 ## Usage
 
-To run the lintspaces validator on one or multiple files take a look at the following example:
+To run the lintspaces validator on one or multiple files take a look at the
+following example:
 
 ```javascript
 
@@ -20,14 +33,16 @@ To run the lintspaces validator on one or multiple files take a look at the foll
 	validator.validate('/path/to/other/file.ext');
 
 	var results = validator.getInvalidFiles();
-
 ```
 
-The response of ```getInvalidFiles()``` contains an object. Each key of this object is a filepath which contains validation errors.
+The response of ```getInvalidFiles()``` contains an object. Each key of this
+object is a filepath which contains validation errors.
 
-Under each filepath there is an other object with at least one key. Those key(s) are the specific linenumbers of the file containing an array with error messages.
+Under each filepath there is an other object with at least one key. Those key(s)
+are the specific linenumbers of the file containing an array with error messages.
 
-The following lines shows the structure of the validation result in JSON notation:
+The following lines shows the structure of the validation result in JSON
+notation:
 
 ```json
 
@@ -47,7 +62,6 @@ The following lines shows the structure of the validation result in JSON notatio
 			]
 		}
 	}
-
 ```
 
 ## Options
@@ -62,7 +76,8 @@ Tests for newlines at the end of all files. Default value is `false`.
 
 ### maximum newlines option
 
-Test for the maximum amount of newlines between code blocks. Default value is `false`. To enable this validation a number larger than `0` is expected.
+Test for the maximum amount of newlines between code blocks. Default value is
+`false`. To enable this validation a number larger than `0` is expected.
 
 ```javascript
 	newlineMaximum: 2
@@ -70,7 +85,8 @@ Test for the maximum amount of newlines between code blocks. Default value is `f
 
 ### trailingspaces option
 
-Tests for useless whitespaces (trailing whitespaces) at each lineending of all files. Default value is `false`.
+Tests for useless whitespaces (trailing whitespaces) at each lineending of all
+files. Default value is `false`.
 
 ```javascript
 	trailingspaces: true
@@ -78,13 +94,15 @@ Tests for useless whitespaces (trailing whitespaces) at each lineending of all f
 
 ### indentation options
 
-Tests for correct indentation using tabs or spaces. Default value is `false`. To enable indentation check use the value `'tabs'` or `'spaces'`.
+Tests for correct indentation using tabs or spaces. Default value is `false`.
+To enable indentation check use the value `'tabs'` or `'spaces'`.
 
 ```javascript
 	indentation: 'tabs'
 ```
 
-If the indentation option is set to `'spaces'`, there is also the possibility to set the amount of spaces per indentation using the `spaces` option. Default value is `4`.
+If the indentation option is set to `'spaces'`, there is also the possibility
+to set the amount of spaces per indentation using the `spaces` option. Default value is `4`.
 
 ```javascript
 	indentation: 'spaces',
@@ -93,7 +111,8 @@ If the indentation option is set to `'spaces'`, there is also the possibility to
 
 ### ignores option
 
-Use the `ignores` option when special lines such as comments should be ignored. Provide an array of regular expressions to the `ignores` property.
+Use the `ignores` option when special lines such as comments should be ignored.
+Provide an array of regular expressions to the `ignores` property.
 
 ```javascript
 	ignores: [
@@ -102,7 +121,8 @@ Use the `ignores` option when special lines such as comments should be ignored. 
 	]
 ```
 
-There are some _**build in**_ ignores for comments which you can apply by using these strings:
+There are some _**build in**_ ignores for comments which you can apply by using
+these strings:
 
 * 'js-comments'
 * 'c-comments'
@@ -114,7 +134,8 @@ There are some _**build in**_ ignores for comments which you can apply by using 
 * 'ruby-comments'
 * 'applescript-comments'
 
-_(build in strings and userdefined regular expressions are mixable in the `ignores` array)_
+_(build in strings and userdefined regular expressions are mixable in the
+`ignores` array)_
 
 ```javascript
 	ignores: [
@@ -127,7 +148,10 @@ _(build in strings and userdefined regular expressions are mixable in the `ignor
 
 ### .editorconfig option
 
-It's possible to overwrite the default and given options by setting up a path to an external editorconfig file by unsing the `editorconfig`option. For a basic configuration of a _.editorconfig_ file check out the [EditorConfig Documentation](http://editorconfig.org/).
+It's possible to overwrite the default and given options by setting up a path
+to an external editorconfig file by unsing the `editorconfig`option. For a basic
+configuration of a _.editorconfig_ file check out the
+[EditorConfig Documentation](http://editorconfig.org/).
 
 ```javascript
 	editorconfig: '.editorconfig'
@@ -163,18 +187,24 @@ This returns the amount of processed through the validator.
 
 This returns all invalid lines and messages from processed files.
 
-* **Returns** each key in the returned ```Object``` represents a path of a processed invalid file. Each value is an other object containing the validation result. For more informations about the returned format see [Usage](#usage).
+* **Returns** each key in the returned ```Object``` represents a path of a
+processed invalid file. Each value is an other object containing the validation
+result. For more informations about the returned format see [Usage](#usage).
 
 ### ```getInvalidLines(path)```
 
-This returns all invalid lines and messages from the file of the given ```path```. This is just a shorter version of ```getInvalidFiles()[path]```.
+This returns all invalid lines and messages from the file of the given
+```path```. This is just a shorter version of ```getInvalidFiles()[path]```.
 
-* **Parameter ```path``` is the file path
-* **Returns** each key in the returned ```Object``` represents a line from the file of the given path, each value an exeption message of the current line. For more informations about the returned format see [Usage](#usage).
+* **Parameter ```path```** is the file path
+* **Returns** each key in the returned ```Object``` represents a line from the
+file of the given path, each value an exeption message of the current line. For
+more informations about the returned format see [Usage](#usage).
 
 ## Contribution
 
-Feel free to contribute. Please run all the tests and validation tasks befor you offer a pull request.
+Feel free to contribute. Please run all the tests and validation tasks befor
+you offer a pull request.
 
 ### Tests & validation
 
@@ -182,7 +212,11 @@ Run ```make test``` to run the tests and validation tasks.
 
 ### Readme
 
-The readme is located in the _docs_ directory. All Markdown files will be concatenated through a gulp task ```'readme'```. Call ```gulp readme``` or ```make readme``` to update the _README.md_. **Note: ** Do not edit the _README.md_ directly, it will be overwritten!
+The readme chapters are located in the _docs_ directory as Markdown. All
+Markdown files will be concatenated through a gulp task ```'readme'```. Call
+```gulp readme``` or ```make readme``` to update the _README.md_.
+
+**Note: ** Do not edit the _README.md_ directly, it will be overwritten!
 
 ## License
 
