@@ -15,5 +15,8 @@ describe('newlines', function() {
 
 		validator.validate(p);
 		validator.getInvalidLines(p).should.not.be.empty;
+		Object.keys(validator.getInvalidLines(p)).should.be.eql(
+			['3', '4', '5', '6', '7', '8', '9', '10']
+		);
 	});
 });
