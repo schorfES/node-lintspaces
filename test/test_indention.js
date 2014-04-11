@@ -26,7 +26,7 @@ describe('indentation', function() {
 		});
 
 		it('should have 2 processed files', function() {
-			validator.getProssessedFiles().should.be.equal(2);
+			validator.getProcessedFiles().should.be.equal(2);
 		});
 
 		it('should have 1 invalid files', function() {
@@ -54,7 +54,7 @@ describe('indentation', function() {
 		});
 
 		it('should have 2 processed files', function() {
-			validator.getProssessedFiles().should.be.equal(2);
+			validator.getProcessedFiles().should.be.equal(2);
 		});
 
 		it('should have 1 invalid files', function() {
