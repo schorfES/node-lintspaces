@@ -1,4 +1,5 @@
 REPORTER = spec
+BRANCH = master
 
 test: test-unit lint
 
@@ -20,3 +21,6 @@ lib-cov:
 
 clean:
 	rm -fr lib-cov
+
+push: test
+	@git push origin $(BRANCH)
