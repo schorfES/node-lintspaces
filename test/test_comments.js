@@ -43,4 +43,20 @@ describe('comments', function() {
 		validator.validate(p);
 		validator.getInvalidLines(p).should.be.empty;
 	});
+
+	it('fixtures/comments/custom.txt should ignore <comment></comment>', function() {
+		var
+			validator = new Validator({
+				indentation: 'spaces',
+				spaces: 4,
+				ignores: [
+					/\<comment\>[\s\S]*?\<\/comment\>/g
+				]
+			}),
+			p = path.join(__dirname, 'fixtures/comments/custom.txt')
+		;
+
+		validator.validate(p);
+		Object.keys(validator.getInvalidLines(p)).should.be.eql(['2', '4']);
+	});
 });
