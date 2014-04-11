@@ -41,6 +41,7 @@ gulp.task('readme', ['readme-clean'], function() {
 	gulp
 		.src([
 			'./docs/intro.md',
+			'./docs/installation.md',
 			'./docs/usage.md',
 			'./docs/options.md',
 			'./docs/functions.md',
