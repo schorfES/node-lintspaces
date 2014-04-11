@@ -50,7 +50,7 @@ describe('comments', function() {
 				indentation: 'spaces',
 				spaces: 4,
 				ignores: [
-					/\<comment\>[\s\S]*?\<\/comment\>/g
+					/<comment>[\s\S]*?<\/comment>/g
 				]
 			}),
 			p = path.join(__dirname, 'fixtures/comments/custom.txt')

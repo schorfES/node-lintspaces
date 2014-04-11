@@ -1,7 +1,4 @@
-var
-	path = require('path'),
-	Validator = require('../index')
-;
+var Validator = require('../index');
 
 require('should');
 
@@ -9,7 +6,7 @@ describe('wrong files', function() {
 	var validator = new Validator();
 
 	it('should throw the exception "{a} does not exists" if path does not exists', function() {
-		var p = "/this/file/does/not/exists";
+		var p = '/this/file/does/not/exists';
 		validator.validate.bind(validator, p).should.throw(/does not exists/);
 	});
 
@@ -20,7 +17,7 @@ describe('wrong files', function() {
 
 	it('should throw the exception "config file wasn\'t found" if editorconfig does not exists', function() {
 		var
-			p = "/this/file/does/not/exists",
+			p = '/this/file/does/not/exists',
 			validator = new Validator({
 				editorconfig: p
 			})
