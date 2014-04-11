@@ -1,6 +1,7 @@
 ## Usage
 
-To run the lintspaces validator on one or multiple files take a look at the following example:
+To run the lintspaces validator on one or multiple files take a look at the
+following example:
 
 ```javascript
 
@@ -11,14 +12,16 @@ To run the lintspaces validator on one or multiple files take a look at the foll
 	validator.validate('/path/to/other/file.ext');
 
 	var results = validator.getInvalidFiles();
-
 ```
 
-The response of ```getInvalidFiles()``` contains an object. Each key of this object is a filepath which contains validation errors.
+The response of ```getInvalidFiles()``` contains an object. Each key of this
+object is a filepath which contains validation errors.
 
-Under each filepath there is an other object with at least one key. Those key(s) are the specific linenumbers of the file containing an array with error messages.
+Under each filepath there is an other object with at least one key. Those key(s)
+are the specific linenumbers of the file containing an array with error messages.
 
-The following lines shows the structure of the validation result in JSON notation:
+The following lines shows the structure of the validation result in JSON
+notation:
 
 ```json
 
@@ -38,5 +41,4 @@ The following lines shows the structure of the validation result in JSON notatio
 			]
 		}
 	}
-
 ```

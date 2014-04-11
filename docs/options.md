@@ -10,7 +10,8 @@ Tests for newlines at the end of all files. Default value is `false`.
 
 ### maximum newlines option
 
-Test for the maximum amount of newlines between code blocks. Default value is `false`. To enable this validation a number larger than `0` is expected.
+Test for the maximum amount of newlines between code blocks. Default value is
+`false`. To enable this validation a number larger than `0` is expected.
 
 ```javascript
 	newlineMaximum: 2
@@ -18,7 +19,8 @@ Test for the maximum amount of newlines between code blocks. Default value is `f
 
 ### trailingspaces option
 
-Tests for useless whitespaces (trailing whitespaces) at each lineending of all files. Default value is `false`.
+Tests for useless whitespaces (trailing whitespaces) at each lineending of all
+files. Default value is `false`.
 
 ```javascript
 	trailingspaces: true
@@ -26,13 +28,15 @@ Tests for useless whitespaces (trailing whitespaces) at each lineending of all f
 
 ### indentation options
 
-Tests for correct indentation using tabs or spaces. Default value is `false`. To enable indentation check use the value `'tabs'` or `'spaces'`.
+Tests for correct indentation using tabs or spaces. Default value is `false`.
+To enable indentation check use the value `'tabs'` or `'spaces'`.
 
 ```javascript
 	indentation: 'tabs'
 ```
 
-If the indentation option is set to `'spaces'`, there is also the possibility to set the amount of spaces per indentation using the `spaces` option. Default value is `4`.
+If the indentation option is set to `'spaces'`, there is also the possibility
+to set the amount of spaces per indentation using the `spaces` option. Default value is `4`.
 
 ```javascript
 	indentation: 'spaces',
@@ -41,7 +45,8 @@ If the indentation option is set to `'spaces'`, there is also the possibility to
 
 ### ignores option
 
-Use the `ignores` option when special lines such as comments should be ignored. Provide an array of regular expressions to the `ignores` property.
+Use the `ignores` option when special lines such as comments should be ignored.
+Provide an array of regular expressions to the `ignores` property.
 
 ```javascript
 	ignores: [
@@ -50,7 +55,8 @@ Use the `ignores` option when special lines such as comments should be ignored. 
 	]
 ```
 
-There are some _**build in**_ ignores for comments which you can apply by using these strings:
+There are some _**build in**_ ignores for comments which you can apply by using
+these strings:
 
 * 'js-comments'
 * 'c-comments'
@@ -62,7 +68,8 @@ There are some _**build in**_ ignores for comments which you can apply by using 
 * 'ruby-comments'
 * 'applescript-comments'
 
-_(build in strings and userdefined regular expressions are mixable in the `ignores` array)_
+_(build in strings and userdefined regular expressions are mixable in the
+`ignores` array)_
 
 ```javascript
 	ignores: [
@@ -75,7 +82,10 @@ _(build in strings and userdefined regular expressions are mixable in the `ignor
 
 ### .editorconfig option
 
-It's possible to overwrite the default and given options by setting up a path to an external editorconfig file by unsing the `editorconfig`option. For a basic configuration of a _.editorconfig_ file check out the [EditorConfig Documentation](http://editorconfig.org/).
+It's possible to overwrite the default and given options by setting up a path
+to an external editorconfig file by unsing the `editorconfig`option. For a basic
+configuration of a _.editorconfig_ file check out the
+[EditorConfig Documentation](http://editorconfig.org/).
 
 ```javascript
 	editorconfig: '.editorconfig'
