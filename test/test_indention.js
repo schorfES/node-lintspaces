@@ -28,6 +28,10 @@ describe('indentation', function() {
 		it('should have 2 processed files', function() {
 			validator.getProssessedFiles().should.be.equal(2);
 		});
+
+		it('should have 1 invalid files', function() {
+			Object.keys(validator.getInvalidFiles()).should.have.lengthOf(1);
+		});
 	});
 
 	describe('spaces', function() {
@@ -51,6 +55,10 @@ describe('indentation', function() {
 
 		it('should have 2 processed files', function() {
 			validator.getProssessedFiles().should.be.equal(2);
+		});
+
+		it('should have 1 invalid files', function() {
+			Object.keys(validator.getInvalidFiles()).should.have.lengthOf(1);
 		});
 	});
 });
