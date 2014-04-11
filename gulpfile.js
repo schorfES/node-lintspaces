@@ -2,6 +2,8 @@ var
 	util = require('util'),
 	gulp = require('gulp'),
 	colors = require('gulp/node_modules/gulp-util').colors,
+	concat = require('gulp-concat'),
+	clean = require('gulp-clean'),
 	jshint = require('gulp-jshint'),
 	jscs = require('gulp-jscs'),
 	map = require('gulp-jshint/node_modules/map-stream'),
@@ -9,7 +11,13 @@ var
 ;
 
 gulp.task('lint', function() {
-	return gulp.src([__filename, './index.js', './lib/**/*.js', './test/**/test_*.js'])
+	return gulp
+		.src([
+			__filename,
+			'./index.js',
+			'./lib/**/*.js',
+			'./test/**/test_*.js'
+		])
 		.pipe(jshint())
 		.pipe(map(function (file, cb) {
 			if (file.jshint && !file.jshint.success) {
@@ -19,6 +27,28 @@ gulp.task('lint', function() {
 			cb(null, file);
 		}))
 		.pipe(jscs(__dirname + '/.jscs.json'));
+});
+
+gulp.task('readme-clean', function() {
+	gulp
+		.src([
+			'./README.md'
+		], {read: false})
+		.pipe(clean());
+});
+
+gulp.task('readme', ['readme-clean'], function() {
+	gulp
+		.src([
+			'./docs/intro.md',
+			'./docs/usage.md',
+			'./docs/options.md',
+			'./docs/functions.md',
+			'./docs/contribution.md',
+			'./docs/license.md'
+		])
+		.pipe(concat('README.md'))
+		.pipe(gulp.dest('.'));
 });
 
 gulp.task('default', ['lint'], function() {

@@ -20,3 +20,6 @@ lib-cov:
 
 clean:
 	rm -fr lib-cov
+
+readme:
+	@./node_modules/.bin/gulp readme
