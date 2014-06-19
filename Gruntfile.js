@@ -9,6 +9,15 @@ var
 		'tests/**/*.js',
 		'!tests/**/fixures/*.js',
 		'example/**/*.js'
+	],
+	docFiles = [
+		'./docs/intro.md',
+		'./docs/installation.md',
+		'./docs/usage.md',
+		'./docs/options.md',
+		'./docs/functions.md',
+		'./docs/contribution.md',
+		'./docs/license.md'
 	]
 ;
 
@@ -45,6 +54,17 @@ module.exports = function(grunt) {
 
 	grunt.loadNpmTasks('grunt-jscs-checker');
 
+	// Concat:
+	// -------------------------------------------------------------------------
+	grunt.config('concat', {
+		all: {
+			src: docFiles,
+			dest: 'README.md'
+		}
+	});
+
+	grunt.loadNpmTasks('grunt-contrib-concat');
+
 
 
 	// Setup default tasks:
@@ -56,6 +76,16 @@ module.exports = function(grunt) {
 
 	grunt.registerTask('test', [
 		'nodeunit'
+	]);
+
+	grunt.registerTask('docs', [
+		'concat'
+	]);
+
+	grunt.registerTask('default', [
+		'validate',
+		'test',
+		'docs'
 	]);
 
 };
