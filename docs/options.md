@@ -8,6 +8,9 @@ Tests for newlines at the end of all files. Default value is `false`.
 	newline: true
 ```
 
+* returns code ```NEWLINE```, when a missing a newline at the end of the file.
+* returns code ```NEWLINE_AMOUNT```, when found unexpected additional newlines at the end of a file.
+
 ### maximum newlines option
 
 Test for the maximum amount of newlines between code blocks. Default value is
@@ -16,6 +19,8 @@ Test for the maximum amount of newlines between code blocks. Default value is
 ```javascript
 	newlineMaximum: 2
 ```
+
+* returns code ```NEWLINE_MAXIMUM```, when maximum amount of newlines exceeded between code blocks.
 
 ### trailingspaces option
 
@@ -26,6 +31,8 @@ files. Default value is `false`.
 	trailingspaces: true
 ```
 
+* returns code ```TRAILINGSPACES```, when unexpected trailing spaces were found.
+
 ### indentation options
 
 Tests for correct indentation using tabs or spaces. Default value is `false`.
@@ -35,6 +42,8 @@ To enable indentation check use the value `'tabs'` or `'spaces'`.
 	indentation: 'tabs'
 ```
 
+* returns code ```INDENTATION_TABS```, when spaces are used instead of tabs.
+
 If the indentation option is set to `'spaces'`, there is also the possibility
 to set the amount of spaces per indentation using the `spaces` option. Default value is `4`.
 
@@ -42,6 +51,9 @@ to set the amount of spaces per indentation using the `spaces` option. Default v
 	indentation: 'spaces',
 	spaces: 2
 ```
+
+* returns code ```INDENTATION_SPACES```, when tabs are used instead of spaces.
+* returns code ```INDENTATION_SPACES_AMOUNT```, when spaces are used but the amound is not as expected.
 
 ### ignores option
 

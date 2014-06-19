@@ -39,7 +39,7 @@ The response of ```getInvalidFiles()``` contains an object. Each key of this
 object is a filepath which contains validation errors.
 
 Under each filepath there is an other object with at least one key. Those key(s)
-are the specific linenumbers of the file containing an array with error messages.
+are the specific linenumbers of the file containing an array with errors.
 
 The following lines shows the structure of the validation result in JSON
 notation:
@@ -49,16 +49,28 @@ notation:
 	{
 		"/path/to/file.ext": {
 			"3": [
-				"Unexpected spaces found.",
-				"Unexpected trailing spaces found."
+				{
+					"code": "INDENTATION_TABS",
+					"message": "Unexpected spaces found."
+				},
+				{
+					"code": "TRAILINGSPACES",
+					"message": "Unexpected trailing spaces found."
+				}
 			],
 			"12": [
-				"Expected a newline at the end of the file."
+				{
+					"code": "NEWLINE",
+					"message": "Expected a newline at the end of the file."
+				}
 			]
 		},
 		"/path/to/other/file.ext": {
 			"5": [
-				"Unexpected additional newlines at the end of the file."
+				{
+					"code": "NEWLINE_AMOUNT",
+					"message": "Unexpected additional newlines at the end of the file."
+				}
 			]
 		}
 	}
@@ -74,6 +86,9 @@ Tests for newlines at the end of all files. Default value is `false`.
 	newline: true
 ```
 
+* returns code ```NEWLINE```, when a missing a newline at the end of the file.
+* returns code ```NEWLINE_AMOUNT```, when found unexpected additional newlines at the end of a file.
+
 ### maximum newlines option
 
 Test for the maximum amount of newlines between code blocks. Default value is
@@ -82,6 +97,8 @@ Test for the maximum amount of newlines between code blocks. Default value is
 ```javascript
 	newlineMaximum: 2
 ```
+
+* returns code ```NEWLINE_MAXIMUM```, when maximum amount of newlines exceeded between code blocks.
 
 ### trailingspaces option
 
@@ -92,6 +109,8 @@ files. Default value is `false`.
 	trailingspaces: true
 ```
 
+* returns code ```TRAILINGSPACES```, when unexpected trailing spaces were found.
+
 ### indentation options
 
 Tests for correct indentation using tabs or spaces. Default value is `false`.
@@ -101,6 +120,8 @@ To enable indentation check use the value `'tabs'` or `'spaces'`.
 	indentation: 'tabs'
 ```
 
+* returns code ```INDENTATION_TABS```, when spaces are used instead of tabs.
+
 If the indentation option is set to `'spaces'`, there is also the possibility
 to set the amount of spaces per indentation using the `spaces` option. Default value is `4`.
 
@@ -108,6 +129,9 @@ to set the amount of spaces per indentation using the `spaces` option. Default v
 	indentation: 'spaces',
 	spaces: 2
 ```
+
+* returns code ```INDENTATION_SPACES```, when tabs are used instead of spaces.
+* returns code ```INDENTATION_SPACES_AMOUNT```, when spaces are used but the amound is not as expected.
 
 ### ignores option
 
