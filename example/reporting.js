@@ -31,7 +31,7 @@ Object.keys(files).forEach(function(file) {
 		errors.forEach(function(error) {
 			console.error(
 				'Error in Line ' + error.line +
-				' (' + error.code + ')' +
+				' (' + error.code + ' / ' + error.type + ')' +
 				': ' + error.message
 			);
 
