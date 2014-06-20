@@ -24,7 +24,7 @@ exports.tests = {
 			'7': [merge({}, Messages.INDENTATION_SPACES, {line: 7})],
 		};
 
-		test.deepEqual(expected, report);
+		test.deepEqual(report, expected);
 		test.done();
 	},
 
@@ -42,7 +42,7 @@ exports.tests = {
 			'7': [merge({}, Messages.INDENTATION_SPACES, {line: 7})],
 		};
 
-		test.deepEqual(expected, report);
+		test.deepEqual(report, expected);
 		test.done();
 	},
 
@@ -82,7 +82,7 @@ exports.tests = {
 			})]
 		};
 
-		test.deepEqual(expected, report);
+		test.deepEqual(report, expected);
 		test.done();
 	},
 

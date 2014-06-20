@@ -21,7 +21,7 @@ exports.tests = {
 			'8': [merge({}, Messages.TRAILINGSPACES, {line: 8})]
 		};
 
-		test.deepEqual(expected, report);
+		test.deepEqual(report, expected);
 		test.done();
 	},
 

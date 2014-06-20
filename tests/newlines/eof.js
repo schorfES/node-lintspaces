@@ -19,7 +19,7 @@ exports.tests = {
 			'8': [merge({}, Messages.NEWLINE, {line: 8})]
 		};
 
-		test.deepEqual(expected, report);
+		test.deepEqual(report, expected);
 		test.done();
 	},
 
@@ -33,7 +33,7 @@ exports.tests = {
 			'12': [merge({}, Messages.NEWLINE_AMOUNT, {line: 12})]
 		};
 
-		test.deepEqual(expected, report);
+		test.deepEqual(report, expected);
 		test.done();
 	},
 

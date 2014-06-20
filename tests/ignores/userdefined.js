@@ -32,7 +32,7 @@ exports.tests = {
 			'13': [merge({}, Messages.INDENTATION_TABS, {line: 13})]
 		};
 
-		test.deepEqual(expected, report);
+		test.deepEqual(report, expected);
 		test.done();
 	},
 
@@ -56,7 +56,7 @@ exports.tests = {
 			'11': [merge({}, Messages.INDENTATION_TABS, {line: 11})]
 		};
 
-		test.deepEqual(expected, report);
+		test.deepEqual(report, expected);
 		test.done();
 	}
 };

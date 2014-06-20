@@ -40,7 +40,7 @@ exports.tests = {
 			})]
 		};
 
-		test.deepEqual(expected, report);
+		test.deepEqual(report, expected);
 		test.done();
 	},
 

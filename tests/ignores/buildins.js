@@ -41,7 +41,7 @@ exports.tests = {
 			'20': [merge({}, Messages.INDENTATION_TABS, {line: 20})],
 		};
 
-		test.deepEqual(expected, report);
+		test.deepEqual(report, expected);
 		test.done();
 	},
 
@@ -65,7 +65,7 @@ exports.tests = {
 			'19': [merge({}, Messages.TRAILINGSPACES, {line: 19})]
 		};
 
-		test.deepEqual(expected, report);
+		test.deepEqual(report, expected);
 		test.done();
 	}
 };

@@ -20,7 +20,7 @@ exports.tests = {
 			'6': [merge({}, Messages.INDENTATION_TABS, {line: 6})],
 		};
 
-		test.deepEqual(expected, report);
+		test.deepEqual(report, expected);
 		test.done();
 	},
 
