@@ -93,12 +93,15 @@ Test for the maximum amount of newlines between code blocks. Default value is
 
 ### trailingspaces option
 
-Tests for useless whitespaces (trailing whitespaces) at each lineending of all
+Tests for useless whitespaces (trailing whitespaces) at each line ending of all
 files. Default value is `false`.
 
 ```javascript
 	trailingspaces: true
 ```
+
+If you want to exclude lines which only contain whitespace from this check, set 
+`trailingspaces: 'ignore empty'`.
 
 ### indentation options
 
