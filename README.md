@@ -2,13 +2,21 @@
 
 A node module for checking spaces in files.
 
+### Tasks
+
 If you're looking for a
 [gruntjs](http://gruntjs.com/) or
 [gulpjs](http://gulpjs.com/)
 task to validate your files, take a look at these ones:
 
 * [grunt-lintspaces](https://github.com/schorfES/grunt-lintspaces)
-* [gulp-lintspaces](https://github.com/ck86/gulp-lintspaces)
+* [gulp-lintspaces](https://github.com/ck86/gulp-lintspaces) by [ck86](https://github.com/ck86)
+
+
+### CLI
+
+There is also a [lintspaces CLI](https://github.com/evanshortiss/lintspaces-cli)
+available written by [evanshortiss](https://github.com/evanshortiss).
 
 ## Installation
 
@@ -242,6 +250,13 @@ Markdown files will be concatenated through a grunt task ```'docs'```. Call
 update the _README.md_.
 
 **Note:** Do not edit the _README.md_ directly, it will be overwritten!
+
+### Contributors
+
+* [ck86](https://github.com/ck86)
+* [ben-eb](https://github.com/ben-eb) via [grunt-lintspaces](https://github.com/schorfES/grunt-lintspaces/)
+* [yurks](https://github.com/yurks) via [grunt-lintspaces](https://github.com/schorfES/grunt-lintspaces/)
+* [evanshortiss](https://github.com/evanshortiss) via [lintspaces-cli](https://github.com/evanshortiss/lintspaces-cli)
 
 ## License
 

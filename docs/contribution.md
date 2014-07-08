@@ -15,3 +15,10 @@ Markdown files will be concatenated through a grunt task ```'docs'```. Call
 update the _README.md_.
 
 **Note:** Do not edit the _README.md_ directly, it will be overwritten!
+
+### Contributors
+
+* [ck86](https://github.com/ck86)
+* [ben-eb](https://github.com/ben-eb) via [grunt-lintspaces](https://github.com/schorfES/grunt-lintspaces/)
+* [yurks](https://github.com/yurks) via [grunt-lintspaces](https://github.com/schorfES/grunt-lintspaces/)
+* [evanshortiss](https://github.com/evanshortiss) via [lintspaces-cli](https://github.com/evanshortiss/lintspaces-cli)
