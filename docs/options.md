@@ -63,6 +63,28 @@ value is `4`.
 * returns code ```INDENTATION_SPACES_AMOUNT```, when spaces are used but the
 amound is not as expected.
 
+### guess indentation option
+
+This ```indentationGuess``` option _tries to guess_ the indention of a line 
+depending on previous lines. The report of this option can be incorrect,
+because the _correct_ indentation depends on the actual programming language
+and styleguide of the certain file. The default value is `false` - disabled.
+
+This feature follows the following rules: _The indentation of the current
+line is correct when:_
+
+* the amount of indentations is equal to the previous or
+* the amount of indentations is less than the previous line or
+* the amount of indentations is one more than the previous line
+* the amount of indentations is zero and the lines length is also zero which
+is an empty line without trailing whitespaces
+
+```javascript
+	indentationGuess: true
+```
+
+* returns code ```NEWLINE_GUESS```
+
 ### ignores option
 
 Use the `ignores` option when special lines such as comments should be ignored.
