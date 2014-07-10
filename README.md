@@ -105,6 +105,7 @@ Tests for newlines at the end of all files. Default value is `false`.
 * returns code ```NEWLINE```, when a missing a newline at the end of the file.
 * returns code ```NEWLINE_AMOUNT```, when found unexpected additional newlines
 at the end of a file.
+* returns type ```warning```
 
 ### maximum newlines option
 
@@ -117,6 +118,7 @@ Test for the maximum amount of newlines between code blocks. Default value is
 
 * returns code ```NEWLINE_MAXIMUM```, when maximum amount of newlines exceeded
 between code blocks.
+* returns type ```warning```
 
 ### trailingspaces option
 
@@ -128,6 +130,7 @@ files. Default value is `false`.
 ```
 
 * returns code ```TRAILINGSPACES```, when unexpected trailing spaces were found.
+* returns type ```warning```
 
 **Note:** If you like to to skip empty lines from reporting (for whatever
 reason), use the option ```trailingspacesSkipBlanks``` and set them to
@@ -143,6 +146,7 @@ To enable indentation check use the value `'tabs'` or `'spaces'`.
 ```
 
 * returns code ```INDENTATION_TABS```, when spaces are used instead of tabs.
+* returns type ```warning```
 
 If the indentation option is set to `'spaces'`, there is also the possibility
 to set the amount of spaces per indentation using the `spaces` option. Default
@@ -156,6 +160,30 @@ value is `4`.
 * returns code ```INDENTATION_SPACES```, when tabs are used instead of spaces.
 * returns code ```INDENTATION_SPACES_AMOUNT```, when spaces are used but the
 amound is not as expected.
+* returns type ```warning```
+
+### guess indentation option
+
+This ```indentationGuess``` option _tries to guess_ the indention of a line 
+depending on previous lines. The report of this option can be incorrect,
+because the _correct_ indentation depends on the actual programming language
+and styleguide of the certain file. The default value is `false` - disabled.
+
+This feature follows the following rules: _The indentation of the current
+line is correct when:_
+
+* the amount of indentations is equal to the previous or
+* the amount of indentations is less than the previous line or
+* the amount of indentations is one more than the previous line
+* the amount of indentations is zero and the lines length is also zero which
+is an empty line without trailing whitespaces
+
+```javascript
+	indentationGuess: true
+```
+
+* returns code ```NEWLINE_GUESS```
+* returns type ```hint```
 
 ### ignores option
 
