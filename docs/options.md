@@ -33,6 +33,10 @@ files. Default value is `false`.
 
 * returns code ```TRAILINGSPACES```, when unexpected trailing spaces were found.
 
+**Note:** If you like to to skip empty lines from reporting (for whatever
+reason), use the option ```trailingspacesSkipBlanks``` and set them to
+```true```.
+
 ### indentation options
 
 Tests for correct indentation using tabs or spaces. Default value is `false`.
