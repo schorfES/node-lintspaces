@@ -21,9 +21,17 @@
     "eof",
     "eol"
   ],
-  "contributors": [
-    "Norman Rusch (nrmnrsh / schorfES)",
-    "Christopher Knötschke <cknoetschke@gmail.com>"
+  "author":{
+    "name" : "Norman Rusch"
+  },
+   "contributors": [
+    {
+      "name": "Norman Rusch"
+    },
+    {
+      "name": "Christopher Knötschke",
+      "email": "cknoetschke@gmail.com"
+    }
   ],
   "license": "MIT",
   "dependencies": {
