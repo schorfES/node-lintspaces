@@ -176,7 +176,11 @@ _(build in strings and userdefined regular expressions are mixable in the
 	]
 ```
 
-**Feel free to contribute some new regular expressions as build in!**
+_Feel free to contribute some new regular expressions as build in!_
+
+**Note:** Trailing spaces are not ignored by default, because they are always
+evil!! If you still want to ignore them use the ```trailingspacesToIgnores```
+option and set them to ```true```.
 
 ### .editorconfig option
 
