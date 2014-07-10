@@ -39,8 +39,7 @@ files. Default value is `false`.
 * returns type ```warning```
 
 **Note:** If you like to to skip empty lines from reporting (for whatever
-reason), use the option ```trailingspacesSkipBlanks``` and set them to
-```true```.
+reason), use the option ```trailingspacesSkipBlanks``` and set them to ```true```.
 
 ### indentation options
 
@@ -70,7 +69,7 @@ amound is not as expected.
 
 ### guess indentation option
 
-This ```indentationGuess``` option _tries to guess_ the indention of a line 
+This ```indentationGuess``` option _tries to guess_ the indention of a line
 depending on previous lines. The report of this option can be incorrect,
 because the _correct_ indentation depends on the actual programming language
 and styleguide of the certain file. The default value is `false` - disabled.
