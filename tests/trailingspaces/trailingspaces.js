@@ -36,8 +36,6 @@ exports.tests = {
 	},
 
 	'should ignore trailingspaces inside comments when option is set': function(test) {
-		// this should fail because there is one invalid line and there
-		// are also trainingspaces
 		file = __dirname + '/fixures/ignores.js';
 		validator = new Validator({
 			trailingspaces: true,
