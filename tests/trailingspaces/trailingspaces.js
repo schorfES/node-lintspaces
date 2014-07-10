@@ -59,5 +59,23 @@ exports.tests = {
 
 		test.deepEqual(expected, report);
 		test.done();
+	},
+
+	'should ignore trailingspaces on blank lines when option is set': function(test) {
+		file = __dirname + '/fixures/invalid.js';
+		validator = new Validator({
+			trailingspaces: true,
+			trailingspacesSkipBlanks: true
+		});
+		validator.validate(file);
+		report = validator.getInvalidFiles();
+		expected = {};
+		expected[file] = {
+			'2': [merge({}, Messages.TRAILINGSPACES, {line: 2})],
+			'8': [merge({}, Messages.TRAILINGSPACES, {line: 8})]
+		};
+
+		test.deepEqual(expected, report);
+		test.done();
 	}
 };
