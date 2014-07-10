@@ -10,8 +10,6 @@
 		"module": true,
 		"require": true,
 		"exports": true,
-		"describe": true,
-		"it": true,
 		"__dirname": true,
 		"__filename": true
 	},

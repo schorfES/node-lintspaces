@@ -18,7 +18,7 @@ The response of ```getInvalidFiles()``` contains an object. Each key of this
 object is a filepath which contains validation errors.
 
 Under each filepath there is an other object with at least one key. Those key(s)
-are the specific linenumbers of the file containing an array with error messages.
+are the specific linenumbers of the file containing an array with errors.
 
 The following lines shows the structure of the validation result in JSON
 notation:
@@ -28,16 +28,28 @@ notation:
 	{
 		"/path/to/file.ext": {
 			"3": [
-				"Unexpected spaces found.",
-				"Unexpected trailing spaces found."
+				{
+					"code": "INDENTATION_TABS",
+					"message": "Unexpected spaces found."
+				},
+				{
+					"code": "TRAILINGSPACES",
+					"message": "Unexpected trailing spaces found."
+				}
 			],
 			"12": [
-				"Expected a newline at the end of the file."
+				{
+					"code": "NEWLINE",
+					"message": "Expected a newline at the end of the file."
+				}
 			]
 		},
 		"/path/to/other/file.ext": {
 			"5": [
-				"Unexpected additional newlines at the end of the file."
+				{
+					"code": "NEWLINE_AMOUNT",
+					"message": "Unexpected additional newlines at the end of the file."
+				}
 			]
 		}
 	}
