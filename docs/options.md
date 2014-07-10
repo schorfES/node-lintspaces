@@ -9,7 +9,8 @@ Tests for newlines at the end of all files. Default value is `false`.
 ```
 
 * returns code ```NEWLINE```, when a missing a newline at the end of the file.
-* returns code ```NEWLINE_AMOUNT```, when found unexpected additional newlines at the end of a file.
+* returns code ```NEWLINE_AMOUNT```, when found unexpected additional newlines
+at the end of a file.
 
 ### maximum newlines option
 
@@ -20,7 +21,8 @@ Test for the maximum amount of newlines between code blocks. Default value is
 	newlineMaximum: 2
 ```
 
-* returns code ```NEWLINE_MAXIMUM```, when maximum amount of newlines exceeded between code blocks.
+* returns code ```NEWLINE_MAXIMUM```, when maximum amount of newlines exceeded
+between code blocks.
 
 ### trailingspaces option
 
@@ -32,6 +34,10 @@ files. Default value is `false`.
 ```
 
 * returns code ```TRAILINGSPACES```, when unexpected trailing spaces were found.
+
+**Note:** If you like to to skip empty lines from reporting (for whatever
+reason), use the option ```trailingspacesSkipBlanks``` and set them to
+```true```.
 
 ### indentation options
 
@@ -45,7 +51,8 @@ To enable indentation check use the value `'tabs'` or `'spaces'`.
 * returns code ```INDENTATION_TABS```, when spaces are used instead of tabs.
 
 If the indentation option is set to `'spaces'`, there is also the possibility
-to set the amount of spaces per indentation using the `spaces` option. Default value is `4`.
+to set the amount of spaces per indentation using the `spaces` option. Default
+value is `4`.
 
 ```javascript
 	indentation: 'spaces',
@@ -53,7 +60,8 @@ to set the amount of spaces per indentation using the `spaces` option. Default v
 ```
 
 * returns code ```INDENTATION_SPACES```, when tabs are used instead of spaces.
-* returns code ```INDENTATION_SPACES_AMOUNT```, when spaces are used but the amound is not as expected.
+* returns code ```INDENTATION_SPACES_AMOUNT```, when spaces are used but the
+amound is not as expected.
 
 ### ignores option
 
@@ -90,7 +98,11 @@ _(build in strings and userdefined regular expressions are mixable in the
 	]
 ```
 
-**Feel free to contribute some new regular expressions as build in!**
+_Feel free to contribute some new regular expressions as build in!_
+
+**Note:** Trailing spaces are not ignored by default, because they are always
+evil!! If you still want to ignore them use the ```trailingspacesToIgnores```
+option and set them to ```true```.
 
 ### .editorconfig option
 
