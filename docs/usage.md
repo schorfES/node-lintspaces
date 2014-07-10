@@ -29,17 +29,23 @@ notation:
 		"/path/to/file.ext": {
 			"3": [
 				{
+					"line": 3,
 					"code": "INDENTATION_TABS",
+					"type": "warning",
 					"message": "Unexpected spaces found."
 				},
 				{
+					"line": 3,
 					"code": "TRAILINGSPACES",
+					"type": "warning",
 					"message": "Unexpected trailing spaces found."
 				}
 			],
 			"12": [
 				{
+					"line": 12,
 					"code": "NEWLINE",
+					"type": "warning",
 					"message": "Expected a newline at the end of the file."
 				}
 			]
@@ -47,7 +53,9 @@ notation:
 		"/path/to/other/file.ext": {
 			"5": [
 				{
+					"line": 5,
 					"code": "NEWLINE_AMOUNT",
+					"type": "warning",
 					"message": "Unexpected additional newlines at the end of the file."
 				}
 			]
