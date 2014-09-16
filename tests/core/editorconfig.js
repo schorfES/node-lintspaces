@@ -13,7 +13,7 @@ exports.tests = {
 			spaces: 2,
 			newline: false,
 			ignores: ['js-comments'],
-			editorconfig: __dirname + '/../../.editorconfig'
+			editorconfig: '.editorconfig'
 		};
 
 		// fake loading:
