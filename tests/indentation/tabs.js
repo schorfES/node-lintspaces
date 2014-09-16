@@ -32,5 +32,15 @@ exports.tests = {
 
 		test.deepEqual({}, report);
 		test.done();
+	},
+
+	'should have no reports when file with BOM is valid': function(test) {
+		file = __dirname + '/fixures/tabs-bom-valid.js';
+		validator = new Validator({indentation: 'tabs'});
+		validator.validate(file);
+		report = validator.getInvalidFiles();
+
+		test.deepEqual({}, report);
+		test.done();
 	}
 };
