@@ -26,11 +26,16 @@
   },
   "contributors": [
     {
-      "name": "Norman Rusch"
+      "name": "Norman Rusch",
+      "url": "https://github.com/schorfES"
     },
     {
       "name": "Christopher Knötschke",
-      "email": "cknoetschke@gmail.com"
+      "url": "https://github.com/ck86"
+    },
+    {
+      "name": "Will Anderson",
+      "url": "https://github.com/itsananderson"
     }
   ],
   "license": "MIT",
