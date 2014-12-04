@@ -21,10 +21,10 @@
     "eof",
     "eol"
   ],
-  "author":{
-    "name" : "Norman Rusch"
+  "author": {
+    "name": "Norman Rusch"
   },
-   "contributors": [
+  "contributors": [
     {
       "name": "Norman Rusch"
     },
@@ -39,10 +39,10 @@
     "editorconfig": "^0.11.4"
   },
   "devDependencies": {
-    "grunt": "~0.4.5",
-    "grunt-contrib-nodeunit": "~0.4.0",
-    "grunt-contrib-jshint": "~0.10.0",
-    "grunt-contrib-concat": "~0.4.0",
-    "grunt-jscs-checker": "~0.5.1"
+    "grunt": "^0.4.5",
+    "grunt-contrib-concat": "0.4.0",
+    "grunt-contrib-jshint": "0.10.0",
+    "grunt-contrib-nodeunit": "0.4.0",
+    "grunt-jscs": "1.0.0"
   }
 }
