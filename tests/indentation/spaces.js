@@ -98,10 +98,11 @@ exports.tests = {
 		test.done();
 	},
 
-	'should have no reports when file with BOM is valid': function(test) {
+	'should have no reports when file with BOM is valid and BOM is allowed': function(test) {
 		file = __dirname + '/fixures/spaces-bom-valid.js';
 		validator = new Validator({
-			indentation: 'spaces'
+			indentation: 'spaces',
+			allowsBOM: true
 		});
 		validator.validate(file);
 		report = validator.getInvalidFiles();
