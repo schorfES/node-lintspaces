@@ -2,8 +2,6 @@
 
 A node module for checking spaces in files.
 
-[![Travis Status](https://travis-ci.org/schorfES/node-lintspaces.png?branch=master)](https://travis-ci.org/schorfES/node-lintspaces)
-
 ### Tasks
 
 If you're looking for a
@@ -230,7 +228,7 @@ option and set them to ```true```.
 ### .editorconfig option
 
 It's possible to overwrite the default and given options by setting up a path
-to an external editorconfig file by unsing the `editorconfig`option. For a basic
+to an external editorconfig file by using the `editorconfig` option. For a basic
 configuration of a _.editorconfig_ file check out the
 [EditorConfig Documentation](http://editorconfig.org/).
 
@@ -304,6 +302,7 @@ update the _README.md_.
 
 * [ck86](https://github.com/ck86)
 * [itsananderson](https://github.com/itsananderson)
+* [chandlerkent](https://github.com/chandlerkent)
 * [ben-eb](https://github.com/ben-eb) via [grunt-lintspaces](https://github.com/schorfES/grunt-lintspaces/)
 * [yurks](https://github.com/yurks) via [grunt-lintspaces](https://github.com/schorfES/grunt-lintspaces/)
 * [evanshortiss](https://github.com/evanshortiss) via [lintspaces-cli](https://github.com/evanshortiss/lintspaces-cli)
