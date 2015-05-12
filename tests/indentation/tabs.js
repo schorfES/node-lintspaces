@@ -32,5 +32,36 @@ exports.tests = {
 
 		test.deepEqual({}, report);
 		test.done();
+	},
+
+	'should have no reports when file with BOM is valid and BOM is allowed': function(test) {
+		file = __dirname + '/fixures/tabs-bom-valid.js';
+		validator = new Validator({
+			indentation: 'tabs',
+			allowsBOM: true
+		});
+		validator.validate(file);
+		report = validator.getInvalidFiles();
+
+		test.deepEqual({}, report);
+		test.done();
+	},
+
+	'should report an error when file with BOM is not allowed': function(test) {
+		file = __dirname + '/fixures/tabs-bom-valid.js';
+		validator = new Validator({
+			indentation: 'tabs',
+			allowsBOM: false
+		});
+		validator.validate(file);
+		report = validator.getInvalidFiles();
+
+		expected = {};
+		expected[file] = {
+			'1': [merge({}, Messages.INDENTATION_TABS, {line: 1})]
+		};
+
+		test.deepEqual(expected, report);
+		test.done();
 	}
 };
