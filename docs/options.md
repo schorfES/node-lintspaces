@@ -90,6 +90,14 @@ is an empty line without trailing whitespaces
 * returns code ```NEWLINE_GUESS```
 * returns type ```hint```
 
+### allowsBOM option
+
+Lintspaces fails with incorrect indentation errors when files contain Byte Order
+Marks (BOM). If you don't want to give false positives for inconsistent tabs or
+spaces, set the ```allowsBOM``` option to ```true```.  The default value is
+`false` - disabled.
+
+
 ### ignores option
 
 Use the `ignores` option when special lines such as comments should be ignored.
