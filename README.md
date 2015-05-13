@@ -191,6 +191,9 @@ Marks (BOM). If you don't want to give false positives for inconsistent tabs or
 spaces, set the ```allowsBOM``` option to ```true```.  The default value is
 `false` - disabled.
 
+```javascript
+	allowsBOM: true
+```
 
 ### ignores option
 
