@@ -43,7 +43,7 @@ exports.tests = {
 		validator.validate(file);
 		report = validator.getInvalidFiles();
 
-		test.deepEqual({}, report);
+		test.deepEqual(report, {});
 		test.done();
 	}
 };
