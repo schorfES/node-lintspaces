@@ -45,7 +45,7 @@
   "license": "MIT",
   "dependencies": {
     "merge": "1.1.2",
-    "editorconfig": "0.11.4"
+    "editorconfig": "0.12.2"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
