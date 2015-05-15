@@ -30,7 +30,7 @@ exports.tests = {
 		validator.validate(file);
 		report = validator.getInvalidFiles();
 
-		test.deepEqual({}, report);
+		test.deepEqual(report, {});
 		test.done();
 	},
 
@@ -43,7 +43,7 @@ exports.tests = {
 		validator.validate(file);
 		report = validator.getInvalidFiles();
 
-		test.deepEqual({}, report);
+		test.deepEqual(report, {});
 		test.done();
 	},
 
@@ -61,7 +61,7 @@ exports.tests = {
 			'1': [merge({}, Messages.INDENTATION_TABS, {line: 1})]
 		};
 
-		test.deepEqual(expected, report);
+		test.deepEqual(report, expected);
 		test.done();
 	}
 };
