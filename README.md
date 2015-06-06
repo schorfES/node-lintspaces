@@ -256,6 +256,16 @@ The following .editorconfig values are supported:
 * `indent_size` will check the amount of spaces
 * `trim_trailing_whitespace` will check for useless whitespaces
 
+### length of a line
+
+Tests for the length of lines of all files. Default value is `false`.
+
+```javascript
+	linelength: 80
+```
+
+* returns code ```LINELENGTH```, when a line is longer than specified.
+* returns type ```warning```
 ## Functions
 
 An instance of the _Lintspaces validator_ has the following methods
