@@ -7,11 +7,11 @@ var
 exports.tests = {
 	'should override the settings by editorconfig': function(test) {
 		options = {
-			trailingspaces: false,
+			trailingspaces: true,
 			newlineMaximum: false,
-			indentation: 'spaces',
+			indentation: 'tabs',
 			spaces: 2,
-			newline: false,
+			newline: true,
 			ignores: ['js-comments'],
 			editorconfig: '.editorconfig'
 		};
@@ -22,19 +22,19 @@ exports.tests = {
 		validator._loadSettings();
 
 		// newline:
-		test.ok(validator._settings.newline !== options.newline);
+		test.ok(validator._settings.newline === options.newline);
 		test.equal(validator._settings.newline, true);
 
 		// indentation will be overwritten:
-		test.ok(validator._settings.indentation !== options.indentation);
+		test.ok(validator._settings.indentation === options.indentation);
 		test.equal(validator._settings.indentation, 'tabs');
 
 		// spaces will be overwritten:
-		test.ok(validator._settings.spaces !== options.spaces);
-		test.equal(validator._settings.spaces, 'tab');
+		test.ok(validator._settings.spaces === options.spaces);
+		test.equal(validator._settings.spaces, 2);
 
 		// trailingspaces will be overwritten:
-		test.ok(validator._settings.trailingspaces !== options.trailingspaces);
+		test.ok(validator._settings.trailingspaces === options.trailingspaces);
 		test.equal(validator._settings.trailingspaces, true);
 
 		// newlineMaximum will be unchanged:
