@@ -1,4 +1,6 @@
 var
+	fs = require('fs'),
+	path = require('path'),
 	Validator = require('./../../lib/Validator'),
 	validator,
 	options
@@ -18,7 +20,7 @@ exports.tests = {
 
 		// fake loading:
 		validator = new Validator(options);
-		validator._path = __dirname + '/editorconfig.js';
+		validator._path = __filename;
 		validator._loadSettings();
 
 		// newline:
@@ -82,6 +84,37 @@ exports.tests = {
 			validator = new Validator({editorconfig: __dirname + '/path/that/doesnt/existis/.editorconfig'});
 			validator.validate(__filename);
 		}, Error);
+
+		test.done();
+	},
+
+	'should overwrite previous loaded rcconfig values': function(test) {
+		var
+			configFile = path.join(__dirname.toString(), '..', '..', '.' + Validator.APPNAME + 'rc'),
+			rcconfig = {
+				indentation: 'spaces',
+				trailingspaces: false
+			},
+			validator
+		;
+
+		// create config file:
+		fs.writeFileSync(configFile, JSON.stringify(rcconfig));
+
+		// fake loading:
+		validator = new Validator({
+			rcconfig: true,
+			editorconfig: '.editorconfig'
+		});
+		validator._path = __filename;
+		validator._loadSettings();
+
+		// remove config file:
+		fs.unlinkSync(configFile);
+
+		// test for expected properties by editorconfig:
+		test.equal(validator._settings.indentation, 'tabs');
+		test.equal(validator._settings.trailingspaces, true);
 
 		test.done();
 	}

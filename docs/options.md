@@ -159,3 +159,22 @@ The following .editorconfig values are supported:
 * `indent_style` will check the indentation
 * `indent_size` will check the amount of spaces
 * `trim_trailing_whitespace` will check for useless whitespaces
+
+### .rcconfig option
+
+Load all settings from a RC configuration file. The configuration can be defined
+in ```ini``` or ```json``` format. When setting this option to ```true``` the
+configuration from a ```.lintspacesrc``` in the
+[RC standards load paths](https://github.com/dominictarr/rc#standards)
+will be taken.
+
+```javascript
+	rcconfig: true
+```
+
+Define a custom path to a RC configuration file of your choice by setting the
+option to the desired path.
+
+```javascript
+	rcconfig: 'path/to/.customrc'
+```
