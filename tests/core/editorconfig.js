@@ -93,7 +93,8 @@ exports.tests = {
 			configFile = path.join(__dirname.toString(), '..', '..', '.' + Validator.APPNAME + 'rc'),
 			rcconfig = {
 				indentation: 'spaces',
-				trailingspaces: false
+				trailingspaces: false,
+				newline: false
 			},
 			validator
 		;
@@ -104,7 +105,8 @@ exports.tests = {
 		// fake loading:
 		validator = new Validator({
 			rcconfig: true,
-			editorconfig: '.editorconfig'
+			editorconfig: '.editorconfig',
+			newline: 'foo'
 		});
 		validator._path = __filename;
 		validator._loadSettings();
@@ -115,6 +117,7 @@ exports.tests = {
 		// test for expected properties by editorconfig:
 		test.equal(validator._settings.indentation, 'tabs');
 		test.equal(validator._settings.trailingspaces, true);
+		test.equal(validator._settings.newline, true);
 
 		test.done();
 	}
