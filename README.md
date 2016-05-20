@@ -3,6 +3,7 @@
 A node module for checking spaces in files.
 
 [![Travis Status](https://travis-ci.org/schorfES/node-lintspaces.png?branch=master)](https://travis-ci.org/schorfES/node-lintspaces)
+![David DM Status](https://david-dm.org/schorfES/node-lintspaces.svg?branch=master)
 
 ### Tasks
 
