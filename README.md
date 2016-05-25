@@ -132,7 +132,7 @@ case-insensitive. Note that this option checks all lines; even "ignored" lines.
 
 ```javascript
     endOfLine: 'lf'
-    ```
+```
 
 * returns code ```END_OF_LINE```, when the wrong line ending sequence is found.
 * returns type ```warning```
