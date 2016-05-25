@@ -123,6 +123,20 @@ Test for the maximum amount of newlines between code blocks. Default value is
 between code blocks.
 * returns type ```warning```
 
+### endOfLine option
+
+Lintspaces fails with incorrect end of line errors when files contain lines that
+end in the wrong sequence. Default value is `false`. To enable end of line checks
+use any of the following values: `'LF'` or `'CRLF'` or `'CR'`. Values are
+case-insensitive. Note that this option checks all lines; even "ignored" lines.
+
+```javascript
+    endOfLine: 'lf'
+    ```
+
+* returns code ```END_OF_LINE```, when the wrong line ending sequence is found.
+* returns type ```warning```
+
 ### trailingspaces option
 
 Tests for useless whitespaces (trailing whitespaces) at each lineending of all
@@ -187,17 +201,6 @@ is an empty line without trailing whitespaces
 * returns code ```NEWLINE_GUESS```
 * returns type ```hint```
 
-### end_of_line option
-
-Lintspaces fails with incorrect end of line errors when files contain lines that
-end in the wrong sequence. Default value is `false`. To enable end of line checks
-use any of the following values: `'LF'` or `'CRLF'` or `'CR'`. Values are
-case-insensitive. Note that this option checks all lines; even "ignored" lines.
-
-```javascript
-    end_of_line: 'lf'
-```
-
 ### allowsBOM option
 
 Lintspaces fails with incorrect indentation errors when files contain Byte Order
@@ -250,8 +253,8 @@ _Feel free to contribute some new regular expressions as build in!_
 evil!! If you still want to ignore them use the ```trailingspacesToIgnores```
 option and set them to ```true```.
 
-**Note:** If end-of-line checking is enabled, then all lines (including
-"ignored" lines will be checked for appropriate end-of-line sequences.
+**Note:** If endOfLine checking is enabled, then all lines (including
+"ignored" lines will be checked for appropriate end of line sequences.
 
 
 ### .editorconfig option
