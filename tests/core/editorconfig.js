@@ -15,6 +15,7 @@ exports.tests = {
 			spaces: 2,
 			newline: false,
 			ignores: ['js-comments'],
+			endOfLine: false,
 			editorconfig: '.editorconfig'
 		};
 
@@ -42,6 +43,10 @@ exports.tests = {
 		// newlineMaximum will be unchanged:
 		test.equal(validator._settings.newlineMaximum, options.newlineMaximum);
 
+		// endOfLine will be overriden:
+		test.ok(validator._settings.endOfLine !== options.endOfLine);
+		test.equal(validator._settings.endOfLine, 'lf');
+
 		test.done();
 	},
 
@@ -57,6 +62,8 @@ exports.tests = {
 
 		test.equal(validator._settings.trailingspaces, false);
 		test.equal(validator._settings.newline, false);
+		test.equal(validator._settings.endOfLine, 'lf');
+
 
 		// Load editorconfig with extension where options are enabled
 		validator = new Validator(options);
@@ -65,6 +72,7 @@ exports.tests = {
 
 		test.equal(validator._settings.trailingspaces, true);
 		test.equal(validator._settings.newline, true);
+		test.equal(validator._settings.endOfLine, 'crlf');
 
 		test.done();
 	},

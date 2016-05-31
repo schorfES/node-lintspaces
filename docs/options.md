@@ -26,6 +26,20 @@ Test for the maximum amount of newlines between code blocks. Default value is
 between code blocks.
 * returns type ```warning```
 
+### endOfLine option
+
+Lintspaces fails with incorrect end of line errors when files contain lines that
+end in the wrong sequence. Default value is `false`. To enable end of line checks
+use any of the following values: `'LF'` or `'CRLF'` or `'CR'`. Values are
+case-insensitive. Note that this option checks all lines; even "ignored" lines.
+
+```javascript
+    endOfLine: 'lf'
+```
+
+* returns code ```END_OF_LINE```, when the wrong line ending sequence is found.
+* returns type ```warning```
+
 ### trailingspaces option
 
 Tests for useless whitespaces (trailing whitespaces) at each lineending of all
@@ -142,6 +156,10 @@ _Feel free to contribute some new regular expressions as build in!_
 evil!! If you still want to ignore them use the ```trailingspacesToIgnores```
 option and set them to ```true```.
 
+**Note:** If endOfLine checking is enabled, then all lines (including
+"ignored" lines will be checked for appropriate end of line sequences.
+
+
 ### .editorconfig option
 
 It's possible to overwrite the default and given options by setting up a path
@@ -159,6 +177,7 @@ The following .editorconfig values are supported:
 * `indent_style` will check the indentation
 * `indent_size` will check the amount of spaces
 * `trim_trailing_whitespace` will check for useless whitespaces
+* `end_of_line` will check the end of line character sequence
 
 ### .rcconfig option
 
