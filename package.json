@@ -1,6 +1,6 @@
 {
   "name": "lintspaces",
-  "version": "0.4.1",
+  "version": "0.5.0",
   "description": "Library for checking spaces in files",
   "repository": {
     "type": "git",
@@ -40,6 +40,10 @@
     {
       "name": "Chandler Kent",
       "url": "https://github.com/chandlerkent"
+    },
+    {
+        "name": "Casey Crabb",
+        "url": "https://github.com/crabbkw"
     }
   ],
   "license": "MIT",
