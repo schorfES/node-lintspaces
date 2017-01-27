@@ -9,6 +9,33 @@ var
 ;
 
 exports.tests = {
+	'should guess incorrect indentation disregarding newlines': function(test) {
+		file = __dirname + '/fixures/guess-newline.js';
+		validator = new Validator({
+			indentation: 'tabs',
+			indentationGuess: true
+		});
+		validator.validate(file);
+		report = validator.getInvalidFiles();
+		expected = {};
+		expected[file] = {
+			'7': [merge({}, Messages.INDENTATION_GUESS, {
+				message: Messages
+					.INDENTATION_GUESS
+					.message
+					.replace('{a}', 2)
+					.replace('{b}', 3),
+				line: 7,
+				payload: {
+					indentation: 3,
+					expected: 2
+				}
+			})],
+		};
+		test.deepEqual(report, expected);
+		test.done();
+	},
+
 	'should guess incorrect indentation using tabs': function(test) {
 		file = __dirname + '/fixures/guess-tabs.js';
 		validator = new Validator({
