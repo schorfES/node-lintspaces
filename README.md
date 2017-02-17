@@ -358,6 +358,7 @@ update the _README.md_.
 * [itsananderson](https://github.com/itsananderson)
 * [chandlerkent](https://github.com/chandlerkent)
 * [crabbkw](https://github.com/crabbkw)
+* [dpagini](https://github.com/dpagini)
 * [ben-eb](https://github.com/ben-eb) via [grunt-lintspaces](https://github.com/schorfES/grunt-lintspaces/)
 * [yurks](https://github.com/yurks) via [grunt-lintspaces](https://github.com/schorfES/grunt-lintspaces/)
 * [evanshortiss](https://github.com/evanshortiss) via [lintspaces-cli](https://github.com/evanshortiss/lintspaces-cli)
