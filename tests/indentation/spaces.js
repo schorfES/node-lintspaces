@@ -127,5 +127,23 @@ exports.tests = {
 
 		test.deepEqual(report, expected);
 		test.done();
-	}
+	},
+	
+	'should report errors when indentation is double': function(test) {
+		file = __dirname + '/fixures/spaces-invalid-double.js';
+		validator = new Validator({
+			indentation: 'spaces',
+			spaces: 2
+		});
+		validator.validate(file);
+		report = validator.getInvalidFiles();
+		
+		expected = {};
+		expected[file] = {
+			'1': [merge({}, Messages.INDENTATION_MULTIPLE, {line: 1})]
+		};
+
+		test.deepEqual(report, expected);
+		test.done();
+	},
 };
