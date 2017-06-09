@@ -24,41 +24,53 @@ The following lines shows the structure of the validation result in JSON
 notation:
 
 ```json
-
-	{
-		"/path/to/file.ext": {
-			"3": [
-				{
-					"line": 3,
-					"code": "INDENTATION_TABS",
-					"type": "warning",
-					"message": "Unexpected spaces found."
-				},
-				{
-					"line": 3,
-					"code": "TRAILINGSPACES",
-					"type": "warning",
-					"message": "Unexpected trailing spaces found."
-				}
-			],
-			"12": [
-				{
-					"line": 12,
-					"code": "NEWLINE",
-					"type": "warning",
-					"message": "Expected a newline at the end of the file."
-				}
-			]
-		},
-		"/path/to/other/file.ext": {
-			"5": [
-				{
-					"line": 5,
-					"code": "NEWLINE_AMOUNT",
-					"type": "warning",
-					"message": "Unexpected additional newlines at the end of the file."
-				}
-			]
-		}
-	}
+{
+  "statVersion": "0.3.1",
+  "process": {
+    "name": "node-lintspaces",
+    "version": "0.4.0",
+    "description": "Library for checking spaces in files",
+    "maintainer": "Norman Rusch",
+    "website": "https://github.com/schorfES/node-lintspaces",
+    "repeatability": "Associative"
+  },
+  "findings": [
+		{
+      "rule": "INDENTATION_TABS",
+      "description": "Unexpected spaces found",
+      "categories": [
+        "Style"
+      ],
+      "location": {
+        "path": "/path/to/file.ext",
+        "beginLine": 3,
+        "endLine": 3,
+      }
+    },
+		{
+      "rule": "TRAILINGSPACES",
+      "description": "Unexpected trailing spaces found",
+      "categories": [
+        "Style"
+      ],
+      "location": {
+        "path": "/path/to/file.ext",
+        "beginLine": 3,
+        "endLine": 3,
+      }
+    },
+		{
+      "rule": "NEWLINE",
+      "description": "Expected a newline at the end of the file",
+      "categories": [
+        "Style"
+      ],
+      "location": {
+        "path": "/path/to/file.ext",
+        "beginLine": 12,
+        "endLine": 12,
+      }
+    }
+  ]
+}
 ```
