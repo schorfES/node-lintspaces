@@ -51,6 +51,9 @@
     }
   ],
   "license": "MIT",
+  "engines": {
+    "node": ">=5"
+  },
   "dependencies": {
     "editorconfig": "0.13.2",
     "merge": "1.2.0",
@@ -59,9 +62,9 @@
   "devDependencies": {
     "grunt": "^1.0.1",
     "grunt-contrib-concat": "^1.0.1",
-    "grunt-contrib-jshint": "^1.0.0",
+    "grunt-contrib-jshint": "^1.1.0",
     "grunt-contrib-nodeunit": "^1.0.0",
     "grunt-jscs": "^3.0.1",
-    "snyk": "^1.34.4"
+    "snyk": "^1.68.0"
   }
 }
