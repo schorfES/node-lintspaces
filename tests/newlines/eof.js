@@ -1,5 +1,5 @@
 var
-	merge = require('merge'),
+	extend = require('deep-extend'),
 	Messages = require('./../../lib/constants/messages'),
 	Validator = require('./../../lib/Validator'),
 	validator,
@@ -16,7 +16,7 @@ exports.tests = {
 		report = validator.getInvalidFiles();
 		expected = {};
 		expected[file] = {
-			'8': [merge({}, Messages.NEWLINE, {line: 8})]
+			'8': [extend({}, Messages.NEWLINE, {line: 8})]
 		};
 
 		test.deepEqual(report, expected);
@@ -30,7 +30,7 @@ exports.tests = {
 		report = validator.getInvalidFiles();
 		expected = {};
 		expected[file] = {
-			'12': [merge({}, Messages.NEWLINE_AMOUNT, {line: 12})]
+			'12': [extend({}, Messages.NEWLINE_AMOUNT, {line: 12})]
 		};
 
 		test.deepEqual(report, expected);

@@ -55,8 +55,8 @@
     "node": ">=5"
   },
   "dependencies": {
+    "deep-extend": "^0.5.1",
     "editorconfig": "0.13.2",
-    "merge": "1.2.0",
     "rc": "1.2.7"
   },
   "devDependencies": {

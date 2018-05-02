@@ -1,5 +1,5 @@
 var
-	merge = require('merge'),
+	extend = require('deep-extend'),
 	Messages = require('./../../lib/constants/messages'),
 	Validator = require('./../../lib/Validator'),
 	validator,
@@ -16,12 +16,12 @@ exports.tests = {
 		report = validator.getInvalidFiles();
 		expected = {};
 		expected[file] = {
-			'2': [merge({}, Messages.INDENTATION_SPACES, {line: 2})],
-			'3': [merge({}, Messages.INDENTATION_SPACES, {line: 3})],
-			'4': [merge({}, Messages.INDENTATION_SPACES, {line: 4})],
-			'5': [merge({}, Messages.INDENTATION_SPACES, {line: 5})],
-			'6': [merge({}, Messages.INDENTATION_SPACES, {line: 6})],
-			'7': [merge({}, Messages.INDENTATION_SPACES, {line: 7})],
+			'2': [extend({}, Messages.INDENTATION_SPACES, {line: 2})],
+			'3': [extend({}, Messages.INDENTATION_SPACES, {line: 3})],
+			'4': [extend({}, Messages.INDENTATION_SPACES, {line: 4})],
+			'5': [extend({}, Messages.INDENTATION_SPACES, {line: 5})],
+			'6': [extend({}, Messages.INDENTATION_SPACES, {line: 6})],
+			'7': [extend({}, Messages.INDENTATION_SPACES, {line: 7})],
 		};
 
 		test.deepEqual(report, expected);
@@ -35,11 +35,11 @@ exports.tests = {
 		report = validator.getInvalidFiles();
 		expected = {};
 		expected[file] = {
-			'2': [merge({}, Messages.INDENTATION_SPACES, {line: 2})],
-			'3': [merge({}, Messages.INDENTATION_SPACES, {line: 3})],
-			'4': [merge({}, Messages.INDENTATION_SPACES, {line: 4})],
-			'5': [merge({}, Messages.INDENTATION_SPACES, {line: 5})],
-			'7': [merge({}, Messages.INDENTATION_SPACES, {line: 7})],
+			'2': [extend({}, Messages.INDENTATION_SPACES, {line: 2})],
+			'3': [extend({}, Messages.INDENTATION_SPACES, {line: 3})],
+			'4': [extend({}, Messages.INDENTATION_SPACES, {line: 4})],
+			'5': [extend({}, Messages.INDENTATION_SPACES, {line: 5})],
+			'7': [extend({}, Messages.INDENTATION_SPACES, {line: 7})],
 		};
 
 		test.deepEqual(report, expected);
@@ -56,7 +56,7 @@ exports.tests = {
 		report = validator.getInvalidFiles();
 		expected = {};
 		expected[file] = {
-			'3': [merge({}, Messages.INDENTATION_SPACES_AMOUNT, {
+			'3': [extend({}, Messages.INDENTATION_SPACES_AMOUNT, {
 				message: Messages
 					.INDENTATION_SPACES_AMOUNT
 					.message
@@ -68,7 +68,7 @@ exports.tests = {
 					indent: 5
 				}
 			})],
-			'5': [merge({}, Messages.INDENTATION_SPACES_AMOUNT, {
+			'5': [extend({}, Messages.INDENTATION_SPACES_AMOUNT, {
 				message: Messages
 					.INDENTATION_SPACES_AMOUNT
 					.message
@@ -122,7 +122,7 @@ exports.tests = {
 
 		expected = {};
 		expected[file] = {
-			'1': [merge({}, Messages.INDENTATION_SPACES, {line: 1})]
+			'1': [extend({}, Messages.INDENTATION_SPACES, {line: 1})]
 		};
 
 		test.deepEqual(report, expected);

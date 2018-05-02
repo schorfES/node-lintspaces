@@ -1,5 +1,5 @@
 var
-	merge = require('merge'),
+	extend = require('deep-extend'),
 	Messages = require('./../../lib/constants/messages'),
 	Validator = require('./../../lib/Validator'),
 	validator,
@@ -26,13 +26,13 @@ exports.tests = {
 		report = validator.getInvalidFiles();
 		expected = {};
 		expected[file] = {
-		        '1': [merge({}, Messages.END_OF_LINE, {line: 1}, {payload: {expected: 'LF', end_of_line: 'CR'}})],
-		        '2': [merge({}, Messages.END_OF_LINE, {line: 2}, {payload: {expected: 'LF', end_of_line: 'CR'}})],
-			'3': [merge({}, Messages.END_OF_LINE, {line: 3}, {payload: {expected: 'LF', end_of_line: 'CR'}})],
-			'4': [merge({}, Messages.END_OF_LINE, {line: 4}, {payload: {expected: 'LF', end_of_line: 'CR'}})],
-			'5': [merge({}, Messages.END_OF_LINE, {line: 5}, {payload: {expected: 'LF', end_of_line: 'CR'}})],
-			'6': [merge({}, Messages.END_OF_LINE, {line: 6}, {payload: {expected: 'LF', end_of_line: 'CR'}})],
-			'7': [merge({}, Messages.END_OF_LINE, {line: 7}, {payload: {expected: 'LF', end_of_line: 'CR'}})]
+		        '1': [extend({}, Messages.END_OF_LINE, {line: 1}, {payload: {expected: 'LF', end_of_line: 'CR'}})],
+		        '2': [extend({}, Messages.END_OF_LINE, {line: 2}, {payload: {expected: 'LF', end_of_line: 'CR'}})],
+			'3': [extend({}, Messages.END_OF_LINE, {line: 3}, {payload: {expected: 'LF', end_of_line: 'CR'}})],
+			'4': [extend({}, Messages.END_OF_LINE, {line: 4}, {payload: {expected: 'LF', end_of_line: 'CR'}})],
+			'5': [extend({}, Messages.END_OF_LINE, {line: 5}, {payload: {expected: 'LF', end_of_line: 'CR'}})],
+			'6': [extend({}, Messages.END_OF_LINE, {line: 6}, {payload: {expected: 'LF', end_of_line: 'CR'}})],
+			'7': [extend({}, Messages.END_OF_LINE, {line: 7}, {payload: {expected: 'LF', end_of_line: 'CR'}})]
 
 		};
 		test.deepEqual(report, expected);
@@ -46,9 +46,9 @@ exports.tests = {
 		report = validator.getInvalidFiles();
 		expected = {};
 		expected[file] = {
-		        '1': [merge({}, Messages.END_OF_LINE, {line: 1}, {payload: {expected: 'LF', end_of_line: 'CRLF'}})],
-		        '2': [merge({}, Messages.END_OF_LINE, {line: 2}, {payload: {expected: 'LF', end_of_line: 'CRLF'}})],
-		        '3': [merge({}, Messages.END_OF_LINE, {line: 3}, {payload: {expected: 'LF', end_of_line: 'CRLF'}})]
+		        '1': [extend({}, Messages.END_OF_LINE, {line: 1}, {payload: {expected: 'LF', end_of_line: 'CRLF'}})],
+		        '2': [extend({}, Messages.END_OF_LINE, {line: 2}, {payload: {expected: 'LF', end_of_line: 'CRLF'}})],
+		        '3': [extend({}, Messages.END_OF_LINE, {line: 3}, {payload: {expected: 'LF', end_of_line: 'CRLF'}})]
 		};
 		test.deepEqual(report, expected);
 		test.done();
@@ -61,11 +61,10 @@ exports.tests = {
 		report = validator.getInvalidFiles();
 		expected = {};
 		expected[file] = {
-		        '1': [merge({}, Messages.END_OF_LINE, {line: 1}, {payload: {expected: 'LF', end_of_line: 'CR'}})],
-		        '3': [merge({}, Messages.END_OF_LINE, {line: 3}, {payload: {expected: 'LF', end_of_line: 'CRLF'}})]
+		        '1': [extend({}, Messages.END_OF_LINE, {line: 1}, {payload: {expected: 'LF', end_of_line: 'CR'}})],
+		        '3': [extend({}, Messages.END_OF_LINE, {line: 3}, {payload: {expected: 'LF', end_of_line: 'CRLF'}})]
 		};
 		test.deepEqual(report, expected);
 		test.done();
 	}
 };
-

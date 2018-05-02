@@ -1,5 +1,5 @@
 var
-	merge = require('merge'),
+	extend = require('deep-extend'),
 	Messages = require('./../../lib/constants/messages'),
 	Validator = require('./../../lib/Validator'),
 	validator,
@@ -19,7 +19,7 @@ exports.tests = {
 		report = validator.getInvalidFiles();
 		expected = {};
 		expected[file] = {
-			'7': [merge({}, Messages.INDENTATION_GUESS, {
+			'7': [extend({}, Messages.INDENTATION_GUESS, {
 				message: Messages
 					.INDENTATION_GUESS
 					.message
@@ -46,7 +46,7 @@ exports.tests = {
 		report = validator.getInvalidFiles();
 		expected = {};
 		expected[file] = {
-			'10': [merge({}, Messages.INDENTATION_GUESS, {
+			'10': [extend({}, Messages.INDENTATION_GUESS, {
 				message: Messages
 					.INDENTATION_GUESS
 					.message
@@ -58,7 +58,7 @@ exports.tests = {
 					expected: 2
 				}
 			})],
-			'15': [merge({}, Messages.INDENTATION_GUESS, {
+			'15': [extend({}, Messages.INDENTATION_GUESS, {
 				message: Messages
 					.INDENTATION_GUESS
 					.message
@@ -87,7 +87,7 @@ exports.tests = {
 		report = validator.getInvalidFiles();
 		expected = {};
 		expected[file] = {
-			'10': [merge({}, Messages.INDENTATION_GUESS, {
+			'10': [extend({}, Messages.INDENTATION_GUESS, {
 				message: Messages
 					.INDENTATION_GUESS
 					.message
@@ -99,7 +99,7 @@ exports.tests = {
 					expected: 2
 				}
 			})],
-			'15': [merge({}, Messages.INDENTATION_GUESS, {
+			'15': [extend({}, Messages.INDENTATION_GUESS, {
 				message: Messages
 					.INDENTATION_GUESS
 					.message
@@ -127,22 +127,22 @@ exports.tests = {
 		report = validator.getInvalidFiles();
 		expected = {};
 		expected[file] = {
-			'2': [merge({}, Messages.INDENTATION_SPACES, {line: 2})],
-			'3': [merge({}, Messages.INDENTATION_SPACES, {line: 3})],
-			'5': [merge({}, Messages.INDENTATION_SPACES, {line: 5})],
-			'6': [merge({}, Messages.INDENTATION_SPACES, {line: 6})],
-			'7': [merge({}, Messages.INDENTATION_SPACES, {line: 7})],
-			'9': [merge({}, Messages.INDENTATION_SPACES, {line: 9})],
-			'10': [merge({}, Messages.INDENTATION_SPACES, {line: 10})],
-			'11': [merge({}, Messages.INDENTATION_SPACES, {line: 11})],
-			'13': [merge({}, Messages.INDENTATION_SPACES, {line: 13})],
-			'14': [merge({}, Messages.INDENTATION_SPACES, {line: 14})],
-			'15': [merge({}, Messages.INDENTATION_SPACES, {line: 15})],
-			'16': [merge({}, Messages.INDENTATION_SPACES, {line: 16})],
-			'17': [merge({}, Messages.INDENTATION_SPACES, {line: 17})],
-			'18': [merge({}, Messages.INDENTATION_SPACES, {line: 18})],
-			'19': [merge({}, Messages.INDENTATION_SPACES, {line: 19})],
-			'20': [merge({}, Messages.INDENTATION_SPACES, {line: 20})],
+			'2': [extend({}, Messages.INDENTATION_SPACES, {line: 2})],
+			'3': [extend({}, Messages.INDENTATION_SPACES, {line: 3})],
+			'5': [extend({}, Messages.INDENTATION_SPACES, {line: 5})],
+			'6': [extend({}, Messages.INDENTATION_SPACES, {line: 6})],
+			'7': [extend({}, Messages.INDENTATION_SPACES, {line: 7})],
+			'9': [extend({}, Messages.INDENTATION_SPACES, {line: 9})],
+			'10': [extend({}, Messages.INDENTATION_SPACES, {line: 10})],
+			'11': [extend({}, Messages.INDENTATION_SPACES, {line: 11})],
+			'13': [extend({}, Messages.INDENTATION_SPACES, {line: 13})],
+			'14': [extend({}, Messages.INDENTATION_SPACES, {line: 14})],
+			'15': [extend({}, Messages.INDENTATION_SPACES, {line: 15})],
+			'16': [extend({}, Messages.INDENTATION_SPACES, {line: 16})],
+			'17': [extend({}, Messages.INDENTATION_SPACES, {line: 17})],
+			'18': [extend({}, Messages.INDENTATION_SPACES, {line: 18})],
+			'19': [extend({}, Messages.INDENTATION_SPACES, {line: 19})],
+			'20': [extend({}, Messages.INDENTATION_SPACES, {line: 20})],
 		};
 
 		test.deepEqual(report, expected);

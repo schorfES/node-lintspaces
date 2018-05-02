@@ -1,5 +1,5 @@
 var
-	merge = require('merge'),
+	extend = require('deep-extend'),
 	Messages = require('./../../lib/constants/messages'),
 	Validator = require('./../../lib/Validator'),
 	validator,
@@ -16,9 +16,9 @@ exports.tests = {
 		report = validator.getInvalidFiles();
 		expected = {};
 		expected[file] = {
-			'2': [merge({}, Messages.TRAILINGSPACES, {line: 2})],
-			'5': [merge({}, Messages.TRAILINGSPACES, {line: 5})],
-			'8': [merge({}, Messages.TRAILINGSPACES, {line: 8})]
+			'2': [extend({}, Messages.TRAILINGSPACES, {line: 2})],
+			'5': [extend({}, Messages.TRAILINGSPACES, {line: 5})],
+			'8': [extend({}, Messages.TRAILINGSPACES, {line: 8})]
 		};
 
 		test.deepEqual(report, expected);
@@ -47,12 +47,12 @@ exports.tests = {
 		report = validator.getInvalidFiles();
 		expected = {};
 		expected[file] = {
-			'9': [merge({}, Messages.TRAILINGSPACES, {line: 9})], // singleline
-			'11': [merge({}, Messages.TRAILINGSPACES, {line: 11})], // singleline
-			'15': [merge({}, Messages.TRAILINGSPACES, {line: 15})], // multiline
-			'17': [merge({}, Messages.TRAILINGSPACES, {line: 17})], // singleline
-			'21': [merge({}, Messages.TRAILINGSPACES, {line: 21})], // multiline
-			'26': [merge({}, Messages.TRAILINGSPACES, {line: 26})] // multiline
+			'9': [extend({}, Messages.TRAILINGSPACES, {line: 9})], // singleline
+			'11': [extend({}, Messages.TRAILINGSPACES, {line: 11})], // singleline
+			'15': [extend({}, Messages.TRAILINGSPACES, {line: 15})], // multiline
+			'17': [extend({}, Messages.TRAILINGSPACES, {line: 17})], // singleline
+			'21': [extend({}, Messages.TRAILINGSPACES, {line: 21})], // multiline
+			'26': [extend({}, Messages.TRAILINGSPACES, {line: 26})] // multiline
 		};
 
 		test.deepEqual(expected, report);
@@ -69,8 +69,8 @@ exports.tests = {
 		report = validator.getInvalidFiles();
 		expected = {};
 		expected[file] = {
-			'2': [merge({}, Messages.TRAILINGSPACES, {line: 2})],
-			'8': [merge({}, Messages.TRAILINGSPACES, {line: 8})]
+			'2': [extend({}, Messages.TRAILINGSPACES, {line: 2})],
+			'8': [extend({}, Messages.TRAILINGSPACES, {line: 8})]
 		};
 
 		test.deepEqual(expected, report);

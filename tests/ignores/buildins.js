@@ -1,5 +1,5 @@
 var
-	merge = require('merge'),
+	extend = require('deep-extend'),
 	Messages = require('./../../lib/constants/messages'),
 	Validator = require('./../../lib/Validator'),
 	validator,
@@ -19,32 +19,32 @@ exports.tests = {
 		report = validator.getInvalidFiles();
 		expected = {};
 		expected[file] = {
-			'2': [merge({}, Messages.INDENTATION_TABS, {line: 2})],
+			'2': [extend({}, Messages.INDENTATION_TABS, {line: 2})],
 			'3': [
-				merge({}, Messages.INDENTATION_TABS, {line: 3}),
-				merge({}, Messages.TRAILINGSPACES, {line: 3})
+				extend({}, Messages.INDENTATION_TABS, {line: 3}),
+				extend({}, Messages.TRAILINGSPACES, {line: 3})
 			],
-			'4': [merge({}, Messages.INDENTATION_TABS, {line: 4})],
-			'10': [merge({}, Messages.INDENTATION_TABS, {line: 10})],
+			'4': [extend({}, Messages.INDENTATION_TABS, {line: 4})],
+			'10': [extend({}, Messages.INDENTATION_TABS, {line: 10})],
 			'11': [
-				merge({}, Messages.INDENTATION_TABS, {line: 11}),
-				merge({}, Messages.TRAILINGSPACES, {line: 11})
+				extend({}, Messages.INDENTATION_TABS, {line: 11}),
+				extend({}, Messages.TRAILINGSPACES, {line: 11})
 			],
-			'12': [merge({}, Messages.INDENTATION_TABS, {line: 12})],
-			'16': [merge({}, Messages.INDENTATION_TABS, {line: 16})],
-			'17': [merge({}, Messages.INDENTATION_TABS, {line: 17})],
-			'18': [merge({}, Messages.INDENTATION_TABS, {line: 18})],
+			'12': [extend({}, Messages.INDENTATION_TABS, {line: 12})],
+			'16': [extend({}, Messages.INDENTATION_TABS, {line: 16})],
+			'17': [extend({}, Messages.INDENTATION_TABS, {line: 17})],
+			'18': [extend({}, Messages.INDENTATION_TABS, {line: 18})],
 			'19': [
-				merge({}, Messages.INDENTATION_TABS, {line: 19}),
-				merge({}, Messages.TRAILINGSPACES, {line: 19})
+				extend({}, Messages.INDENTATION_TABS, {line: 19}),
+				extend({}, Messages.TRAILINGSPACES, {line: 19})
 			],
-			'20': [merge({}, Messages.INDENTATION_TABS, {line: 20})],
-			'27': [merge({}, Messages.INDENTATION_TABS, {line: 27})],
+			'20': [extend({}, Messages.INDENTATION_TABS, {line: 20})],
+			'27': [extend({}, Messages.INDENTATION_TABS, {line: 27})],
 			'28': [
-				merge({}, Messages.INDENTATION_TABS, {line: 28}),
-				merge({}, Messages.TRAILINGSPACES, {line: 28})
+				extend({}, Messages.INDENTATION_TABS, {line: 28}),
+				extend({}, Messages.TRAILINGSPACES, {line: 28})
 			],
-			'29': [merge({}, Messages.INDENTATION_TABS, {line: 29})]
+			'29': [extend({}, Messages.INDENTATION_TABS, {line: 29})]
 		};
 
 		test.deepEqual(report, expected);
@@ -65,11 +65,11 @@ exports.tests = {
 		report = validator.getInvalidFiles();
 		expected = {};
 		expected[file] = {
-			'3': [merge({}, Messages.TRAILINGSPACES, {line: 3})],
-			'11': [merge({}, Messages.TRAILINGSPACES, {line: 11})],
-			'16': [merge({}, Messages.INDENTATION_TABS, {line: 16})],
-			'19': [merge({}, Messages.TRAILINGSPACES, {line: 19})],
-			'28': [merge({}, Messages.TRAILINGSPACES, {line: 28})]
+			'3': [extend({}, Messages.TRAILINGSPACES, {line: 3})],
+			'11': [extend({}, Messages.TRAILINGSPACES, {line: 11})],
+			'16': [extend({}, Messages.INDENTATION_TABS, {line: 16})],
+			'19': [extend({}, Messages.TRAILINGSPACES, {line: 19})],
+			'28': [extend({}, Messages.TRAILINGSPACES, {line: 28})]
 		};
 
 		test.deepEqual(report, expected);
@@ -91,11 +91,11 @@ exports.tests = {
 		report = validator.getInvalidFiles();
 		expected = {};
 		expected[file] = {
-			'3': [merge({}, Messages.TRAILINGSPACES, {line: 3})],
-			'11': [merge({}, Messages.TRAILINGSPACES, {line: 11})],
-			'16': [merge({}, Messages.INDENTATION_TABS, {line: 16})],
-			'19': [merge({}, Messages.TRAILINGSPACES, {line: 19})],
-			'28': [merge({}, Messages.TRAILINGSPACES, {line: 28})]
+			'3': [extend({}, Messages.TRAILINGSPACES, {line: 3})],
+			'11': [extend({}, Messages.TRAILINGSPACES, {line: 11})],
+			'16': [extend({}, Messages.INDENTATION_TABS, {line: 16})],
+			'19': [extend({}, Messages.TRAILINGSPACES, {line: 19})],
+			'28': [extend({}, Messages.TRAILINGSPACES, {line: 28})]
 		};
 
 		test.deepEqual(report, expected);

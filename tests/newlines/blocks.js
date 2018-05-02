@@ -1,5 +1,5 @@
 var
-	merge = require('merge'),
+	extend = require('deep-extend'),
 	Messages = require('./../../lib/constants/messages'),
 	Validator = require('./../../lib/Validator'),
 	validator,
@@ -16,7 +16,7 @@ exports.tests = {
 		report = validator.getInvalidFiles();
 		expected = {};
 		expected[file] = {
-			'8': [merge({}, Messages.NEWLINE_MAXIMUM, {
+			'8': [extend({}, Messages.NEWLINE_MAXIMUM, {
 				message: Messages.NEWLINE_MAXIMUM
 					.message
 					.replace('{a}', 3)
@@ -27,7 +27,7 @@ exports.tests = {
 					maximum: 2
 				}
 			})],
-			'16': [merge({}, Messages.NEWLINE_MAXIMUM, {
+			'16': [extend({}, Messages.NEWLINE_MAXIMUM, {
 				message: Messages.NEWLINE_MAXIMUM
 					.message
 					.replace('{a}', 4)

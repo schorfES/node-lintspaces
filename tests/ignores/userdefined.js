@@ -1,5 +1,5 @@
 var
-	merge = require('merge'),
+	extend = require('deep-extend'),
 	Messages = require('./../../lib/constants/messages'),
 	Validator = require('./../../lib/Validator'),
 	validator,
@@ -19,17 +19,17 @@ exports.tests = {
 		report = validator.getInvalidFiles();
 		expected = {};
 		expected[file] = {
-			'1': [merge({}, Messages.INDENTATION_TABS, {line: 1})],
-			'4': [merge({}, Messages.INDENTATION_TABS, {line: 4})],
-			'6': [merge({}, Messages.INDENTATION_TABS, {line: 6})],
+			'1': [extend({}, Messages.INDENTATION_TABS, {line: 1})],
+			'4': [extend({}, Messages.INDENTATION_TABS, {line: 4})],
+			'6': [extend({}, Messages.INDENTATION_TABS, {line: 6})],
 			'7': [
-				merge({}, Messages.INDENTATION_TABS, {line: 7}),
-				merge({}, Messages.TRAILINGSPACES, {line: 7})
+				extend({}, Messages.INDENTATION_TABS, {line: 7}),
+				extend({}, Messages.TRAILINGSPACES, {line: 7})
 			],
-			'10': [merge({}, Messages.INDENTATION_TABS, {line: 10})],
-			'11': [merge({}, Messages.INDENTATION_TABS, {line: 11})],
-			'12': [merge({}, Messages.INDENTATION_TABS, {line: 12})],
-			'13': [merge({}, Messages.INDENTATION_TABS, {line: 13})]
+			'10': [extend({}, Messages.INDENTATION_TABS, {line: 10})],
+			'11': [extend({}, Messages.INDENTATION_TABS, {line: 11})],
+			'12': [extend({}, Messages.INDENTATION_TABS, {line: 12})],
+			'13': [extend({}, Messages.INDENTATION_TABS, {line: 13})]
 		};
 
 		test.deepEqual(report, expected);
@@ -49,11 +49,11 @@ exports.tests = {
 		report = validator.getInvalidFiles();
 		expected = {};
 		expected[file] = {
-			'1': [merge({}, Messages.INDENTATION_TABS, {line: 1})],
-			'4': [merge({}, Messages.INDENTATION_TABS, {line: 4})],
-			'7': [merge({}, Messages.TRAILINGSPACES, {line: 7})],
-			'10': [merge({}, Messages.INDENTATION_TABS, {line: 10})],
-			'11': [merge({}, Messages.INDENTATION_TABS, {line: 11})]
+			'1': [extend({}, Messages.INDENTATION_TABS, {line: 1})],
+			'4': [extend({}, Messages.INDENTATION_TABS, {line: 4})],
+			'7': [extend({}, Messages.TRAILINGSPACES, {line: 7})],
+			'10': [extend({}, Messages.INDENTATION_TABS, {line: 10})],
+			'11': [extend({}, Messages.INDENTATION_TABS, {line: 11})]
 		};
 
 		test.deepEqual(report, expected);
