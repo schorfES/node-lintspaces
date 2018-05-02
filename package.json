@@ -60,11 +60,11 @@
     "rc": "1.2.7"
   },
   "devDependencies": {
-    "grunt": "^1.0.1",
+    "grunt": "^1.0.2",
     "grunt-contrib-concat": "^1.0.1",
     "grunt-contrib-jshint": "^1.1.0",
     "grunt-contrib-nodeunit": "^1.0.0",
     "grunt-jscs": "^3.0.1",
-    "snyk": "^1.68.0"
+    "snyk": "^1.78.0"
   }
 }
