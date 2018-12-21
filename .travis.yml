@@ -10,4 +10,9 @@ node_js:
 - "lts/*"
 before_install:
 - npm install -g grunt-cli
-install: npm install
+install:
+- npm install
+script:
+- make audit
+- make tests
+- make validate
