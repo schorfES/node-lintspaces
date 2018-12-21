@@ -3,13 +3,6 @@ var
 		'tests/**/*.js',
 		'!tests/**/fixures/*.js',
 	],
-	validateableFiles = [
-		'Gruntfile.js',
-		'lib/**/*.js',
-		'tests/**/*.js',
-		'!tests/**/fixures/*.js',
-		'example/**/*.js'
-	],
 	docFiles = [
 		'./docs/intro.md',
 		'./docs/installation.md',
@@ -35,25 +28,6 @@ module.exports = function(grunt) {
 	});
 	grunt.loadNpmTasks('grunt-contrib-nodeunit');
 
-	// JS Hint:
-	// -------------------------------------------------------------------------
-	grunt.config('jshint', {
-		all: validateableFiles,
-		options: {jshintrc: true}
-	});
-	grunt.loadNpmTasks('grunt-contrib-jshint');
-
-	// JSCS:
-	// -------------------------------------------------------------------------
-	grunt.config('jscs', {
-		all: {
-			src: validateableFiles,
-			options: {config: '.jscs.json'}
-		}
-	});
-
-	grunt.loadNpmTasks('grunt-jscs');
-
 	// Concat:
 	// -------------------------------------------------------------------------
 	grunt.config('concat', {
@@ -69,11 +43,6 @@ module.exports = function(grunt) {
 
 	// Setup default tasks:
 	// -------------------------------------------------------------------------
-	grunt.registerTask('validate', [
-		'jshint',
-		'jscs'
-	]);
-
 	grunt.registerTask('test', [
 		'nodeunit'
 	]);
@@ -83,7 +52,6 @@ module.exports = function(grunt) {
 	]);
 
 	grunt.registerTask('default', [
-		'validate',
 		'test',
 		'docs'
 	]);

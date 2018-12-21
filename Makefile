@@ -11,4 +11,3 @@ tests:
 
 validate:
 	./node_modules/.bin/eslint . --ext .js
-	./node_modules/.bin/grunt validate
