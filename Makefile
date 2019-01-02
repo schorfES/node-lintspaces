@@ -7,7 +7,8 @@ audit:
 
 tests:
 	./node_modules/.bin/grunt test
-	./node_modules/.bin/jest lib/ watch --verbose
+	./node_modules/.bin/jest lib/ watch --verbose --coverage
+	./node_modules/.bin/codecov
 
 
 validate:
