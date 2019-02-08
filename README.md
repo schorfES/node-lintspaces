@@ -5,7 +5,7 @@ A node module for checking spaces in files.
 [![Travis Status](https://travis-ci.org/schorfES/node-lintspaces.png?branch=master)](https://travis-ci.org/schorfES/node-lintspaces)
 [![David DM Status](https://david-dm.org/schorfES/node-lintspaces.svg?branch=master)](https://david-dm.org/schorfes/node-lintspaces#info=dependencies)
 [![David DM DevDependencies Status](https://david-dm.org/schorfes/node-lintspaces/dev-status.svg?branch=master)](https://david-dm.org/schorfes/node-lintspaces#info=devDependencies)
-[![Reference Status](https://www.versioneye.com/nodejs/lintspaces/reference_badge.svg?style=flat)](https://www.versioneye.com/nodejs/grunt-lintspaces/references)
+![Downloads per Week](https://img.shields.io/npm/dw/lintspaces.svg?style=flat)
 [![Known Vulnerabilities](https://snyk.io/test/github/schorfES/node-lintspaces/badge.svg)](https://snyk.io/test/github/schorfES/node-lintspaces)
 
 ### Tasks
