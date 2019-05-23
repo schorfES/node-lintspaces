@@ -10,7 +10,7 @@ var
 		'./docs/options.md',
 		'./docs/functions.md',
 		'./docs/contribution.md',
-		'./docs/license.md'
+		'./docs/license.md',
 	]
 ;
 
@@ -24,7 +24,7 @@ module.exports = function(grunt) {
 	// Node Unit:
 	// -------------------------------------------------------------------------
 	grunt.config('nodeunit', {
-		all: testableFiles
+		all: testableFiles,
 	});
 	grunt.loadNpmTasks('grunt-contrib-nodeunit');
 
@@ -33,8 +33,8 @@ module.exports = function(grunt) {
 	grunt.config('concat', {
 		all: {
 			src: docFiles,
-			dest: 'README.md'
-		}
+			dest: 'README.md',
+		},
 	});
 
 	grunt.loadNpmTasks('grunt-contrib-concat');
@@ -44,16 +44,16 @@ module.exports = function(grunt) {
 	// Setup default tasks:
 	// -------------------------------------------------------------------------
 	grunt.registerTask('test', [
-		'nodeunit'
+		'nodeunit',
 	]);
 
 	grunt.registerTask('docs', [
-		'concat'
+		'concat',
 	]);
 
 	grunt.registerTask('default', [
 		'test',
-		'docs'
+		'docs',
 	]);
 
 };
