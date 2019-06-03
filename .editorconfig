@@ -16,12 +16,12 @@ end_of_line = lf
 trim_trailing_whitespace = true
 insert_final_newline = true
 
-[*.example]
+[*.fixture]
 trim_trailing_whitespace = false
 insert_final_newline = false
 end_of_line = lf
 
-[*.other-example]
+[*.other-fixture]
 trim_trailing_whitespace = true
 insert_final_newline = true
 end_of_line = crlf
