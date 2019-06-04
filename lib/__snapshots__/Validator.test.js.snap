@@ -1,0 +1,1318 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The validator validations end of line carriage return should fail on carriage return line feed files 1`] = `
+Object {
+  "lib/__fixtures__/endofline.crlf.fixture": Object {
+    "1": Array [
+      ValidationError {
+        "code": "END_OF_LINE",
+        "line": 1,
+        "message": "Incorrect end of line character(s) found.",
+        "payload": Object {
+          "end_of_line": "CRLF",
+          "expected": "CR",
+        },
+        "type": "warning",
+      },
+    ],
+    "2": Array [
+      ValidationError {
+        "code": "END_OF_LINE",
+        "line": 2,
+        "message": "Incorrect end of line character(s) found.",
+        "payload": Object {
+          "end_of_line": "CRLF",
+          "expected": "CR",
+        },
+        "type": "warning",
+      },
+    ],
+    "3": Array [
+      ValidationError {
+        "code": "END_OF_LINE",
+        "line": 3,
+        "message": "Incorrect end of line character(s) found.",
+        "payload": Object {
+          "end_of_line": "CRLF",
+          "expected": "CR",
+        },
+        "type": "warning",
+      },
+    ],
+  },
+}
+`;
+
+exports[`The validator validations end of line carriage return should fail on line feed files 1`] = `
+Object {
+  "lib/__fixtures__/endofline.lf.fixture": Object {
+    "1": Array [
+      ValidationError {
+        "code": "END_OF_LINE",
+        "line": 1,
+        "message": "Incorrect end of line character(s) found.",
+        "payload": Object {
+          "end_of_line": "LF",
+          "expected": "CR",
+        },
+        "type": "warning",
+      },
+    ],
+    "2": Array [
+      ValidationError {
+        "code": "END_OF_LINE",
+        "line": 2,
+        "message": "Incorrect end of line character(s) found.",
+        "payload": Object {
+          "end_of_line": "LF",
+          "expected": "CR",
+        },
+        "type": "warning",
+      },
+    ],
+    "3": Array [
+      ValidationError {
+        "code": "END_OF_LINE",
+        "line": 3,
+        "message": "Incorrect end of line character(s) found.",
+        "payload": Object {
+          "end_of_line": "LF",
+          "expected": "CR",
+        },
+        "type": "warning",
+      },
+    ],
+    "4": Array [
+      ValidationError {
+        "code": "END_OF_LINE",
+        "line": 4,
+        "message": "Incorrect end of line character(s) found.",
+        "payload": Object {
+          "end_of_line": "LF",
+          "expected": "CR",
+        },
+        "type": "warning",
+      },
+    ],
+    "5": Array [
+      ValidationError {
+        "code": "END_OF_LINE",
+        "line": 5,
+        "message": "Incorrect end of line character(s) found.",
+        "payload": Object {
+          "end_of_line": "LF",
+          "expected": "CR",
+        },
+        "type": "warning",
+      },
+    ],
+    "6": Array [
+      ValidationError {
+        "code": "END_OF_LINE",
+        "line": 6,
+        "message": "Incorrect end of line character(s) found.",
+        "payload": Object {
+          "end_of_line": "LF",
+          "expected": "CR",
+        },
+        "type": "warning",
+      },
+    ],
+    "7": Array [
+      ValidationError {
+        "code": "END_OF_LINE",
+        "line": 7,
+        "message": "Incorrect end of line character(s) found.",
+        "payload": Object {
+          "end_of_line": "LF",
+          "expected": "CR",
+        },
+        "type": "warning",
+      },
+    ],
+  },
+}
+`;
+
+exports[`The validator validations end of line carriage return should fail on mixed files 1`] = `
+Object {
+  "lib/__fixtures__/endofline.mixed.fixture": Object {
+    "2": Array [
+      ValidationError {
+        "code": "END_OF_LINE",
+        "line": 2,
+        "message": "Incorrect end of line character(s) found.",
+        "payload": Object {
+          "end_of_line": "LF",
+          "expected": "CR",
+        },
+        "type": "warning",
+      },
+    ],
+    "3": Array [
+      ValidationError {
+        "code": "END_OF_LINE",
+        "line": 3,
+        "message": "Incorrect end of line character(s) found.",
+        "payload": Object {
+          "end_of_line": "CRLF",
+          "expected": "CR",
+        },
+        "type": "warning",
+      },
+    ],
+  },
+}
+`;
+
+exports[`The validator validations end of line carriage return, line feed should fail on carriage return files 1`] = `
+Object {
+  "lib/__fixtures__/endofline.cr.fixture": Object {
+    "1": Array [
+      ValidationError {
+        "code": "END_OF_LINE",
+        "line": 1,
+        "message": "Incorrect end of line character(s) found.",
+        "payload": Object {
+          "end_of_line": "CR",
+          "expected": "CRLF",
+        },
+        "type": "warning",
+      },
+    ],
+    "2": Array [
+      ValidationError {
+        "code": "END_OF_LINE",
+        "line": 2,
+        "message": "Incorrect end of line character(s) found.",
+        "payload": Object {
+          "end_of_line": "CR",
+          "expected": "CRLF",
+        },
+        "type": "warning",
+      },
+    ],
+    "3": Array [
+      ValidationError {
+        "code": "END_OF_LINE",
+        "line": 3,
+        "message": "Incorrect end of line character(s) found.",
+        "payload": Object {
+          "end_of_line": "CR",
+          "expected": "CRLF",
+        },
+        "type": "warning",
+      },
+    ],
+    "4": Array [
+      ValidationError {
+        "code": "END_OF_LINE",
+        "line": 4,
+        "message": "Incorrect end of line character(s) found.",
+        "payload": Object {
+          "end_of_line": "CR",
+          "expected": "CRLF",
+        },
+        "type": "warning",
+      },
+    ],
+    "5": Array [
+      ValidationError {
+        "code": "END_OF_LINE",
+        "line": 5,
+        "message": "Incorrect end of line character(s) found.",
+        "payload": Object {
+          "end_of_line": "CR",
+          "expected": "CRLF",
+        },
+        "type": "warning",
+      },
+    ],
+    "6": Array [
+      ValidationError {
+        "code": "END_OF_LINE",
+        "line": 6,
+        "message": "Incorrect end of line character(s) found.",
+        "payload": Object {
+          "end_of_line": "CR",
+          "expected": "CRLF",
+        },
+        "type": "warning",
+      },
+    ],
+    "7": Array [
+      ValidationError {
+        "code": "END_OF_LINE",
+        "line": 7,
+        "message": "Incorrect end of line character(s) found.",
+        "payload": Object {
+          "end_of_line": "CR",
+          "expected": "CRLF",
+        },
+        "type": "warning",
+      },
+    ],
+  },
+}
+`;
+
+exports[`The validator validations end of line carriage return, line feed should fail on line feed files 1`] = `
+Object {
+  "lib/__fixtures__/endofline.lf.fixture": Object {
+    "1": Array [
+      ValidationError {
+        "code": "END_OF_LINE",
+        "line": 1,
+        "message": "Incorrect end of line character(s) found.",
+        "payload": Object {
+          "end_of_line": "LF",
+          "expected": "CRLF",
+        },
+        "type": "warning",
+      },
+    ],
+    "2": Array [
+      ValidationError {
+        "code": "END_OF_LINE",
+        "line": 2,
+        "message": "Incorrect end of line character(s) found.",
+        "payload": Object {
+          "end_of_line": "LF",
+          "expected": "CRLF",
+        },
+        "type": "warning",
+      },
+    ],
+    "3": Array [
+      ValidationError {
+        "code": "END_OF_LINE",
+        "line": 3,
+        "message": "Incorrect end of line character(s) found.",
+        "payload": Object {
+          "end_of_line": "LF",
+          "expected": "CRLF",
+        },
+        "type": "warning",
+      },
+    ],
+    "4": Array [
+      ValidationError {
+        "code": "END_OF_LINE",
+        "line": 4,
+        "message": "Incorrect end of line character(s) found.",
+        "payload": Object {
+          "end_of_line": "LF",
+          "expected": "CRLF",
+        },
+        "type": "warning",
+      },
+    ],
+    "5": Array [
+      ValidationError {
+        "code": "END_OF_LINE",
+        "line": 5,
+        "message": "Incorrect end of line character(s) found.",
+        "payload": Object {
+          "end_of_line": "LF",
+          "expected": "CRLF",
+        },
+        "type": "warning",
+      },
+    ],
+    "6": Array [
+      ValidationError {
+        "code": "END_OF_LINE",
+        "line": 6,
+        "message": "Incorrect end of line character(s) found.",
+        "payload": Object {
+          "end_of_line": "LF",
+          "expected": "CRLF",
+        },
+        "type": "warning",
+      },
+    ],
+    "7": Array [
+      ValidationError {
+        "code": "END_OF_LINE",
+        "line": 7,
+        "message": "Incorrect end of line character(s) found.",
+        "payload": Object {
+          "end_of_line": "LF",
+          "expected": "CRLF",
+        },
+        "type": "warning",
+      },
+    ],
+  },
+}
+`;
+
+exports[`The validator validations end of line carriage return, line feed should fail on mixed files 1`] = `
+Object {
+  "lib/__fixtures__/endofline.mixed.fixture": Object {
+    "1": Array [
+      ValidationError {
+        "code": "END_OF_LINE",
+        "line": 1,
+        "message": "Incorrect end of line character(s) found.",
+        "payload": Object {
+          "end_of_line": "CR",
+          "expected": "CRLF",
+        },
+        "type": "warning",
+      },
+    ],
+    "2": Array [
+      ValidationError {
+        "code": "END_OF_LINE",
+        "line": 2,
+        "message": "Incorrect end of line character(s) found.",
+        "payload": Object {
+          "end_of_line": "LF",
+          "expected": "CRLF",
+        },
+        "type": "warning",
+      },
+    ],
+  },
+}
+`;
+
+exports[`The validator validations end of line line feed should fail on carriage return files 1`] = `
+Object {
+  "lib/__fixtures__/endofline.cr.fixture": Object {
+    "1": Array [
+      ValidationError {
+        "code": "END_OF_LINE",
+        "line": 1,
+        "message": "Incorrect end of line character(s) found.",
+        "payload": Object {
+          "end_of_line": "CR",
+          "expected": "LF",
+        },
+        "type": "warning",
+      },
+    ],
+    "2": Array [
+      ValidationError {
+        "code": "END_OF_LINE",
+        "line": 2,
+        "message": "Incorrect end of line character(s) found.",
+        "payload": Object {
+          "end_of_line": "CR",
+          "expected": "LF",
+        },
+        "type": "warning",
+      },
+    ],
+    "3": Array [
+      ValidationError {
+        "code": "END_OF_LINE",
+        "line": 3,
+        "message": "Incorrect end of line character(s) found.",
+        "payload": Object {
+          "end_of_line": "CR",
+          "expected": "LF",
+        },
+        "type": "warning",
+      },
+    ],
+    "4": Array [
+      ValidationError {
+        "code": "END_OF_LINE",
+        "line": 4,
+        "message": "Incorrect end of line character(s) found.",
+        "payload": Object {
+          "end_of_line": "CR",
+          "expected": "LF",
+        },
+        "type": "warning",
+      },
+    ],
+    "5": Array [
+      ValidationError {
+        "code": "END_OF_LINE",
+        "line": 5,
+        "message": "Incorrect end of line character(s) found.",
+        "payload": Object {
+          "end_of_line": "CR",
+          "expected": "LF",
+        },
+        "type": "warning",
+      },
+    ],
+    "6": Array [
+      ValidationError {
+        "code": "END_OF_LINE",
+        "line": 6,
+        "message": "Incorrect end of line character(s) found.",
+        "payload": Object {
+          "end_of_line": "CR",
+          "expected": "LF",
+        },
+        "type": "warning",
+      },
+    ],
+    "7": Array [
+      ValidationError {
+        "code": "END_OF_LINE",
+        "line": 7,
+        "message": "Incorrect end of line character(s) found.",
+        "payload": Object {
+          "end_of_line": "CR",
+          "expected": "LF",
+        },
+        "type": "warning",
+      },
+    ],
+  },
+}
+`;
+
+exports[`The validator validations end of line line feed should fail on carriage return line feed files 1`] = `
+Object {
+  "lib/__fixtures__/endofline.crlf.fixture": Object {
+    "1": Array [
+      ValidationError {
+        "code": "END_OF_LINE",
+        "line": 1,
+        "message": "Incorrect end of line character(s) found.",
+        "payload": Object {
+          "end_of_line": "CRLF",
+          "expected": "LF",
+        },
+        "type": "warning",
+      },
+    ],
+    "2": Array [
+      ValidationError {
+        "code": "END_OF_LINE",
+        "line": 2,
+        "message": "Incorrect end of line character(s) found.",
+        "payload": Object {
+          "end_of_line": "CRLF",
+          "expected": "LF",
+        },
+        "type": "warning",
+      },
+    ],
+    "3": Array [
+      ValidationError {
+        "code": "END_OF_LINE",
+        "line": 3,
+        "message": "Incorrect end of line character(s) found.",
+        "payload": Object {
+          "end_of_line": "CRLF",
+          "expected": "LF",
+        },
+        "type": "warning",
+      },
+    ],
+  },
+}
+`;
+
+exports[`The validator validations end of line line feed should fail on mixed files 1`] = `
+Object {
+  "lib/__fixtures__/endofline.mixed.fixture": Object {
+    "1": Array [
+      ValidationError {
+        "code": "END_OF_LINE",
+        "line": 1,
+        "message": "Incorrect end of line character(s) found.",
+        "payload": Object {
+          "end_of_line": "CR",
+          "expected": "LF",
+        },
+        "type": "warning",
+      },
+    ],
+    "3": Array [
+      ValidationError {
+        "code": "END_OF_LINE",
+        "line": 3,
+        "message": "Incorrect end of line character(s) found.",
+        "payload": Object {
+          "end_of_line": "CRLF",
+          "expected": "LF",
+        },
+        "type": "warning",
+      },
+    ],
+  },
+}
+`;
+
+exports[`The validator validations ignores build in should ignore indentaion 1`] = `
+Object {
+  "lib/__fixtures__/ignores.buildin.js.fixture": Object {
+    "16": Array [
+      ValidationError {
+        "code": "INDENTATION_TABS",
+        "line": 16,
+        "message": "Unexpected spaces found.",
+        "type": "warning",
+      },
+    ],
+  },
+}
+`;
+
+exports[`The validator validations ignores build in should ignore newlines 1`] = `
+Object {
+  "lib/__fixtures__/ignores.buildin.js.fixture": Object {
+    "11": Array [
+      ValidationError {
+        "code": "TRAILINGSPACES",
+        "line": 11,
+        "message": "Unexpected trailing spaces found.",
+        "type": "warning",
+      },
+    ],
+    "16": Array [
+      ValidationError {
+        "code": "INDENTATION_TABS",
+        "line": 16,
+        "message": "Unexpected spaces found.",
+        "type": "warning",
+      },
+    ],
+    "19": Array [
+      ValidationError {
+        "code": "TRAILINGSPACES",
+        "line": 19,
+        "message": "Unexpected trailing spaces found.",
+        "type": "warning",
+      },
+    ],
+    "28": Array [
+      ValidationError {
+        "code": "TRAILINGSPACES",
+        "line": 28,
+        "message": "Unexpected trailing spaces found.",
+        "type": "warning",
+      },
+    ],
+    "3": Array [
+      ValidationError {
+        "code": "TRAILINGSPACES",
+        "line": 3,
+        "message": "Unexpected trailing spaces found.",
+        "type": "warning",
+      },
+    ],
+  },
+}
+`;
+
+exports[`The validator validations ignores build in should ignore trailingspaces 1`] = `
+Object {
+  "lib/__fixtures__/ignores.buildin.js.fixture": Object {
+    "11": Array [
+      ValidationError {
+        "code": "TRAILINGSPACES",
+        "line": 11,
+        "message": "Unexpected trailing spaces found.",
+        "type": "warning",
+      },
+    ],
+    "19": Array [
+      ValidationError {
+        "code": "TRAILINGSPACES",
+        "line": 19,
+        "message": "Unexpected trailing spaces found.",
+        "type": "warning",
+      },
+    ],
+    "28": Array [
+      ValidationError {
+        "code": "TRAILINGSPACES",
+        "line": 28,
+        "message": "Unexpected trailing spaces found.",
+        "type": "warning",
+      },
+    ],
+    "3": Array [
+      ValidationError {
+        "code": "TRAILINGSPACES",
+        "line": 3,
+        "message": "Unexpected trailing spaces found.",
+        "type": "warning",
+      },
+    ],
+  },
+}
+`;
+
+exports[`The validator validations ignores user defined should ignore indentaion 1`] = `
+Object {
+  "lib/__fixtures__/ignores.userdefined.fixture": Object {
+    "1": Array [
+      ValidationError {
+        "code": "INDENTATION_TABS",
+        "line": 1,
+        "message": "Unexpected spaces found.",
+        "type": "warning",
+      },
+    ],
+    "10": Array [
+      ValidationError {
+        "code": "INDENTATION_TABS",
+        "line": 10,
+        "message": "Unexpected spaces found.",
+        "type": "warning",
+      },
+    ],
+    "11": Array [
+      ValidationError {
+        "code": "INDENTATION_TABS",
+        "line": 11,
+        "message": "Unexpected spaces found.",
+        "type": "warning",
+      },
+    ],
+    "4": Array [
+      ValidationError {
+        "code": "INDENTATION_TABS",
+        "line": 4,
+        "message": "Unexpected spaces found.",
+        "type": "warning",
+      },
+    ],
+  },
+}
+`;
+
+exports[`The validator validations ignores user defined should ignore newlines 1`] = `
+Object {
+  "lib/__fixtures__/ignores.userdefined.fixture": Object {
+    "1": Array [
+      ValidationError {
+        "code": "INDENTATION_TABS",
+        "line": 1,
+        "message": "Unexpected spaces found.",
+        "type": "warning",
+      },
+    ],
+    "10": Array [
+      ValidationError {
+        "code": "INDENTATION_TABS",
+        "line": 10,
+        "message": "Unexpected spaces found.",
+        "type": "warning",
+      },
+    ],
+    "11": Array [
+      ValidationError {
+        "code": "INDENTATION_TABS",
+        "line": 11,
+        "message": "Unexpected spaces found.",
+        "type": "warning",
+      },
+    ],
+    "4": Array [
+      ValidationError {
+        "code": "INDENTATION_TABS",
+        "line": 4,
+        "message": "Unexpected spaces found.",
+        "type": "warning",
+      },
+    ],
+    "7": Array [
+      ValidationError {
+        "code": "TRAILINGSPACES",
+        "line": 7,
+        "message": "Unexpected trailing spaces found.",
+        "type": "warning",
+      },
+    ],
+  },
+}
+`;
+
+exports[`The validator validations ignores user defined should ignore trailingspaces 1`] = `
+Object {
+  "lib/__fixtures__/ignores.userdefined.fixture": Object {
+    "7": Array [
+      ValidationError {
+        "code": "TRAILINGSPACES",
+        "line": 7,
+        "message": "Unexpected trailing spaces found.",
+        "type": "warning",
+      },
+    ],
+  },
+}
+`;
+
+exports[`The validator validations indentation guess should be silent 1`] = `
+Object {
+  "lib/__fixtures__/indentation.guess.tabs.fixture": Object {
+    "10": Array [
+      ValidationError {
+        "code": "INDENTATION_SPACES",
+        "line": 10,
+        "message": "Unexpected tabs found.",
+        "type": "warning",
+      },
+    ],
+    "11": Array [
+      ValidationError {
+        "code": "INDENTATION_SPACES",
+        "line": 11,
+        "message": "Unexpected tabs found.",
+        "type": "warning",
+      },
+    ],
+    "13": Array [
+      ValidationError {
+        "code": "INDENTATION_SPACES",
+        "line": 13,
+        "message": "Unexpected tabs found.",
+        "type": "warning",
+      },
+    ],
+    "14": Array [
+      ValidationError {
+        "code": "INDENTATION_SPACES",
+        "line": 14,
+        "message": "Unexpected tabs found.",
+        "type": "warning",
+      },
+    ],
+    "15": Array [
+      ValidationError {
+        "code": "INDENTATION_SPACES",
+        "line": 15,
+        "message": "Unexpected tabs found.",
+        "type": "warning",
+      },
+    ],
+    "16": Array [
+      ValidationError {
+        "code": "INDENTATION_SPACES",
+        "line": 16,
+        "message": "Unexpected tabs found.",
+        "type": "warning",
+      },
+    ],
+    "17": Array [
+      ValidationError {
+        "code": "INDENTATION_SPACES",
+        "line": 17,
+        "message": "Unexpected tabs found.",
+        "type": "warning",
+      },
+    ],
+    "18": Array [
+      ValidationError {
+        "code": "INDENTATION_SPACES",
+        "line": 18,
+        "message": "Unexpected tabs found.",
+        "type": "warning",
+      },
+    ],
+    "19": Array [
+      ValidationError {
+        "code": "INDENTATION_SPACES",
+        "line": 19,
+        "message": "Unexpected tabs found.",
+        "type": "warning",
+      },
+    ],
+    "2": Array [
+      ValidationError {
+        "code": "INDENTATION_SPACES",
+        "line": 2,
+        "message": "Unexpected tabs found.",
+        "type": "warning",
+      },
+    ],
+    "20": Array [
+      ValidationError {
+        "code": "INDENTATION_SPACES",
+        "line": 20,
+        "message": "Unexpected tabs found.",
+        "type": "warning",
+      },
+    ],
+    "3": Array [
+      ValidationError {
+        "code": "INDENTATION_SPACES",
+        "line": 3,
+        "message": "Unexpected tabs found.",
+        "type": "warning",
+      },
+    ],
+    "5": Array [
+      ValidationError {
+        "code": "INDENTATION_SPACES",
+        "line": 5,
+        "message": "Unexpected tabs found.",
+        "type": "warning",
+      },
+    ],
+    "6": Array [
+      ValidationError {
+        "code": "INDENTATION_SPACES",
+        "line": 6,
+        "message": "Unexpected tabs found.",
+        "type": "warning",
+      },
+    ],
+    "7": Array [
+      ValidationError {
+        "code": "INDENTATION_SPACES",
+        "line": 7,
+        "message": "Unexpected tabs found.",
+        "type": "warning",
+      },
+    ],
+    "9": Array [
+      ValidationError {
+        "code": "INDENTATION_SPACES",
+        "line": 9,
+        "message": "Unexpected tabs found.",
+        "type": "warning",
+      },
+    ],
+  },
+}
+`;
+
+exports[`The validator validations indentation guess should guess incorrect using spaces 1`] = `
+Object {
+  "lib/__fixtures__/indentation.guess.spaces.fixture": Object {
+    "10": Array [
+      ValidationError {
+        "code": "NEWLINE_GUESS",
+        "line": 10,
+        "message": "The indentation in this line seems to be incorrect. The expected indention is 2, but 4 was found.",
+        "payload": Object {
+          "expected": 2,
+          "indentation": 4,
+        },
+        "type": "hint",
+      },
+    ],
+    "15": Array [
+      ValidationError {
+        "code": "NEWLINE_GUESS",
+        "line": 15,
+        "message": "The indentation in this line seems to be incorrect. The expected indention is 3, but 4 was found.",
+        "payload": Object {
+          "expected": 3,
+          "indentation": 4,
+        },
+        "type": "hint",
+      },
+    ],
+  },
+}
+`;
+
+exports[`The validator validations indentation guess should guess incorrect using tabs 1`] = `
+Object {
+  "lib/__fixtures__/indentation.guess.tabs.fixture": Object {
+    "10": Array [
+      ValidationError {
+        "code": "NEWLINE_GUESS",
+        "line": 10,
+        "message": "The indentation in this line seems to be incorrect. The expected indention is 2, but 4 was found.",
+        "payload": Object {
+          "expected": 2,
+          "indentation": 4,
+        },
+        "type": "hint",
+      },
+    ],
+    "15": Array [
+      ValidationError {
+        "code": "NEWLINE_GUESS",
+        "line": 15,
+        "message": "The indentation in this line seems to be incorrect. The expected indention is 3, but 4 was found.",
+        "payload": Object {
+          "expected": 3,
+          "indentation": 4,
+        },
+        "type": "hint",
+      },
+    ],
+  },
+}
+`;
+
+exports[`The validator validations indentation guess should skip newlines 1`] = `
+Object {
+  "lib/__fixtures__/indentation.guess.newline.fixture": Object {
+    "7": Array [
+      ValidationError {
+        "code": "NEWLINE_GUESS",
+        "line": 7,
+        "message": "The indentation in this line seems to be incorrect. The expected indention is 2, but 3 was found.",
+        "payload": Object {
+          "expected": 2,
+          "indentation": 3,
+        },
+        "type": "hint",
+      },
+    ],
+  },
+}
+`;
+
+exports[`The validator validations indentation spaces should report file with disallowed BOM 1`] = `
+Object {
+  "lib/__fixtures__/indentation.spaces.bom.fixture": Object {
+    "1": Array [
+      ValidationError {
+        "code": "INDENTATION_SPACES",
+        "line": 1,
+        "message": "Unexpected tabs found.",
+        "type": "warning",
+      },
+    ],
+  },
+}
+`;
+
+exports[`The validator validations indentation spaces should report incorrect 1`] = `
+Object {
+  "lib/__fixtures__/indentation.spaces.invalid.fixture": Object {
+    "3": Array [
+      ValidationError {
+        "code": "INDENTATION_SPACES_AMOUNT",
+        "line": 3,
+        "message": "Expected an indentation at 4 instead of at 5.",
+        "payload": Object {
+          "expected": 4,
+          "indent": 5,
+        },
+        "type": "warning",
+      },
+    ],
+    "5": Array [
+      ValidationError {
+        "code": "INDENTATION_SPACES_AMOUNT",
+        "line": 5,
+        "message": "Expected an indentation at 12 instead of at 10.",
+        "payload": Object {
+          "expected": 12,
+          "indent": 10,
+        },
+        "type": "warning",
+      },
+    ],
+  },
+}
+`;
+
+exports[`The validator validations indentation spaces should report mixed 1`] = `
+Object {
+  "lib/__fixtures__/indentation.mixed.fixture": Object {
+    "2": Array [
+      ValidationError {
+        "code": "INDENTATION_SPACES",
+        "line": 2,
+        "message": "Unexpected tabs found.",
+        "type": "warning",
+      },
+    ],
+    "3": Array [
+      ValidationError {
+        "code": "INDENTATION_SPACES",
+        "line": 3,
+        "message": "Unexpected tabs found.",
+        "type": "warning",
+      },
+    ],
+    "4": Array [
+      ValidationError {
+        "code": "INDENTATION_SPACES",
+        "line": 4,
+        "message": "Unexpected tabs found.",
+        "type": "warning",
+      },
+    ],
+    "5": Array [
+      ValidationError {
+        "code": "INDENTATION_SPACES",
+        "line": 5,
+        "message": "Unexpected tabs found.",
+        "type": "warning",
+      },
+    ],
+    "7": Array [
+      ValidationError {
+        "code": "INDENTATION_SPACES",
+        "line": 7,
+        "message": "Unexpected tabs found.",
+        "type": "warning",
+      },
+    ],
+  },
+}
+`;
+
+exports[`The validator validations indentation spaces should report tabs 1`] = `
+Object {
+  "lib/__fixtures__/indentation.tabs.fixture": Object {
+    "2": Array [
+      ValidationError {
+        "code": "INDENTATION_SPACES",
+        "line": 2,
+        "message": "Unexpected tabs found.",
+        "type": "warning",
+      },
+    ],
+    "3": Array [
+      ValidationError {
+        "code": "INDENTATION_SPACES",
+        "line": 3,
+        "message": "Unexpected tabs found.",
+        "type": "warning",
+      },
+    ],
+    "4": Array [
+      ValidationError {
+        "code": "INDENTATION_SPACES",
+        "line": 4,
+        "message": "Unexpected tabs found.",
+        "type": "warning",
+      },
+    ],
+    "5": Array [
+      ValidationError {
+        "code": "INDENTATION_SPACES",
+        "line": 5,
+        "message": "Unexpected tabs found.",
+        "type": "warning",
+      },
+    ],
+    "6": Array [
+      ValidationError {
+        "code": "INDENTATION_SPACES",
+        "line": 6,
+        "message": "Unexpected tabs found.",
+        "type": "warning",
+      },
+    ],
+    "7": Array [
+      ValidationError {
+        "code": "INDENTATION_SPACES",
+        "line": 7,
+        "message": "Unexpected tabs found.",
+        "type": "warning",
+      },
+    ],
+  },
+}
+`;
+
+exports[`The validator validations indentation tabs should report file with disallowed BOM 1`] = `
+Object {
+  "lib/__fixtures__/indentation.tabs.bom.fixture": Object {
+    "1": Array [
+      ValidationError {
+        "code": "INDENTATION_TABS",
+        "line": 1,
+        "message": "Unexpected spaces found.",
+        "type": "warning",
+      },
+    ],
+  },
+}
+`;
+
+exports[`The validator validations indentation tabs should report spaces 1`] = `
+Object {
+  "lib/__fixtures__/indentation.mixed.fixture": Object {
+    "5": Array [
+      ValidationError {
+        "code": "INDENTATION_TABS",
+        "line": 5,
+        "message": "Unexpected spaces found.",
+        "type": "warning",
+      },
+    ],
+    "6": Array [
+      ValidationError {
+        "code": "INDENTATION_TABS",
+        "line": 6,
+        "message": "Unexpected spaces found.",
+        "type": "warning",
+      },
+    ],
+  },
+}
+`;
+
+exports[`The validator validations newline (at the end of file) should report missing 1`] = `
+Object {
+  "lib/__fixtures__/newlines.endoffile.invalid.less.fixture": Object {
+    "8": Array [
+      ValidationError {
+        "code": "NEWLINE",
+        "line": 8,
+        "message": "Expected a newline at the end of the file.",
+        "type": "warning",
+      },
+    ],
+  },
+}
+`;
+
+exports[`The validator validations newline (at the end of file) should report too much 1`] = `
+Object {
+  "lib/__fixtures__/newlines.endoffile.invalid.much.fixture": Object {
+    "12": Array [
+      ValidationError {
+        "code": "NEWLINE_AMOUNT",
+        "line": 12,
+        "message": "Unexpected additional newlines at the end of the file.",
+        "type": "warning",
+      },
+    ],
+  },
+}
+`;
+
+exports[`The validator validations newlines maximum should report errors 1`] = `
+Object {
+  "lib/__fixtures__/newlines.blocks.fixture": Object {
+    "16": Array [
+      ValidationError {
+        "code": "NEWLINE_MAXIMUM",
+        "line": 16,
+        "message": "Maximum amount of newlines exceeded. Found 4 newlines, expected maximum is 2.",
+        "payload": Object {
+          "amount": 4,
+          "maximum": 2,
+        },
+        "type": "warning",
+      },
+    ],
+    "8": Array [
+      ValidationError {
+        "code": "NEWLINE_MAXIMUM",
+        "line": 8,
+        "message": "Maximum amount of newlines exceeded. Found 3 newlines, expected maximum is 2.",
+        "payload": Object {
+          "amount": 3,
+          "maximum": 2,
+        },
+        "type": "warning",
+      },
+    ],
+  },
+}
+`;
+
+exports[`The validator validations trailingspaces should ignore comments 1`] = `
+Object {
+  "lib/__fixtures__/trailingspaces.ignores.fixture": Object {
+    "11": Array [
+      ValidationError {
+        "code": "TRAILINGSPACES",
+        "line": 11,
+        "message": "Unexpected trailing spaces found.",
+        "type": "warning",
+      },
+    ],
+    "15": Array [
+      ValidationError {
+        "code": "TRAILINGSPACES",
+        "line": 15,
+        "message": "Unexpected trailing spaces found.",
+        "type": "warning",
+      },
+    ],
+    "17": Array [
+      ValidationError {
+        "code": "TRAILINGSPACES",
+        "line": 17,
+        "message": "Unexpected trailing spaces found.",
+        "type": "warning",
+      },
+    ],
+    "21": Array [
+      ValidationError {
+        "code": "TRAILINGSPACES",
+        "line": 21,
+        "message": "Unexpected trailing spaces found.",
+        "type": "warning",
+      },
+    ],
+    "26": Array [
+      ValidationError {
+        "code": "TRAILINGSPACES",
+        "line": 26,
+        "message": "Unexpected trailing spaces found.",
+        "type": "warning",
+      },
+    ],
+    "9": Array [
+      ValidationError {
+        "code": "TRAILINGSPACES",
+        "line": 9,
+        "message": "Unexpected trailing spaces found.",
+        "type": "warning",
+      },
+    ],
+  },
+}
+`;
+
+exports[`The validator validations trailingspaces should report errors 1`] = `
+Object {
+  "lib/__fixtures__/trailingspaces.invalid.fixture": Object {
+    "2": Array [
+      ValidationError {
+        "code": "TRAILINGSPACES",
+        "line": 2,
+        "message": "Unexpected trailing spaces found.",
+        "type": "warning",
+      },
+    ],
+    "5": Array [
+      ValidationError {
+        "code": "TRAILINGSPACES",
+        "line": 5,
+        "message": "Unexpected trailing spaces found.",
+        "type": "warning",
+      },
+    ],
+    "8": Array [
+      ValidationError {
+        "code": "TRAILINGSPACES",
+        "line": 8,
+        "message": "Unexpected trailing spaces found.",
+        "type": "warning",
+      },
+    ],
+  },
+}
+`;
+
+exports[`The validator validations trailingspaces should skip blank lines 1`] = `
+Object {
+  "lib/__fixtures__/trailingspaces.invalid.fixture": Object {
+    "2": Array [
+      ValidationError {
+        "code": "TRAILINGSPACES",
+        "line": 2,
+        "message": "Unexpected trailing spaces found.",
+        "type": "warning",
+      },
+    ],
+    "8": Array [
+      ValidationError {
+        "code": "TRAILINGSPACES",
+        "line": 8,
+        "message": "Unexpected trailing spaces found.",
+        "type": "warning",
+      },
+    ],
+  },
+}
+`;
