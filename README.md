@@ -7,6 +7,7 @@ A node module for checking spaces in files.
 [![David DM DevDependencies Status](https://david-dm.org/schorfes/node-lintspaces/dev-status.svg?branch=master)](https://david-dm.org/schorfes/node-lintspaces#info=devDependencies)
 [![Coverage Status on Codecov](https://codecov.io/gh/schorfES/node-lintspaces/branch/master/graph/badge.svg)](https://codecov.io/gh/schorfES/node-lintspaces)
 [![Known Vulnerabilities](https://snyk.io/test/github/schorfES/node-lintspaces/badge.svg)](https://snyk.io/test/github/schorfES/node-lintspaces)
+![Downloads per Week](https://img.shields.io/npm/dw/lintspaces.svg?style=flat)
 
 ### Tasks
 
