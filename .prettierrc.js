@@ -11,6 +11,9 @@ module.exports = {
 		'*.json': {
 			useTabs: false,
 			tabWidth: 2,
-		}
+		},
+		'*.md': {
+			printWidth: 'off',
+		},
 	]
 }
