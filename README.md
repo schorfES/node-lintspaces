@@ -5,8 +5,9 @@ A node module for checking spaces in files.
 [![Travis Status](https://travis-ci.org/schorfES/node-lintspaces.png?branch=master)](https://travis-ci.org/schorfES/node-lintspaces)
 [![David DM Status](https://david-dm.org/schorfES/node-lintspaces.svg?branch=master)](https://david-dm.org/schorfes/node-lintspaces#info=dependencies)
 [![David DM DevDependencies Status](https://david-dm.org/schorfes/node-lintspaces/dev-status.svg?branch=master)](https://david-dm.org/schorfes/node-lintspaces#info=devDependencies)
-![Downloads per Week](https://img.shields.io/npm/dw/lintspaces.svg?style=flat)
+[![Coverage Status on Codecov](https://codecov.io/gh/schorfES/node-lintspaces/branch/master/graph/badge.svg)](https://codecov.io/gh/schorfES/node-lintspaces)
 [![Known Vulnerabilities](https://snyk.io/test/github/schorfES/node-lintspaces/badge.svg)](https://snyk.io/test/github/schorfES/node-lintspaces)
+![Downloads per Week](https://img.shields.io/npm/dw/lintspaces.svg?style=flat)
 
 ### Tasks
 
@@ -342,7 +343,7 @@ you offer a pull request.
 
 ### Tests & validation
 
-Run ```grunt validate test``` to run the tests and validation tasks.
+Run ```make validate tests``` to run the tests and validation tasks.
 
 ### Readme
 
