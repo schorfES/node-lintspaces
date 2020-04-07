@@ -8,7 +8,9 @@
   },
   "main": "index.js",
   "scripts": {
-    "test": "snyk test && grunt validate test"
+    "audit": "make audit",
+    "test": "make tests",
+    "validate": "make validate"
   },
   "keywords": [
     "validation",
@@ -60,11 +62,12 @@
     "rc": "^1.2.8"
   },
   "devDependencies": {
+    "codecov": "^3.1.0",
+    "eslint": "^5.10.0",
+    "eslint-plugin-jest": "^22.1.2",
     "grunt": "^1.0.4",
     "grunt-contrib-concat": "^1.0.1",
-    "grunt-contrib-jshint": "^2.0.0",
-    "grunt-contrib-nodeunit": "^2.0.0",
-    "grunt-jscs": "^3.0.1",
-    "snyk": "^1.126.0"
+    "jest": "^24.8.0",
+    "snyk": "^1.82.1"
   }
 }
