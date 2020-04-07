@@ -56,6 +56,11 @@
   "engines": {
     "node": ">=5"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
   "dependencies": {
     "deep-extend": "^0.6.0",
     "editorconfig": "^0.15.0",
@@ -67,7 +72,10 @@
     "eslint-plugin-jest": "^22.1.2",
     "grunt": "^1.0.4",
     "grunt-contrib-concat": "^1.0.1",
+    "husky": "^2.3.0",
     "jest": "^24.8.0",
-    "snyk": "^1.82.1"
+    "lint-staged": "^8.1.7",
+    "prettier": "^1.18.2",
+    "snyk": "^1.126.0"
   }
 }
