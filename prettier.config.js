@@ -8,12 +8,18 @@ module.exports = {
 	trailingComma: 'all',
 	useTabs: true,
 	overrides: [
-		'*.json': {
-			useTabs: false,
-			tabWidth: 2,
+		{
+			files: '*.json',
+			options: {
+				useTabs: false,
+				tabWidth: 2,
+			},
 		},
-		'*.md': {
-			printWidth: 'off',
+		{
+			files: '*.md',
+			options: {
+				printWidth: 'off',
+			},
 		},
-	]
+	],
 }

@@ -1,6 +1,4 @@
-module.export = {
-	'linters': {
-		'*.{js}': ['eslint --fix', 'git add'],
-		'*.{json,yml,md}': ['prettier --write', 'git add'],
-	},
+module.exports = {
+	'*.{js}': ['eslint --fix'],
+	'*.{json,yml,md}': ['prettier --write'],
 };
