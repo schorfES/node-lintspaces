@@ -53,7 +53,7 @@
   ],
   "license": "MIT",
   "engines": {
-    "node": ">=5"
+    "node": ">=8"
   },
   "dependencies": {
     "deep-extend": "^0.6.0",
