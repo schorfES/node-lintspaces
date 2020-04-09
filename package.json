@@ -54,7 +54,7 @@
   ],
   "license": "MIT",
   "engines": {
-    "node": ">=5"
+    "node": ">=8"
   },
   "husky": {
     "hooks": {
@@ -63,19 +63,20 @@
   },
   "dependencies": {
     "deep-extend": "^0.6.0",
-    "editorconfig": "^0.15.0",
+    "editorconfig": "^0.15.3",
+    "minimist": "^1.2.5",
     "rc": "^1.2.8"
   },
   "devDependencies": {
-    "codecov": "^3.1.0",
-    "eslint": "^5.10.0",
-    "eslint-plugin-jest": "^22.1.2",
-    "grunt": "^1.0.4",
+    "codecov": "^3.6.5",
+    "eslint": "^6.8.0",
+    "eslint-plugin-jest": "^23.8.2",
+    "grunt": "^1.1.0",
     "grunt-contrib-concat": "^1.0.1",
-    "husky": "^2.3.0",
-    "jest": "^24.8.0",
-    "lint-staged": "^8.1.7",
-    "prettier": "^1.18.2",
-    "snyk": "^1.126.0"
+    "husky": "^4.2.3",
+    "jest": "^25.3.0",
+    "lint-staged": "^10.1.2",
+    "prettier": "^2.0.4",
+    "snyk": "^1.305.1"
   }
 }
