@@ -54,7 +54,7 @@
   ],
   "license": "MIT",
   "engines": {
-    "node": ">=5"
+    "node": ">=8"
   },
   "husky": {
     "hooks": {
@@ -64,6 +64,7 @@
   "dependencies": {
     "deep-extend": "^0.6.0",
     "editorconfig": "^0.15.0",
+    "minimist": "^1.2.5",
     "rc": "^1.2.8"
   },
   "devDependencies": {
