@@ -8,7 +8,8 @@
   },
   "main": "index.js",
   "scripts": {
-    "test": "snyk test && grunt validate test"
+    "audit": "snyk test",
+    "test": "grunt validate test"
   },
   "keywords": [
     "validation",

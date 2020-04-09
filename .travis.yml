@@ -11,4 +11,8 @@ node_js:
 - "lts/*"
 before_install:
 - npm install -g grunt-cli
-install: npm install
+install:
+- npm install
+script:
+- npm run audit
+- npm run test
