@@ -25,17 +25,17 @@ jobs:
         run: npm install
 
       - name: Run tests
-        run: make tests
+        run: npm run test
         env:
           CI: true
 
       - name: Run validations
-        run: make validate
+        run: npm run lint
         env:
           CI: true
 
       - name: Run audit
-        run: make audit
+        run: npm run audit
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
           CI: true

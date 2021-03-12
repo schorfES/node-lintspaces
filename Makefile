@@ -2,13 +2,12 @@
 
 
 audit:
-	./node_modules/.bin/snyk test
+	npm run audit
 
 
-tests:
-	./node_modules/.bin/jest lib/ watch --verbose --coverage
-	./node_modules/.bin/codecov
+test:
+	npm run test
 
 
-validate:
-	./node_modules/.bin/eslint . --ext .js
+lint:
+	npm run lint

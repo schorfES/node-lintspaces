@@ -5,7 +5,7 @@ you offer a pull request.
 
 ### Tests & validation
 
-Run ```make validate tests``` to run the tests and validation tasks.
+Run ```npm run test && npm run lint``` to run the tests and validation tasks.
 
 ### Readme
 

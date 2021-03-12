@@ -11,9 +11,9 @@
   },
   "main": "index.js",
   "scripts": {
-    "audit": "make audit",
-    "test": "make tests",
-    "validate": "make validate"
+    "audit": "snyk test",
+    "test": "jest lib/ --verbose --coverage && codecov",
+    "lint": "eslint . --ext .js"
   },
   "keywords": [
     "validation",
