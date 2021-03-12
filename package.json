@@ -11,6 +11,7 @@
   },
   "main": "index.js",
   "scripts": {
+    "docs": "concat -o README.md ./docs/intro.md ./docs/installation.md ./docs/usage.md ./docs/options.md ./docs/functions.md ./docs/contribution.md ./docs/license.md",
     "audit": "snyk test",
     "test": "jest lib/ --verbose --coverage && codecov",
     "lint": "eslint . --ext .js"
@@ -71,8 +72,6 @@
     "codecov": "^3.8.1",
     "eslint": "^7.21.0",
     "eslint-plugin-jest": "^24.2.1",
-    "grunt": "^1.1.0",
-    "grunt-contrib-concat": "^1.0.1",
     "husky": "^5.1.3",
     "jest": "^26.6.3",
     "lint-staged": "^10.5.4",
