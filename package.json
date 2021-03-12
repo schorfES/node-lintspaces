@@ -11,11 +11,12 @@
   },
   "main": "index.js",
   "scripts": {
+    "postinstall": "husky install",
     "docs": "concat -o README.md ./docs/intro.md ./docs/installation.md ./docs/usage.md ./docs/options.md ./docs/functions.md ./docs/contribution.md ./docs/license.md",
     "audit": "snyk test",
     "test": "jest lib/ --verbose --coverage && codecov",
     "lint": "eslint . --ext .js",
-    "release": "release-it"
+    "release": "HUSKY=0 release-it"
   },
   "keywords": [
     "validation",
