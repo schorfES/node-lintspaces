@@ -2,6 +2,9 @@
   "name": "lintspaces",
   "version": "0.6.4",
   "description": "Library for checking spaces in files",
+  "engines": {
+    "node": ">=10"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/schorfES/node-lintspaces.git"
@@ -53,9 +56,6 @@
     }
   ],
   "license": "MIT",
-  "engines": {
-    "node": ">=8"
-  },
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
