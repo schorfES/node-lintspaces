@@ -2,10 +2,10 @@
 
 A node module for checking spaces in files.
 
-[![Travis Status](https://travis-ci.org/schorfES/node-lintspaces.png?branch=master)](https://travis-ci.org/schorfES/node-lintspaces)
-[![David DM Status](https://david-dm.org/schorfES/node-lintspaces.svg?branch=master)](https://david-dm.org/schorfes/node-lintspaces#info=dependencies)
-[![David DM DevDependencies Status](https://david-dm.org/schorfes/node-lintspaces/dev-status.svg?branch=master)](https://david-dm.org/schorfes/node-lintspaces#info=devDependencies)
-[![Coverage Status on Codecov](https://codecov.io/gh/schorfES/node-lintspaces/branch/master/graph/badge.svg)](https://codecov.io/gh/schorfES/node-lintspaces)
+[![Travis Status](https://travis-ci.org/schorfES/node-lintspaces.png?branch=main)](https://travis-ci.org/schorfES/node-lintspaces)
+[![David DM Status](https://david-dm.org/schorfES/node-lintspaces.svg?branch=main)](https://david-dm.org/schorfes/node-lintspaces#info=dependencies)
+[![David DM DevDependencies Status](https://david-dm.org/schorfes/node-lintspaces/dev-status.svg?branch=main)](https://david-dm.org/schorfes/node-lintspaces#info=devDependencies)
+[![Coverage Status on Codecov](https://codecov.io/gh/schorfES/node-lintspaces/branch/main/graph/badge.svg)](https://codecov.io/gh/schorfES/node-lintspaces)
 [![Known Vulnerabilities](https://snyk.io/test/github/schorfES/node-lintspaces/badge.svg)](https://snyk.io/test/github/schorfES/node-lintspaces)
 ![Downloads per Week](https://img.shields.io/npm/dw/lintspaces.svg?style=flat)
 
@@ -367,4 +367,4 @@ update the _README.md_.
 
 ## License
 
-[LICENSE (MIT)](https://github.com/schorfES/node-lintspaces/blob/master/LICENSE)
+[LICENSE (MIT)](https://github.com/schorfES/node-lintspaces/blob/main/LICENSE)
