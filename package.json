@@ -14,7 +14,8 @@
     "docs": "concat -o README.md ./docs/intro.md ./docs/installation.md ./docs/usage.md ./docs/options.md ./docs/functions.md ./docs/contribution.md ./docs/license.md",
     "audit": "snyk test",
     "test": "jest lib/ --verbose --coverage && codecov",
-    "lint": "eslint . --ext .js"
+    "lint": "eslint . --ext .js",
+    "release": "release-it"
   },
   "keywords": [
     "validation",
@@ -77,6 +78,7 @@
     "jest": "^26.6.3",
     "lint-staged": "^10.5.4",
     "prettier": "^2.2.1",
+    "release-it": "^14.4.1",
     "snyk": "^1.483.0"
   }
 }
