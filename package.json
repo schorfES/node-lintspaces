@@ -2,14 +2,19 @@
   "name": "lintspaces",
   "version": "0.7.0",
   "description": "Library for checking spaces in files",
+  "engines": {
+    "node": ">=10"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/schorfES/node-lintspaces.git"
   },
   "main": "index.js",
   "scripts": {
+    "docs": "concat -o README.md ./docs/intro.md ./docs/installation.md ./docs/usage.md ./docs/options.md ./docs/functions.md ./docs/contribution.md ./docs/license.md",
     "audit": "snyk test",
-    "test": "grunt validate test"
+    "test": "jest lib/ --verbose --coverage && codecov",
+    "lint": "eslint . --ext .js"
   },
   "keywords": [
     "validation",
@@ -52,21 +57,25 @@
     }
   ],
   "license": "MIT",
-  "engines": {
-    "node": ">=8"
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   },
   "dependencies": {
     "deep-extend": "^0.6.0",
-    "editorconfig": "^0.15.0",
+    "editorconfig": "^0.15.3",
     "minimist": "^1.2.5",
     "rc": "^1.2.8"
   },
   "devDependencies": {
-    "grunt": "^1.0.4",
-    "grunt-contrib-concat": "^1.0.1",
-    "grunt-contrib-jshint": "^2.0.0",
-    "grunt-contrib-nodeunit": "^2.0.0",
-    "grunt-jscs": "^3.0.1",
-    "snyk": "^1.126.0"
+    "codecov": "^3.8.1",
+    "eslint": "^7.21.0",
+    "eslint-plugin-jest": "^24.2.1",
+    "husky": "^5.1.3",
+    "jest": "^26.6.3",
+    "lint-staged": "^10.5.4",
+    "prettier": "^2.2.1",
+    "snyk": "^1.483.0"
   }
 }
