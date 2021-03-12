@@ -70,6 +70,7 @@
   },
   "devDependencies": {
     "codecov": "^3.8.1",
+    "concat": "^1.0.3",
     "eslint": "^7.21.0",
     "eslint-plugin-jest": "^24.2.1",
     "husky": "^5.1.3",
