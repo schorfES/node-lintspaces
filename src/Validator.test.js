@@ -4,15 +4,16 @@ const path = require('path');
 
 const Defaults = require('./constants/defaults');
 const Messages = require('./constants/messages');
+const Patterns = require('./constants/ignorePatterns');
 const Validator = require('./Validator');
 
 const __fromFixtures = (...args) => path.join.apply(null, [__dirname, '__fixtures__'].concat(args));
 
 describe('The validator', () => {
 
-	// Core
+	// Static
 	// -------------------------------------------------------------------------
-	describe('core', () => {
+	describe('static', () => {
 
 		it('should export appname', () => {
 			expect(Validator.APPNAME).toBe('lintspaces');
@@ -21,6 +22,20 @@ describe('The validator', () => {
 		it('should export defaults', () => {
 			expect(Validator.DEFAULTS).toEqual(Defaults);
 		});
+
+		it('should export messages', () => {
+			expect(Validator.MESSAGES).toEqual(Messages);
+		});
+
+		it('should export ignore patterns', () => {
+			expect(Validator.PATTERNS).toEqual(Patterns);
+		});
+
+	});
+
+	// Core
+	// -------------------------------------------------------------------------
+	describe('core', () => {
 
 		it('should throw if file does not exist', () => {
 			const validator = new Validator({trailingspaces: true});
@@ -221,6 +236,108 @@ describe('The validator', () => {
 					const error = new Error(message);
 					expect(() => new Validator({editorconfig}).validate(file)).toThrow(error);
 				});
+			});
+
+		});
+
+	});
+
+	// Reports
+	// -------------------------------------------------------------------------
+	describe('reports', () => {
+
+		describe('invalid files', () => {
+			it('should initially be empty', () => {
+				const validator = new Validator({endOfLine: 'CR'});
+				const report = validator.getInvalidFiles();
+				expect(report).toEqual({});
+			});
+
+			it('should return all invalid files', () => {
+				const validator = new Validator({endOfLine: 'CR'});
+
+				const file1 = __fromFixtures('endofline.lf.fixture');
+				validator.validate(file1);
+
+				const file2 = __fromFixtures('endofline.cr.fixture');
+				validator.validate(file2);
+
+				const payload = {expected: 'CR', end_of_line: 'LF'};
+				const defaults = extend({payload}, Messages.END_OF_LINE);
+				const report = validator.getInvalidFiles();
+				expect(report).toEqual({
+					[file1]: {
+						'1': [extend({}, defaults, {line: 1})],
+						'2': [extend({}, defaults, {line: 2})],
+						'3': [extend({}, defaults, {line: 3})],
+						'4': [extend({}, defaults, {line: 4})],
+						'5': [extend({}, defaults, {line: 5})],
+						'6': [extend({}, defaults, {line: 6})],
+						'7': [extend({}, defaults, {line: 7})],
+					},
+				});
+			});
+		});
+
+		describe('invalid lines by file', () => {
+			it('should be empty when passing invalid path', () => {
+				const validator = new Validator({endOfLine: 'CR'});
+				const report = validator.getInvalidLines('foo/bar/');
+				expect(report).toEqual({});
+			});
+
+			it('should be empty when passing validation', () => {
+				const validator = new Validator({endOfLine: 'CR'});
+				const file = __fromFixtures('endofline.cr.fixture');
+				validator.validate(file);
+
+				const report = validator.getInvalidLines(file);
+				expect(report).toEqual({});
+			});
+
+			it('should return invalid lines', () => {
+				const validator = new Validator({endOfLine: 'CR'});
+				const file = __fromFixtures('endofline.lf.fixture');
+				validator.validate(file);
+
+				const payload = {expected: 'CR', end_of_line: 'LF'};
+				const defaults = extend({payload}, Messages.END_OF_LINE);
+				const report = validator.getInvalidLines(file);
+				expect(report).toEqual({
+					'1': [extend({}, defaults, {line: 1})],
+					'2': [extend({}, defaults, {line: 2})],
+					'3': [extend({}, defaults, {line: 3})],
+					'4': [extend({}, defaults, {line: 4})],
+					'5': [extend({}, defaults, {line: 5})],
+					'6': [extend({}, defaults, {line: 6})],
+					'7': [extend({}, defaults, {line: 7})],
+				});
+			});
+		});
+
+		describe('processed files', () => {
+
+			it('should return number of processed files', () => {
+				const validator = new Validator({endOfLine: 'CR'});
+				expect(validator.getProcessedFiles()).toBe(0);
+
+				let file = __fromFixtures('endofline.cr.fixture');
+				validator.validate(file);
+				expect(validator.getProcessedFiles()).toBe(1);
+
+				file = __fromFixtures('endofline.lf.fixture');
+				validator.validate(file);
+				expect(validator.getProcessedFiles()).toBe(2);
+			});
+
+			it('should not increase number of processed files when validate file twice', () => {
+				const validator = new Validator({endOfLine: 'CR'});
+				expect(validator.getProcessedFiles()).toBe(0);
+
+				const file = __fromFixtures('endofline.cr.fixture');
+				validator.validate(file);
+				validator.validate(file);
+				expect(validator.getProcessedFiles()).toBe(1);
 			});
 
 		});
