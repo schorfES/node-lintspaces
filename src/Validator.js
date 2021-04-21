@@ -55,7 +55,7 @@ class Validator {
 	 */
 	constructor(options = {}) {
 		this._options = extend({}, DEFAULTS, options);
-		this._processedFiles = 0;
+		this._processedFiles = [];
 		this._invalid = {};
 	}
 
@@ -106,11 +106,21 @@ class Validator {
 	}
 
 	/**
+	 * Get a all invalid lines and messages from processed files.
+	 * @return {Object} each key in the returned object represents a path of a
+	 * processed invalid file. Each value is an other object
+	 * containing the validation result.
+	 */
+	getInvalidFiles() {
+		return this._invalid;
+	}
+
+	/**
 	 * Get count of processed files
 	 * @return {Number}
 	 */
 	getProcessedFiles() {
-		return this._processedFiles;
+		return this._processedFiles.length;
 	}
 
 	/**
@@ -120,21 +130,7 @@ class Validator {
 	 * file of the given path, each value an exeption message of the current line.
 	 */
 	getInvalidLines(path) {
-		if (!this._invalid[path]) {
-			return {};
-		}
-
-		return this._invalid[path];
-	}
-
-	/**
-	 * Get a all invalid lines and messages from processed files.
-	 * @return {Object} each key in the returned object represents a path of a
-	 * processed invalid file. Each value is an other object
-	 * containing the validation result.
-	 */
-	getInvalidFiles() {
-		return this._invalid;
+		return this._invalid[path] || {};
 	}
 
 	// Private API
@@ -145,7 +141,9 @@ class Validator {
 	 * @private
 	 */
 	_done() {
-		this._processedFiles++;
+		if (!this._processedFiles.includes(this._path)) {
+			this._processedFiles.push(this._path);
+		}
 		this._cleanUp();
 	}
 
@@ -154,6 +152,7 @@ class Validator {
 	 * @private
 	 */
 	_cleanUp() {
+		this._path = null;
 		this._settings = null;
 		this._data = undefined;
 		this._lines = null;
@@ -584,7 +583,7 @@ class Validator {
 				? REGEXP_LEADING_TABS
 				: REGEXP_LEADING_SPACES;
 
-			let indentation = this._settings.indentation;
+			let indentation;
 			let match = line.match(regExp);
 			let matchPrevious = 0;
 			let indentationPrevious;
@@ -650,11 +649,11 @@ class Validator {
 		if (typeof this._settings.endOfLine === 'string') {
 			const isEOL = (ch) => ch === '\r' || ch === '\n';
 
+			let desiredEOL = '\n';
 			let atLine = 1;
 			let pos = 0;
 			let aCharacter;
 			let totalEOL;
-			let desiredEOL;
 			let payload;
 
 			switch (this._settings.endOfLine.toUpperCase()) {
@@ -667,8 +666,6 @@ class Validator {
 				case 'CRLF':
 					desiredEOL = '\r\n';
 					break;
-				default:
-					desiredEOL = '\n';
 			}
 
 			for (pos = 0; pos < this._data.length; pos++) {
