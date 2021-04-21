@@ -13,7 +13,7 @@
   "scripts": {
     "docs": "concat -o README.md ./docs/intro.md ./docs/installation.md ./docs/usage.md ./docs/options.md ./docs/functions.md ./docs/contribution.md ./docs/license.md",
     "audit": "snyk test",
-    "test": "jest lib/ --verbose --coverage",
+    "test": "jest ./src --verbose --coverage",
     "coverage": "codecov",
     "lint": "eslint . --ext .js",
     "release": "HUSKY=0 release-it",

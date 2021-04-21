@@ -1,9 +1,9 @@
 var
 	/* This example refers to the local validator file. When you're using
 	 * "node-lintspaces" in your project, require('lintspaces') instead of
-	 * require('../lib/Validator').
+	 * require('../src/Validator').
 	 */
-	Validator = require('../lib/Validator'),
+	Validator = require('../src/Validator'),
 	validator = new Validator({
 		newline: true,
 		newlineMaximum: 1,
