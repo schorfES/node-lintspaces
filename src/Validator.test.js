@@ -8,7 +8,6 @@ const Validator = require('./Validator');
 
 const __fromFixtures = (...args) => path.join.apply(null, [__dirname, '__fixtures__'].concat(args));
 
-
 describe('The validator', () => {
 
 	// Core
@@ -253,7 +252,8 @@ describe('The validator', () => {
 
 					const payload = {expected: 'CR', end_of_line: 'LF'};
 					const defaults = extend({payload}, Messages.END_OF_LINE);
-					expect(validator.getInvalidFiles()).toEqual({
+					const report = validator.getInvalidFiles();
+					expect(report).toEqual({
 						[file]: {
 							'1': [extend({}, defaults, {line: 1})],
 							'2': [extend({}, defaults, {line: 2})],
@@ -273,7 +273,8 @@ describe('The validator', () => {
 
 					const payload = {expected: 'CR', end_of_line: 'CRLF'};
 					const defaults = extend({payload}, Messages.END_OF_LINE);
-					expect(validator.getInvalidFiles()).toEqual({
+					const report = validator.getInvalidFiles();
+					expect(report).toEqual({
 						[file]: {
 							'1': [extend({}, defaults, {line: 1})],
 							'2': [extend({}, defaults, {line: 2})],
@@ -289,7 +290,8 @@ describe('The validator', () => {
 
 					const payload = {expected: 'CR'};
 					const defaults = extend({payload}, Messages.END_OF_LINE);
-					expect(validator.getInvalidFiles()).toEqual({
+					const report = validator.getInvalidFiles();
+					expect(report).toEqual({
 						[file]: {
 							'2': [extend({}, defaults, {line: 2}, {payload: {end_of_line: 'LF'}})],
 							'3': [extend({}, defaults, {line: 3}, {payload: {end_of_line: 'CRLF'}})],
@@ -306,7 +308,8 @@ describe('The validator', () => {
 					const validator = new Validator({endOfLine: 'LF'});
 					validator.validate(file);
 
-					expect(validator.getInvalidFiles()).toEqual({});
+					const report = validator.getInvalidFiles();
+					expect(report).toEqual({});
 				});
 
 				it('should fail on carriage return files', () => {
@@ -316,7 +319,8 @@ describe('The validator', () => {
 
 					const payload = {expected: 'LF', end_of_line: 'CR'};
 					const defaults = extend({payload}, Messages.END_OF_LINE);
-					expect(validator.getInvalidFiles()).toEqual({
+					const report = validator.getInvalidFiles();
+					expect(report).toEqual({
 						[file]: {
 							'1': [extend({}, defaults, {line: 1})],
 							'2': [extend({}, defaults, {line: 2})],
@@ -336,7 +340,8 @@ describe('The validator', () => {
 
 					const payload = {expected: 'LF', end_of_line: 'CRLF'};
 					const defaults = extend({payload}, Messages.END_OF_LINE);
-					expect(validator.getInvalidFiles()).toEqual({
+					const report = validator.getInvalidFiles();
+					expect(report).toEqual({
 						[file]: {
 							'1': [extend({}, defaults, {line: 1})],
 							'2': [extend({}, defaults, {line: 2})],
@@ -352,7 +357,8 @@ describe('The validator', () => {
 
 					const payload = {expected: 'LF'};
 					const defaults = extend({payload}, Messages.END_OF_LINE);
-					expect(validator.getInvalidFiles()).toEqual({
+					const report = validator.getInvalidFiles();
+					expect(report).toEqual({
 						[file]: {
 							'1': [extend({}, defaults, {line: 1}, {payload: {end_of_line: 'CR'}})],
 							'3': [extend({}, defaults, {line: 3}, {payload: {end_of_line: 'CRLF'}})],
@@ -369,7 +375,8 @@ describe('The validator', () => {
 					const validator = new Validator({endOfLine: 'CRLF'});
 					validator.validate(file);
 
-					expect(validator.getInvalidFiles()).toEqual({});
+					const report = validator.getInvalidFiles();
+					expect(report).toEqual({});
 				});
 
 				it('should fail on carriage return files', () => {
@@ -379,7 +386,8 @@ describe('The validator', () => {
 
 					const payload = {expected: 'CRLF', end_of_line: 'CR'};
 					const defaults = extend({payload}, Messages.END_OF_LINE);
-					expect(validator.getInvalidFiles()).toEqual({
+					const report = validator.getInvalidFiles();
+					expect(report).toEqual({
 						[file]: {
 							'1': [extend({}, defaults, {line: 1})],
 							'2': [extend({}, defaults, {line: 2})],
@@ -399,7 +407,8 @@ describe('The validator', () => {
 
 					const payload = {expected: 'CRLF', end_of_line: 'LF'};
 					const defaults = extend({payload}, Messages.END_OF_LINE);
-					expect(validator.getInvalidFiles()).toEqual({
+					const report = validator.getInvalidFiles();
+					expect(report).toEqual({
 						[file]: {
 							'1': [extend({}, defaults, {line: 1})],
 							'2': [extend({}, defaults, {line: 2})],
@@ -419,7 +428,8 @@ describe('The validator', () => {
 
 					const payload = {expected: 'CRLF'};
 					const defaults = extend({payload}, Messages.END_OF_LINE);
-					expect(validator.getInvalidFiles()).toEqual({
+					const report = validator.getInvalidFiles();
+					expect(report).toEqual({
 						[file]: {
 							'1': [extend({}, defaults, {line: 1}, {payload: {end_of_line: 'CR'}})],
 							'2': [extend({}, defaults, {line: 2}, {payload: {end_of_line: 'LF'}})],
@@ -442,7 +452,8 @@ describe('The validator', () => {
 					const validator = new Validator({indentation: 'tabs'});
 					validator.validate(file);
 
-					expect(validator.getInvalidFiles()).toEqual({});
+					const report = validator.getInvalidFiles();
+					expect(report).toEqual({});
 				});
 
 				it('should report spaces', () => {
@@ -450,7 +461,8 @@ describe('The validator', () => {
 					const validator = new Validator({indentation: 'tabs'});
 					validator.validate(file);
 
-					expect(validator.getInvalidFiles()).toEqual({
+					const report = validator.getInvalidFiles();
+					expect(report).toEqual({
 						[file]: {
 							'5': [extend({}, Messages.INDENTATION_TABS, {line: 5})],
 							'6': [extend({}, Messages.INDENTATION_TABS, {line: 6})],
@@ -466,7 +478,8 @@ describe('The validator', () => {
 					});
 					validator.validate(file);
 
-					expect(validator.getInvalidFiles()).toEqual({});
+					const report = validator.getInvalidFiles();
+					expect(report).toEqual({});
 				});
 
 				it('should report file with disallowed BOM', () => {
@@ -477,7 +490,8 @@ describe('The validator', () => {
 					});
 					validator.validate(file);
 
-					expect(validator.getInvalidFiles()).toEqual({
+					const report = validator.getInvalidFiles();
+					expect(report).toEqual({
 						[file]: {
 							'1': [extend({}, Messages.INDENTATION_TABS, {line: 1})],
 						},
@@ -493,7 +507,8 @@ describe('The validator', () => {
 					const validator = new Validator({indentation: 'spaces'});
 					validator.validate(file);
 
-					expect(validator.getInvalidFiles()).toEqual({});
+					const report = validator.getInvalidFiles();
+					expect(report).toEqual({});
 				});
 
 				it('should report tabs', () => {
@@ -501,7 +516,8 @@ describe('The validator', () => {
 					const validator = new Validator({indentation: 'spaces'});
 					validator.validate(file);
 
-					expect(validator.getInvalidFiles()).toEqual({
+					const report = validator.getInvalidFiles();
+					expect(report).toEqual({
 						[file]: {
 							'2': [extend({}, Messages.INDENTATION_SPACES, {line: 2})],
 							'3': [extend({}, Messages.INDENTATION_SPACES, {line: 3})],
@@ -518,7 +534,8 @@ describe('The validator', () => {
 					const validator = new Validator({indentation: 'spaces'});
 					validator.validate(file);
 
-					expect(validator.getInvalidFiles()).toEqual({
+					const report = validator.getInvalidFiles();
+					expect(report).toEqual({
 						[file]: {
 							'2': [extend({}, Messages.INDENTATION_SPACES, {line: 2})],
 							'3': [extend({}, Messages.INDENTATION_SPACES, {line: 3})],
@@ -537,7 +554,8 @@ describe('The validator', () => {
 					});
 					validator.validate(file);
 
-					expect(validator.getInvalidFiles()).toEqual({
+					const report = validator.getInvalidFiles();
+					expect(report).toEqual({
 						[file]: {
 							'3': [extend({}, Messages.INDENTATION_SPACES_AMOUNT, {
 								message: Messages
@@ -575,7 +593,8 @@ describe('The validator', () => {
 					});
 					validator.validate(file);
 
-					expect(validator.getInvalidFiles()).toEqual({});
+					const report = validator.getInvalidFiles();
+					expect(report).toEqual({});
 				});
 
 				it('should report file with disallowed BOM', () => {
@@ -586,7 +605,8 @@ describe('The validator', () => {
 					});
 					validator.validate(file);
 
-					expect(validator.getInvalidFiles()).toEqual({
+					const report = validator.getInvalidFiles();
+					expect(report).toEqual({
 						[file]: {
 							'1': [extend({}, Messages.INDENTATION_SPACES, {line: 1})],
 						},
@@ -605,7 +625,8 @@ describe('The validator', () => {
 					});
 					validator.validate(file);
 
-					expect(validator.getInvalidFiles()).toEqual({
+					const report = validator.getInvalidFiles();
+					expect(report).toEqual({
 						[file]: {
 							'10': [extend({}, Messages.INDENTATION_GUESS, {
 								message: Messages
@@ -644,7 +665,8 @@ describe('The validator', () => {
 					});
 					validator.validate(file);
 
-					expect(validator.getInvalidFiles()).toEqual({
+					const report = validator.getInvalidFiles();
+					expect(report).toEqual({
 						[file]: {
 							'10': [extend({}, Messages.INDENTATION_GUESS, {
 								message: Messages
@@ -682,7 +704,8 @@ describe('The validator', () => {
 					});
 					validator.validate(file);
 
-					expect(validator.getInvalidFiles()).toEqual({
+					const report = validator.getInvalidFiles();
+					expect(report).toEqual({
 						[file]: {
 							'7': [extend({}, Messages.INDENTATION_GUESS, {
 								message: Messages
@@ -705,7 +728,8 @@ describe('The validator', () => {
 					const validator = new Validator({indentation: 'spaces'});
 					validator.validate(file);
 
-					expect(validator.getInvalidFiles()).toEqual({
+					const report = validator.getInvalidFiles();
+					expect(report).toEqual({
 						[file]: {
 							'2': [extend({}, Messages.INDENTATION_SPACES, {line: 2})],
 							'3': [extend({}, Messages.INDENTATION_SPACES, {line: 3})],
@@ -740,7 +764,8 @@ describe('The validator', () => {
 				const validator = new Validator({trailingspaces: true});
 				validator.validate(file);
 
-				expect(validator.getInvalidFiles()).toEqual({});
+				const report = validator.getInvalidFiles()
+				expect(report).toEqual({});
 			});
 
 			it('should report errors', () => {
@@ -748,7 +773,8 @@ describe('The validator', () => {
 				const validator = new Validator({trailingspaces: true});
 				validator.validate(file);
 
-				expect(validator.getInvalidFiles()).toEqual({
+				const report = validator.getInvalidFiles()
+				expect(report).toEqual({
 					[file]: {
 						'2': [extend({}, Messages.TRAILINGSPACES, {line: 2})],
 						'5': [extend({}, Messages.TRAILINGSPACES, {line: 5})],
@@ -766,7 +792,8 @@ describe('The validator', () => {
 				});
 				validator.validate(file);
 
-				expect(validator.getInvalidFiles()).toEqual({
+				const report = validator.getInvalidFiles()
+				expect(report).toEqual({
 					[file]: {
 						'9': [extend({}, Messages.TRAILINGSPACES, {line: 9})], // singleline
 						'11': [extend({}, Messages.TRAILINGSPACES, {line: 11})], // singleline
@@ -786,7 +813,8 @@ describe('The validator', () => {
 				});
 				validator.validate(file);
 
-				expect(validator.getInvalidFiles()).toEqual({
+				const report = validator.getInvalidFiles()
+				expect(report).toEqual({
 					[file]: {
 						'2': [extend({}, Messages.TRAILINGSPACES, {line: 2})],
 						'8': [extend({}, Messages.TRAILINGSPACES, {line: 8})],
@@ -805,7 +833,8 @@ describe('The validator', () => {
 				const validator = new Validator({newline: true});
 				validator.validate(file);
 
-				expect(validator.getInvalidFiles()).toEqual({});
+				const report = validator.getInvalidFiles()
+				expect(report).toEqual({});
 			});
 
 			it('should report missing', () => {
@@ -813,7 +842,8 @@ describe('The validator', () => {
 				const validator = new Validator({newline: true});
 				validator.validate(file);
 
-				expect(validator.getInvalidFiles()).toEqual({
+				const report = validator.getInvalidFiles()
+				expect(report).toEqual({
 					[file]: {
 						'8': [extend({}, Messages.NEWLINE, {line: 8})],
 					},
@@ -825,7 +855,8 @@ describe('The validator', () => {
 				const validator = new Validator({newline: true});
 				validator.validate(file);
 
-				expect(validator.getInvalidFiles()).toEqual({
+				const report = validator.getInvalidFiles()
+				expect(report).toEqual({
 					[file]: {
 						'1': [extend({}, Messages.NEWLINE, {line: 1})],
 					},
@@ -837,7 +868,8 @@ describe('The validator', () => {
 				const validator = new Validator({newline: true});
 				validator.validate(file);
 
-				expect(validator.getInvalidFiles()).toEqual({
+				const report = validator.getInvalidFiles()
+				expect(report).toEqual({
 					[file]: {
 						'12': [extend({}, Messages.NEWLINE_AMOUNT, {line: 12})],
 					},
@@ -855,7 +887,8 @@ describe('The validator', () => {
 				const validator = new Validator({newlineMaximum: 4});
 				validator.validate(file);
 
-				expect(validator.getInvalidFiles()).toEqual({});
+				const report = validator.getInvalidFiles()
+				expect(report).toEqual({});
 			});
 
 			it('should report errors', () => {
@@ -863,7 +896,8 @@ describe('The validator', () => {
 				const validator = new Validator({newlineMaximum: 2});
 				validator.validate(file);
 
-				expect(validator.getInvalidFiles()).toEqual({
+				const report = validator.getInvalidFiles()
+				expect(report).toEqual({
 					[file]: {
 						'8': [extend({}, Messages.NEWLINE_MAXIMUM, {
 							message: Messages.NEWLINE_MAXIMUM
@@ -914,7 +948,8 @@ describe('The validator', () => {
 					});
 					validator.validate(file);
 
-					expect(validator.getInvalidFiles()).toEqual({
+					const report = validator.getInvalidFiles();
+					expect(report).toEqual({
 						[file]: {
 							'16': [extend({}, Messages.INDENTATION_TABS, {line: 16})],
 						},
@@ -929,7 +964,8 @@ describe('The validator', () => {
 					});
 					validator.validate(file);
 
-					expect(validator.getInvalidFiles()).toEqual({
+					const report = validator.getInvalidFiles();
+					expect(report).toEqual({
 						[file]: {
 							'3': [extend({}, Messages.TRAILINGSPACES, {line: 3})],
 							'11': [extend({}, Messages.TRAILINGSPACES, {line: 11})],
@@ -949,7 +985,8 @@ describe('The validator', () => {
 					});
 					validator.validate(file);
 
-					expect(validator.getInvalidFiles()).toEqual({
+					const report = validator.getInvalidFiles();
+					expect(report).toEqual({
 						[file]: {
 							'3': [extend({}, Messages.TRAILINGSPACES, {line: 3})],
 							'11': [extend({}, Messages.TRAILINGSPACES, {line: 11})],
@@ -974,7 +1011,8 @@ describe('The validator', () => {
 					});
 					validator.validate(file);
 
-					expect(validator.getInvalidFiles()).toEqual({
+					const report = validator.getInvalidFiles();
+					expect(report).toEqual({
 						[file]: {
 							'1': [extend({}, Messages.INDENTATION_TABS, {line: 1})],
 							'4': [extend({}, Messages.INDENTATION_TABS, {line: 4})],
@@ -994,7 +1032,8 @@ describe('The validator', () => {
 					});
 					validator.validate(file);
 
-					expect(validator.getInvalidFiles()).toEqual({
+					const report = validator.getInvalidFiles();
+					expect(report).toEqual({
 						[file]: {
 							'7': [extend({}, Messages.TRAILINGSPACES, {line: 7})],
 						},
@@ -1013,7 +1052,8 @@ describe('The validator', () => {
 					});
 					validator.validate(file);
 
-					expect(validator.getInvalidFiles()).toEqual({
+					const report = validator.getInvalidFiles();
+					expect(report).toEqual({
 						[file]: {
 							'1': [extend({}, Messages.INDENTATION_TABS, {line: 1})],
 							'4': [extend({}, Messages.INDENTATION_TABS, {line: 4})],
