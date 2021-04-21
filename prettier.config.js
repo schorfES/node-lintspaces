@@ -18,7 +18,9 @@ module.exports = {
 		{
 			files: '*.md',
 			options: {
-				printWidth: 'off',
+				useTabs: false,
+				tabWidth: 2,
+				printWidth: 120,
 			},
 		},
 	],
