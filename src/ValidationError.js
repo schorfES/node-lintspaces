@@ -1,33 +1,31 @@
 class ValidationError {
 
 	constructor(data, payload) {
-		if (!data.line) {
-			throw new Error('Supply a linenumber in the data parameter.');
+		switch (true) {
+			case !data:
+				throw new Error('Missing data.');
+			case !data.line:
+				throw new Error('Missing linenumber in data.');
+			case !data.code:
+				throw new Error('Missing errorcode in data.');
+			case !data.type:
+				throw new Error('Missing errortype in data.');
+			case !data.message:
+				throw new Error('Missing errormessage in data.');
+			default:
+				this.line = data.line;
+				this.code = data.code;
+				this.type = data.type;
+				this.message = data.message;
+				break;
 		}
-
-		if (!data.code) {
-			throw new Error('Supply an errorcode in the data parameter.');
-		}
-
-		if (!data.type) {
-			throw new Error('Supply an errortype in the data parameter.');
-		}
-
-		if (!data.message) {
-			throw new Error('Supply an errormessage in the data parameter.');
-		}
-
-		this.line = data.line;
-		this.code = data.code;
-		this.type = data.type;
-		this.message = data.message;
 
 		if (payload) {
-			if (typeof payload !== 'object') {
-				throw new Error('The existing payload must be an object.');
+			if (typeof payload !== 'object' || Array.isArray(payload)) {
+				throw new Error('The payload must be an object.');
 			}
 
-			this.payload = payload;
+			this.payload = Object.assign({}, payload);
 		}
 	}
 
