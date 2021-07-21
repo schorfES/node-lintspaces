@@ -35,9 +35,3 @@ jobs:
         run: npm run lint
         env:
           CI: true
-
-      - name: Run audit
-        run: npm run audit
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-          CI: true
