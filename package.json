@@ -14,7 +14,6 @@
     "docs": "concat -o README.md ./docs/intro.md ./docs/installation.md ./docs/usage.md ./docs/options.md ./docs/functions.md ./docs/contribution.md ./docs/license.md",
     "audit": "snyk test",
     "test": "jest ./src --verbose --coverage",
-    "coverage": "codecov",
     "lint": "eslint . --ext .js",
     "release": "HUSKY=0 release-it",
     "prepare": "husky install"
@@ -72,7 +71,6 @@
     "rc": "^1.2.8"
   },
   "devDependencies": {
-    "codecov": "^3.8.1",
     "concat": "^1.0.3",
     "eslint": "^7.21.0",
     "eslint-plugin-jest": "^24.2.1",

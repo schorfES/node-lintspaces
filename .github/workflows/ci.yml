@@ -25,16 +25,10 @@ jobs:
         run: npm install
 
       - name: Run tests
-        run: |
-          npm run test
-          npm run coverage
-        env:
-          CI: true
+        run: npm run test
+
+      - name: Run coverage report
+        uses: codecov/codecov-action@v2
 
       - name: Run validations
         run: npm run lint
-        env:
-          CI: true
-
-      - name: Upload test coverage
-        uses: codecov/codecov-action@v2
