@@ -14,7 +14,6 @@ hooks:
     - npm install
     - npm run lint
     - npm run test
-    - npm run audit
   before:bump:
     - npm run docs
     - npm publish --dry-run

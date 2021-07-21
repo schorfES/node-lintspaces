@@ -1,11 +1,7 @@
-.PHONY: docs audit tests validate
+.PHONY: docs tests validate
 
 docs:
 	npm run docs
-
-
-audit:
-	npm run audit
 
 
 test:
