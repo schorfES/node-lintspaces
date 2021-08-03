@@ -58,11 +58,6 @@
     }
   ],
   "license": "MIT",
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "dependencies": {
     "deep-extend": "^0.6.0",
     "editorconfig": "^0.15.3",
