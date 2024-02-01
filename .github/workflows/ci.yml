@@ -28,7 +28,7 @@ jobs:
         run: npm run test
 
       - name: Run coverage report
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v4
 
       - name: Run validations
         run: npm run lint
