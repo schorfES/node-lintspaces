@@ -1001,6 +1001,14 @@ describe('The validator', () => {
 				});
 			});
 
+			it('should pass when unset', () => {
+				const file = __fromFixtures('newlines.endoffile.invalid.less.fixture');
+				const validator = new Validator({newline: 'unset'});
+				validator.validate(file);
+
+				const report = validator.getInvalidFiles()
+				expect(report).toEqual({});
+			});
 		});
 
 		// Newlines maximum

@@ -457,7 +457,7 @@ class Validator {
 	 * @private
 	 */
 	_validateNewlinesEOF() {
-		if (!this._settings.newline) {
+		if (this._settings.newline !== true) {
 			return;
 		}
 
