@@ -646,7 +646,7 @@ class Validator {
 	 * @private
 	 */
 	_validateEndOfLine() {
-		if (typeof this._settings.endOfLine === 'string') {
+		if (typeof this._settings.endOfLine === 'string' && this._settings.endOfLine !== 'unset') {
 			const isEOL = (ch) => ch === '\r' || ch === '\n';
 
 			let desiredEOL = '\n';

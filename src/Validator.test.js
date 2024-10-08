@@ -416,6 +416,13 @@ describe('The validator', () => {
 					});
 				});
 
+				it('should pass when unset', () => {
+					const file = __fromFixtures('endofline.mixed.fixture');
+					const validator = new Validator({endOfLine: 'unset'});
+					validator.validate(file);
+
+					expect(validator.getInvalidFiles()).toEqual({});
+				});
 			});
 
 			describe('line feed', () => {
