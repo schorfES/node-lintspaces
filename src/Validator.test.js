@@ -939,6 +939,14 @@ describe('The validator', () => {
 				});
 			});
 
+			it('should pass when unset', () => {
+				const file = __fromFixtures('trailingspaces.invalid.fixture');
+				const validator = new Validator({trailingspaces: 'unset'});
+				validator.validate(file);
+
+				const report = validator.getInvalidFiles()
+				expect(report).toEqual({});
+			});
 		});
 
 		// Newline (at the end of file)

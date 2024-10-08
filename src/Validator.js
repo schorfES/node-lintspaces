@@ -479,7 +479,7 @@ class Validator {
 	 * @private
 	 */
 	_validateTrailingspaces(line, index) {
-		if (this._settings.trailingspaces && typeof line === 'string') {
+		if (this._settings.trailingspaces === true && typeof line === 'string') {
 			const matchSpaces = line.match(/\s*$/);
 
 			// Is there a trailing whitespace?
