@@ -159,7 +159,7 @@ describe('The validator', () => {
 				expect(validator._settings.trailingspaces).toBeFalsy();
 				expect(validator._settings.newline).toBeFalsy();
 				expect(validator._settings.indentation).toBe('tabs');
-				expect(validator._settings.spaces).toBe('tab');
+				expect(validator._settings.spaces).toBe(false);
 				expect(validator._settings.endOfLine).toBe('lf');
 
 				// Unchanged:
@@ -210,9 +210,59 @@ describe('The validator', () => {
 
 				// test for expected properties by editorconfig:
 				expect(validator._settings.indentation).toBe('tabs');
-				expect(validator._settings.spaces).toBe('tab');
+				expect(validator._settings.spaces).toBe(false);
 				expect(validator._settings.trailingspaces).toBeTruthy();
 				expect(validator._settings.newline).toBeTruthy();
+			});
+
+			it('should parse "unset" value as false', () => {
+				// fake loading:
+				const validator = new Validator({
+					editorconfig: __fromFixtures('.editorconfig.unset'),
+
+					trailingspaces: true,
+					newline: true,
+
+					indentation: 'spaces',
+					spaces: 2,
+					endOfLine: true,
+				});
+
+				// Load editorconfig with extension where options are disabled:
+				validator._path = __fromFixtures('core.fixture');
+				validator._loadSettings();
+				expect(validator._settings).toEqual(expect.objectContaining({
+					trailingspaces: false,
+					newline: false,
+					indentation: false,
+					spaces: false,
+					endOfLine: false,
+				}))
+			});
+
+			it('should parse invalid value as false', () => {
+				// fake loading:
+				const validator = new Validator({
+					editorconfig: __fromFixtures('.editorconfig.invalid'),
+
+					trailingspaces: true,
+					newline: true,
+
+					indentation: 'spaces',
+					spaces: 2,
+					endOfLine: true,
+				});
+
+				// Load editorconfig with extension where options are disabled:
+				validator._path = __fromFixtures('core.fixture');
+				validator._loadSettings();
+				expect(validator._settings).toEqual(expect.objectContaining({
+					trailingspaces: false,
+					newline: false,
+					indentation: false,
+					spaces: false,
+					endOfLine: false,
+				}))
 			});
 
 			it('should throw if is not a file', () => {

@@ -1,0 +1,15 @@
+root = true
+
+[*]
+indent_style = space
+indent_size = 2
+end_of_line = cf
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+[*.fixture]
+indent_style = unset
+indent_size = unset
+end_of_line = unset
+insert_final_newline = unset
+trim_trailing_whitespace = unset
