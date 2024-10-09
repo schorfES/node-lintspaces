@@ -6,7 +6,7 @@ const editorconfig = require('editorconfig');
 const DEFAULTS = extend({}, require('./constants/defaults'));
 const MESSAGES = require('./constants/messages');
 const PATTERNS = require('./constants/ignorePatterns');
-const MAPPINGS = require('./constants/editorconfig-mappings');
+const MAPPINGS = require('./constants/editorconfigMappings');
 
 const ValidationError = require('./ValidationError');
 
@@ -255,15 +255,41 @@ class Validator {
 				if (typeof config === 'object') {
 					// Merge editorconfig values into the correct settings names:
 					for (key in config) {
-						if (typeof MAPPINGS[key] === 'string') {
+						if (typeof MAPPINGS[key] === 'object') {
+							// Disable the setting for "unset" values from editorconfig.
+							// See: Issue #47
+							if (config[key] === 'unset') {
+								this._settings[MAPPINGS[key].name] = false;
+								continue;
+							}
+
+							// Disable the setting for invalid types from editorconfig.
+							// See: Issue #47
+							if (!MAPPINGS[key].types.includes(typeof config[key])) {
+								this._settings[MAPPINGS[key].name] = false;
+								continue;
+							}
+
+							// Disable the setting for invalid string values from editorconfig
+							// by testing against a regular expression.
+							// See: Issue #47
+							if (
+								typeof config[key] === 'string' &&
+								MAPPINGS[key].regexp instanceof RegExp &&
+								!MAPPINGS[key].regexp.test(config[key])
+							) {
+								this._settings[MAPPINGS[key].name] = false;
+								continue;
+							}
+
 							switch (key) {
 								case 'indent_style':
 									// The 'indent_style' property value isn't
 									// equal to the expected setting value:
-									this._settings[MAPPINGS[key]] = config[key] + 's';
+									this._settings[MAPPINGS[key].name] = config[key] + 's';
 									break;
 								default:
-									this._settings[MAPPINGS[key]] = config[key];
+									this._settings[MAPPINGS[key].name] = config[key];
 									break;
 							}
 						}

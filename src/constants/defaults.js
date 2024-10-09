@@ -12,5 +12,5 @@ module.exports = {
 	editorconfig: false, // path to editor-config file
 	rcconfig: false, // path to rc-config file
 	allowsBOM: false,
-	end_of_line: false, // 'LF' or 'CRLF' or 'CR' or false to disable checking
+	endOfLine: false, // 'LF' or 'CRLF' or 'CR' or false to disable checking
 };
