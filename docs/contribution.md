@@ -1,22 +1,36 @@
 ## Contribution
 
-Feel free to contribute. Please run all the tests and validation tasks befor
-you offer a pull request.
+We welcome contributions from the community! Here are some ways you can contribute:
+
+- **Bug fixes:** If you find a bug, please report it by opening an issue on GitHub. If you're able to fix the bug yourself, please submit a pull request with your changes.
+- **New features:** If you have an idea for a new feature, please open an issue to discuss it with the maintainers before starting work on it.
+- **Documentation improvements:** If you see any areas where the documentation could be improved, please submit a pull request with your changes.
 
 ### Tests & validation
 
-Run `npm run test && npm run lint` to run the tests and validation tasks.
+Before submitting a pull request, please ensure that all tests and validation tasks pass. Here's how to run them:
+
+1. Install the project dependencies: `npm install`
+2. Run the tests: `npm run test`
+3. Run the linter: `npm run lint`
 
 ### Readme
 
-The readme chapters are located in the _docs_ directory as Markdown. All
-Markdown files will be concatenated through a grunt task `'docs'`. Call
-`grunt docs` or run it fully by call `grunt` to validate, test and
-update the _README.md_.
+The Readme file is automatically generated from the Markdown files located in the `docs/` directory. This ensures that the Readme is always up-to-date with the latest information about the project.
 
-**Note:** Do not edit the _README.md_ directly, it will be overwritten!
+To update the Readme, please make changes to the relevant Markdown files in the `docs/` directory and then run the following command:
+
+```bash
+npm run docs
+```
+
+This will concatenate the Markdown files, validate them, and update the `README.md` file.
+
+**Note:** Do not edit the `README.md` directly, as it will be overwritten!
 
 ### Contributors
+
+We would like to thank the following contributors for their work on this project:
 
 - [ck86](https://github.com/ck86)
 - [itsananderson](https://github.com/itsananderson)
