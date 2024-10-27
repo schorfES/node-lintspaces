@@ -2,6 +2,9 @@
     var foo = 'bar';
      var index = 0;
     while (index < foo.length) {
+        /**
+         * Not incorrect
+         */
           console.log(foo.charAt(index));
         index++;
     }
