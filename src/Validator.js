@@ -563,12 +563,6 @@ class Validator {
 				? REGEXP_INDENTATION_SPACES_WITH_BOM
 				: REGEXP_INDENTATION_SPACES;
 
-			let spacesExpected;
-			let indent;
-			let message;
-			let data;
-			let payload;
-
 			switch (this._settings.indentation) {
 				case 'tabs':
 					if (!tabsRegExpFinal.test(line)) {
@@ -586,7 +580,8 @@ class Validator {
 					} else {
 						// Indentation correct, is amount of spaces correct?
 						if (typeof this._settings.spaces === 'number') {
-							indent = line.match(REGEXP_LEADING_SPACES)[1].length;
+							const indent = line.match(REGEXP_LEADING_SPACES)[1].length;
+
 							if (
 								indent % this._settings.spaces !== 0
 								&& (
@@ -595,19 +590,18 @@ class Validator {
 								)
 							) {
 								// Indentation incorrect, create message and report:
-								spacesExpected = Math.round(indent / this._settings.spaces) * this._settings.spaces;
-								message = MESSAGES.INDENTATION_SPACES_AMOUNT.message
+								const spacesExpected = Math.round(indent / this._settings.spaces) * this._settings.spaces;
+								const message = MESSAGES.INDENTATION_SPACES_AMOUNT.message
 									.replace('{a}', spacesExpected)
 									.replace('{b}', indent);
 
-								data = {message: message};
+								let data = {message};
 								data = extend({}, MESSAGES.INDENTATION_SPACES_AMOUNT, data);
-								payload = {
-									expected: spacesExpected,
-									indent: indent,
-								};
 
-								this._report(data, index + 1, payload);
+								this._report(data, index + 1, {
+									expected: spacesExpected,
+									indent,
+								});
 							}
 						}
 					}
