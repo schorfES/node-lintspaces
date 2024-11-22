@@ -105,7 +105,7 @@ Tests for newlines at the end of all files. Default value is `false`.
 newline: true;
 ```
 
-- returns code `NEWLINE`, when a missing a newline at the end of the file.
+- returns code `NEWLINE`, when missing a newline at the end of the file.
 - returns code `NEWLINE_AMOUNT`, when found unexpected additional newlines
   at the end of a file.
 - returns type `warning`
@@ -303,7 +303,7 @@ This function runs the check for a given file based on the validator settings.
 
 ### `getProcessedFiles()`
 
-This returns the amount of processed through the validator.
+This returns the amount of files processed through the validator.
 
 - **Returns** the amount as `Number`.
 
@@ -327,7 +327,7 @@ This returns all invalid lines and messages from the file of the given
 
 ## Contribution
 
-Feel free to contribute. Please run all the tests and validation tasks befor
+Feel free to contribute. Please run all the tests and validation tasks before
 you offer a pull request.
 
 ### Tests & validation
