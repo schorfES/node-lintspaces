@@ -8,7 +8,7 @@ Tests for newlines at the end of all files. Default value is `false`.
 newline: true;
 ```
 
-- returns code `NEWLINE`, when a missing a newline at the end of the file.
+- returns code `NEWLINE`, when missing a newline at the end of the file.
 - returns code `NEWLINE_AMOUNT`, when found unexpected additional newlines
   at the end of a file.
 - returns type `warning`

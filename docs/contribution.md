@@ -1,6 +1,6 @@
 ## Contribution
 
-Feel free to contribute. Please run all the tests and validation tasks befor
+Feel free to contribute. Please run all the tests and validation tasks before
 you offer a pull request.
 
 ### Tests & validation

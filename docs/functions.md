@@ -13,7 +13,7 @@ This function runs the check for a given file based on the validator settings.
 
 ### `getProcessedFiles()`
 
-This returns the amount of processed through the validator.
+This returns the amount of files processed through the validator.
 
 - **Returns** the amount as `Number`.
 
