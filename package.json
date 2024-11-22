@@ -1,77 +1,54 @@
 {
   "name": "lintspaces",
-  "version": "0.12.0",
+  "version": "0.10.0",
   "description": "Library for checking spaces in files",
-  "engines": {
-    "node": ">=16"
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "docs"
+  ],
+  "scripts": {
+    "clean": "rimraf dist",
+    "build": "npm run clean && tsc",
+    "test": "jest",
+    "lint": "eslint src --ext .ts",
+    "prepare": "npm run build"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/schorfES/node-lintspaces.git"
-  },
-  "main": "src/index.js",
-  "scripts": {
-    "docs": "concat -o README.md ./docs/intro.md ./docs/installation.md ./docs/usage.md ./docs/options.md ./docs/functions.md ./docs/contribution.md ./docs/license.md",
-    "test": "jest ./src --verbose --coverage",
-    "lint": "eslint . --ext .js",
-    "release": "HUSKY=0 release-it",
-    "prepare": "husky"
+    "url": "git://github.com/schorfES/node-lintspaces.git"
   },
   "keywords": [
     "validation",
     "lint",
     "spaces",
-    "trailingspaces",
-    "indent",
     "indentation",
     "newlines",
-    "eof",
-    "eol"
+    "trailingspaces",
+    "editorconfig"
   ],
-  "author": {
-    "name": "Norman Rusch"
-  },
-  "contributors": [
-    {
-      "name": "Norman Rusch",
-      "url": "https://github.com/schorfES"
-    },
-    {
-      "name": "Christopher Knötschke",
-      "url": "https://github.com/ck86"
-    },
-    {
-      "name": "Will Anderson",
-      "url": "https://github.com/itsananderson"
-    },
-    {
-      "name": "Chandler Kent",
-      "url": "https://github.com/chandlerkent"
-    },
-    {
-      "name": "Casey Crabb",
-      "url": "https://github.com/crabbkw"
-    },
-    {
-      "name": "David Pagini",
-      "url": "https://github.com/dpagini"
-    }
-  ],
+  "author": "Norman Rusch (schorfES)",
   "license": "MIT",
   "dependencies": {
     "deep-extend": "^0.6.0",
-    "editorconfig": "^2.0.0",
-    "minimist": "^1.2.6",
+    "editorconfig": "^1.0.1",
     "rc": "^1.2.8"
   },
   "devDependencies": {
-    "concat": "^1.0.3",
-    "eslint": "^8.3.0",
-    "eslint-plugin-jest": "^28.5.0",
-    "husky": "^9.0.7",
-    "jest": "^29.1.1",
-    "lint-staged": "^15.2.0",
-    "prettier": "^3.0.3",
-    "release-it": "^17.0.3"
+    "@types/deep-extend": "^0.6.0",
+    "@types/jest": "^29.5.3",
+    "@types/node": "^20.4.5",
+    "@types/rc": "^1.2.1",
+    "@typescript-eslint/eslint-plugin": "^6.2.0",
+    "@typescript-eslint/parser": "^6.2.0",
+    "eslint": "^8.45.0",
+    "jest": "^29.6.2",
+    "rimraf": "^5.0.1",
+    "ts-jest": "^29.1.1",
+    "typescript": "^5.1.6"
+  },
+  "engines": {
+    "node": ">=14.0.0"
   }
 }
