@@ -1,15 +1,10 @@
 {
   "env": {
     "node": true,
-    "es6": true,
-    "jest/globals": true
+    "es6": true
   },
   "extends": [
-    "eslint:recommended",
-    "plugin:jest/recommended"
-  ],
-  "plugins": [
-    "jest"
+    "eslint:recommended"
   ],
   "rules": {
     "comma-dangle": ["error", {
@@ -22,5 +17,28 @@
     "indent": ["error", "tab", {
       "SwitchCase": 1
     }]
-  }
+  },
+  "overrides": [
+    {
+      "files": ["*.ts"],
+      "parser": "@typescript-eslint/parser",
+      "plugins": ["@typescript-eslint"],
+      "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended"
+      ]
+    },
+    {
+      "files": ["*.test.ts", "*.test.js"],
+      "env": {
+        "jest/globals": true
+      },
+      "plugins": [
+        "jest"
+      ],
+      "extends": [
+        "plugin:jest/recommended"
+      ]
+    }
+  ]
 }

@@ -1,4 +1,8 @@
-.PHONY: docs tests validate
+.PHONY: build docs tests validate
+
+build:
+	npm run build
+
 
 docs:
 	npm run docs
