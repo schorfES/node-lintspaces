@@ -1,6 +1,6 @@
 {
   "name": "lintspaces",
-  "version": "0.12.0",
+  "version": "0.12.1",
   "description": "Library for checking spaces in files",
   "engines": {
     "node": ">=16"
