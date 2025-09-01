@@ -1,5 +1,5 @@
 {
-  "*.{js}": [
+  "*.js": [
     "eslint --fix"
   ],
   "*.{json,md,yml}": [
