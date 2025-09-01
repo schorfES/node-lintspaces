@@ -11,11 +11,10 @@ jobs:
       matrix:
         os: [macos-latest, windows-latest, ubuntu-latest]
         node:
-          - 16
           - 18
           - 20
           - 22
-          - 23
+          - 24
 
     steps:
       - name: Git checkout
