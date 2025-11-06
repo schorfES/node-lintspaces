@@ -1,10 +1,9 @@
+import {describe, expect, it} from '@jest/globals';
 const ValidationError = require('./ValidationError');
 const MESSAGES = require('./constants/messages');
 
-describe('The validation error', () => {
-
+describe('the validation error', () => {
 	describe('constructor', () => {
-
 		it('should throw when not passing data', () => {
 			expect(() => new ValidationError())
 				.toThrow(new Error('Missing data.'));
@@ -12,6 +11,7 @@ describe('The validation error', () => {
 
 		it('should throw when not passing a line', () => {
 			const data = {};
+
 			expect(() => new ValidationError(data))
 				.toThrow(new Error('Missing linenumber in data.'));
 		});
@@ -20,6 +20,7 @@ describe('The validation error', () => {
 			const data = {
 				line: 42,
 			};
+
 			expect(() => new ValidationError(data))
 				.toThrow(new Error('Missing errorcode in data.'));
 		});
@@ -29,6 +30,7 @@ describe('The validation error', () => {
 				line: 42,
 				code: MESSAGES.INDENTATION_TABS.code,
 			};
+
 			expect(() => new ValidationError(data))
 				.toThrow(new Error('Missing errortype in data.'));
 		});
@@ -39,6 +41,7 @@ describe('The validation error', () => {
 				code: MESSAGES.INDENTATION_TABS.code,
 				type: MESSAGES.INDENTATION_TABS.type,
 			};
+
 			expect(() => new ValidationError(data))
 				.toThrow(new Error('Missing errormessage in data.'));
 		});
@@ -51,6 +54,7 @@ describe('The validation error', () => {
 				message: MESSAGES.INDENTATION_TABS.message,
 			};
 			const error = new ValidationError(data);
+
 			expect(error).toEqual(expect.objectContaining({
 				line: 42,
 				code: MESSAGES.INDENTATION_TABS.code,
@@ -70,12 +74,13 @@ describe('The validation error', () => {
 				foo: true,
 			};
 			const error = new ValidationError(data, payload);
+
 			expect(error).toEqual(expect.objectContaining({
 				line: 42,
 				code: MESSAGES.INDENTATION_TABS.code,
 				type: MESSAGES.INDENTATION_TABS.type,
 				message: MESSAGES.INDENTATION_TABS.message,
-				payload: payload,
+				payload,
 			}));
 			expect(error.payload).not.toBe(payload);
 			expect(error.payload).toEqual(payload);
@@ -88,7 +93,8 @@ describe('The validation error', () => {
 				type: MESSAGES.INDENTATION_TABS.type,
 				message: MESSAGES.INDENTATION_TABS.message,
 			};
-			const payload = 'This is a payload'
+			const payload = 'This is a payload';
+
 			expect(() => new ValidationError(data, payload))
 				.toThrow(new Error('The payload must be an object.'));
 		});
@@ -101,10 +107,9 @@ describe('The validation error', () => {
 				message: MESSAGES.INDENTATION_TABS.message,
 			};
 			const payload = ['This is a payload'];
+
 			expect(() => new ValidationError(data, payload))
 				.toThrow(new Error('The payload must be an object.'));
 		});
-
 	});
-
 });

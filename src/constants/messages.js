@@ -29,8 +29,8 @@ module.exports = {
 	INDENTATION_GUESS: {
 		type: TYPES.HINT,
 		code: 'NEWLINE_GUESS',
-		message: 'The indentation in this line seems to be incorrect. ' +
-			'The expected indention is {a}, but {b} was found.',
+		message: 'The indentation in this line seems to be incorrect. '
+			+ 'The expected indention is {a}, but {b} was found.',
 	},
 	TRAILINGSPACES: {
 		code: 'TRAILINGSPACES',
@@ -50,8 +50,8 @@ module.exports = {
 	NEWLINE_MAXIMUM: {
 		code: 'NEWLINE_MAXIMUM',
 		type: TYPES.WARNING,
-		message: 'Maximum amount of newlines exceeded. Found {a} newlines, ' +
-			'expected maximum is {b}.',
+		message: 'Maximum amount of newlines exceeded. Found {a} newlines, '
+			+ 'expected maximum is {b}.',
 	},
 	NEWLINE_MAXIMUM_INVALIDVALUE: {
 		type: TYPES.WARNING,

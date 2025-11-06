@@ -17,19 +17,18 @@ const APPNAME = 'lintspaces';
 const EOF = '\\r?\\n';
 const REGEXP_EOL = new RegExp(EOF);
 
-const REGEXP_INDENTATION_TABS = /^\t*(?!\s).*$/; // leading tabs without leading spaces
-const REGEXP_INDENTATION_TABS_WITH_BOM = /^\t*(?! |\t).*$/; // leading tabs without leading spaces (allows BOM)
-const REGEXP_INDENTATION_SPACES = /^ *(?!\s).*$/; // leading spaces without leading tabs
-const REGEXP_INDENTATION_SPACES_WITH_BOM = /^ *(?!\t).*$/; // leading spaces without leading tabs (allows BOM)
+const REGEXP_INDENTATION_TABS = /^\t*(?!\s).*$/; // Leading tabs without leading spaces
+const REGEXP_INDENTATION_TABS_WITH_BOM = /^\t*(?! |\t).*$/; // Leading tabs without leading spaces (allows BOM)
+const REGEXP_INDENTATION_SPACES = /^ *(?!\s).*$/; // Leading spaces without leading tabs
+const REGEXP_INDENTATION_SPACES_WITH_BOM = /^ *(?!\t).*$/; // Leading spaces without leading tabs (allows BOM)
 
-const REGEXP_LEADING_TABS = /^(\t*).*$/; // leading tabs
-const REGEXP_LEADING_SPACES = /^( *).*$/; // leading spaces
+const REGEXP_LEADING_TABS = /^(\t*).*$/; // Leading tabs
+const REGEXP_LEADING_SPACES = /^( *).*$/; // Leading spaces
 
 /**
  * The lintspaces validator.
  */
 class Validator {
-
 	static get APPNAME() {
 		return APPNAME;
 	}
@@ -68,11 +67,9 @@ class Validator {
 
 		try {
 			stat = fs.statSync(path);
-		} catch(e) {
-			this._fail(
-				MESSAGES.PATH_INVALID.message
-					.replace('{a}', path)
-			);
+		} catch (e) {
+			this._fail(MESSAGES.PATH_INVALID.message
+				.replace('{a}', path));
 		}
 
 		if (stat.isFile()) {
@@ -98,10 +95,8 @@ class Validator {
 			// Validation is done:
 			this._done();
 		} else {
-			this._fail(
-				MESSAGES.PATH_ISNT_FILE.message
-					.replace('{a}', path)
-			);
+			this._fail(MESSAGES.PATH_ISNT_FILE.message
+				.replace('{a}', path));
 		}
 	}
 
@@ -144,6 +139,7 @@ class Validator {
 		if (!this._processedFiles.includes(this._path)) {
 			this._processedFiles.push(this._path);
 		}
+
 		this._cleanUp();
 	}
 
@@ -197,25 +193,22 @@ class Validator {
 					// Lookup for config file by path:
 					try {
 						stat = fs.statSync(this._settings.rcconfig);
-					} catch(e) {
-						this._fail(
-							MESSAGES.RCCONFIG_NOTFOUND.message
-								.replace('{a}', this._settings.rcconfig)
-						);
+					} catch (e) {
+						this._fail(MESSAGES.RCCONFIG_NOTFOUND.message
+							.replace('{a}', this._settings.rcconfig));
 					}
 
 					if (stat.isFile()) {
 						this._settings = rc(
 							APPNAME,
 							this._settings,
-							{config: this._settings.rcconfig}
+							{config: this._settings.rcconfig},
 						);
 					} else {
-						this._fail(
-							MESSAGES.PATH_ISNT_FILE.message
-								.replace('{a}', this._settings.rcconfig)
-						);
+						this._fail(MESSAGES.PATH_ISNT_FILE.message
+							.replace('{a}', this._settings.rcconfig));
 					}
+
 					break;
 			}
 		}
@@ -233,11 +226,9 @@ class Validator {
 		if (typeof this._settings.editorconfig === 'string') {
 			try {
 				stat = fs.statSync(this._settings.editorconfig);
-			} catch(e) {
-				this._fail(
-					MESSAGES.EDITORCONFIG_NOTFOUND.message
-						.replace('{a}', this._settings.editorconfig)
-				);
+			} catch (e) {
+				this._fail(MESSAGES.EDITORCONFIG_NOTFOUND.message
+					.replace('{a}', this._settings.editorconfig));
 			}
 
 			if (stat.isFile()) {
@@ -246,11 +237,9 @@ class Validator {
 				// To work on windows, the config path should be relative to the
 				// current cwd. See: Issue #40
 				const relative = this._settings.editorconfig.replace(process.cwd(), '');
-				config = editorconfig.parseSync(
-					this._path, {
-						config: relative,
-					}
-				);
+				config = editorconfig.parseSync(this._path, {
+					config: relative,
+				});
 
 				if (typeof config === 'object') {
 					// Merge editorconfig values into the correct settings names:
@@ -260,12 +249,12 @@ class Validator {
 							// and consider not to parse invalid types and value.
 							// See: Issue #47
 							if (
-								config[key] === 'unset' ||
-								!MAPPINGS[key].types.includes(typeof config[key]) ||
-								(
-									typeof config[key] === 'string' &&
-									MAPPINGS[key].regexp instanceof RegExp &&
-									!MAPPINGS[key].regexp.test(config[key])
+								config[key] === 'unset'
+								|| !MAPPINGS[key].types.includes(typeof config[key])
+								|| (
+									typeof config[key] === 'string'
+									&& MAPPINGS[key].regexp instanceof RegExp
+									&& !MAPPINGS[key].regexp.test(config[key])
 								)
 							) {
 								this._settings[MAPPINGS[key].name] = false;
@@ -286,10 +275,8 @@ class Validator {
 					}
 				}
 			} else {
-				this._fail(
-					MESSAGES.PATH_ISNT_FILE.message
-						.replace('{a}', this._settings.editorconfig)
-				);
+				this._fail(MESSAGES.PATH_ISNT_FILE.message
+					.replace('{a}', this._settings.editorconfig));
 			}
 		}
 	}
@@ -305,7 +292,7 @@ class Validator {
 
 		// Load ignore patterns:
 		if (Array.isArray(this._settings.ignores)) {
-			this._settings.ignores.forEach((ignore) => {
+			this._settings.ignores.forEach(ignore => {
 				if (typeof ignore === 'string' && typeof PATTERNS[ignore] === 'object') {
 					ignores.push(PATTERNS[ignore]);
 				} else if (typeof ignore === 'object' && typeof ignore.test === 'function') {
@@ -321,18 +308,14 @@ class Validator {
 
 		// Index lines which match patterns, when available:
 		if (Array.isArray(ignores)) {
-
 			// Loop all given regular expressions:
-			ignores.forEach((expression) => {
-
+			ignores.forEach(expression => {
 				const matches = this._data.match(expression) || [];
 
-				matches.forEach((match) => {
-
+				matches.forEach(match => {
 					// Only perform an action when match has more
 					// than one line:
 					if (REGEXP_EOL.test(match)) {
-
 						// Use fake replace cycle to find indices of all
 						// lines to be ignored. Return unchanged match:
 						this._data = this._data.replace(match, (matched, ...args) => {
@@ -341,19 +324,19 @@ class Validator {
 							let indexOfSecondLine;
 							let totalLines;
 
-							// last argument is whole string, remove it:
+							// Last argument is whole string, remove it:
 							args.pop();
 
-							// matched string start index:
+							// Matched string start index:
 							indexOfMatch = args.pop();
 
-							// slice source data from beginning to matched
+							// Slice source data from beginning to matched
 							// string start index to find index of second
 							// line to be ignored:
 							indexOfSecondLine = this._data.slice(0, indexOfMatch).split(REGEXP_EOL).length;
 							totalLines = matched.split(REGEXP_EOL).length;
 
-							//Count and store lines:
+							// Count and store lines:
 							while (index < totalLines) {
 								this._ignoredLines[indexOfSecondLine + index - 1] = true;
 								index++;
@@ -364,7 +347,6 @@ class Validator {
 							// the current 'matched' more than once:
 							return Array(totalLines).join('\n');
 						});
-
 					}
 				});
 			});
@@ -408,7 +390,7 @@ class Validator {
 					// newlines is defined. In this case update variables:
 					if (newlines) {
 						atLine = newlines.length + 1;
-						amount = amount - 1;
+						amount -= 1;
 					}
 
 					// Test if found lines are not in ignored lines:
@@ -424,6 +406,7 @@ class Validator {
 							foundIgnore = true;
 							amount--;
 						}
+
 						fromLine++;
 					}
 
@@ -437,17 +420,16 @@ class Validator {
 					}
 
 					if (amount > this._settings.newlineMaximum) {
-
 						// Build message and report:
 						message = MESSAGES.NEWLINE_MAXIMUM.message
 							.replace('{a}', amount)
 							.replace('{b}', this._settings.newlineMaximum);
 
-						data = {message: message};
+						data = {message};
 						data = extend({}, MESSAGES.NEWLINE_MAXIMUM, data);
 						line = atLine + 1;
 						payload = {
-							amount: amount,
+							amount,
 							maximum: this._settings.newlineMaximum,
 						};
 
@@ -455,15 +437,13 @@ class Validator {
 					}
 
 					return original;
-				}
+				};
 
 				this._data.replace(new RegExp(newlinesAtBeginn, 'g'), validate);
 				this._data.replace(new RegExp(newlinesInFile, 'g'), validate);
 			} else {
-				this._fail(
-					MESSAGES.NEWLINE_MAXIMUM_INVALIDVALUE.message
-						.replace('{a}', this._settings.newlineMaximum)
-				);
+				this._fail(MESSAGES.NEWLINE_MAXIMUM_INVALIDVALUE.message
+					.replace('{a}', this._settings.newlineMaximum));
 			}
 		}
 	}
@@ -479,12 +459,12 @@ class Validator {
 
 		const index = this._lines.length - 1;
 
-		// check last line:
+		// Check last line:
 		if (this._lines[index].length > 0) {
 			this._report(MESSAGES.NEWLINE, index + 1);
 		}
 
-		// check line before last line:
+		// Check line before last line:
 		if (index - 1 > 0 && this._lines[index - 1].length === 0) {
 			this._report(MESSAGES.NEWLINE_AMOUNT, index + 1);
 		}
@@ -500,7 +480,6 @@ class Validator {
 
 			// Is there a trailing whitespace?
 			if (matchSpaces.length > 0 && matchSpaces[0].length > 0) {
-
 				// Check the options if trainlingspaces should be ignored and the
 				// current line is inside the ignored lines: stop reporting!
 				//
@@ -526,10 +505,9 @@ class Validator {
 	 * @private
 	 */
 	_validateIndentation(line, index) {
-		if (!this._ignoredLines[index] &&
-			typeof this._settings.indentation === 'string' &&
-			typeof line === 'string') {
-
+		if (!this._ignoredLines[index]
+			&& typeof this._settings.indentation === 'string'
+			&& typeof line === 'string') {
 			const tabsRegExpFinal = this._settings.allowsBOM
 				? REGEXP_INDENTATION_TABS_WITH_BOM
 				: REGEXP_INDENTATION_TABS;
@@ -546,7 +524,7 @@ class Validator {
 			switch (this._settings.indentation) {
 				case 'tabs':
 					if (!tabsRegExpFinal.test(line)) {
-						// indentation failed...
+						// Indentation failed...
 						return this._report(MESSAGES.INDENTATION_TABS, index + 1);
 					}
 
@@ -568,11 +546,11 @@ class Validator {
 									.replace('{a}', spacesExpected)
 									.replace('{b}', indent);
 
-								data = {message: message};
+								data = {message};
 								data = extend({}, MESSAGES.INDENTATION_SPACES_AMOUNT, data);
 								payload = {
 									expected: spacesExpected,
-									indent: indent,
+									indent,
 								};
 
 								this._report(data, index + 1, payload);
@@ -591,10 +569,9 @@ class Validator {
 	 * @private
 	 */
 	_guessIndentation(line, index) {
-		if (!this._ignoredLines[index] &&
-			this._settings.indentationGuess &&
-			this._settings.indentation) {
-
+		if (!this._ignoredLines[index]
+			&& this._settings.indentationGuess
+			&& this._settings.indentation) {
 			const regExp = this._settings.indentation === 'tabs'
 				? REGEXP_LEADING_TABS
 				: REGEXP_LEADING_SPACES;
@@ -615,6 +592,7 @@ class Validator {
 				matchPrevious = matchPrevious.length > 1 ? matchPrevious[1].length : 0;
 				n++;
 			}
+
 			// Calculate the indentation for both lines:
 			indentation = match;
 			indentationPrevious = matchPrevious;
@@ -641,17 +619,16 @@ class Validator {
 				return;
 			}
 
-			// report:
+			// Report:
 			message = MESSAGES.INDENTATION_GUESS.message
 				.replace('{a}', indentationPrevious + 1)
 				.replace('{b}', indentation);
 
-
-			data = {message: message};
+			data = {message};
 			data = extend({}, MESSAGES.INDENTATION_GUESS, data);
 
 			this._report(data, index + 1, {
-				indentation: indentation,
+				indentation,
 				expected: indentationPrevious + 1,
 			});
 		}
@@ -663,7 +640,7 @@ class Validator {
 	 */
 	_validateEndOfLine() {
 		if (typeof this._settings.endOfLine === 'string') {
-			const isEOL = (ch) => ch === '\r' || ch === '\n';
+			const isEOL = ch => ch === '\r' || ch === '\n';
 
 			let desiredEOL = '\n';
 			let atLine = 1;
@@ -693,6 +670,7 @@ class Validator {
 					} else {
 						totalEOL = aCharacter;
 					}
+
 					if (totalEOL !== desiredEOL) {
 						payload = {
 							expected: this._settings.endOfLine,
@@ -736,12 +714,11 @@ class Validator {
 		if (!this._invalid[this._path]) {
 			this._invalid[this._path] = {};
 		}
+
 		file = this._invalid[this._path];
 
 		// Lookup for given line:
-		if (!file[linenumber]) {
-			file[linenumber] = [];
-		}
+		file[linenumber] ||= [];
 		line = file[linenumber];
 
 		// Build error:
@@ -750,7 +727,6 @@ class Validator {
 		// Store error:
 		line.push(validationError);
 	}
-
 }
 
 module.exports = Validator;
