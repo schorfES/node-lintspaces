@@ -1,5 +1,4 @@
 class ValidationError {
-
 	constructor(data, payload) {
 		switch (true) {
 			case !data:
@@ -25,10 +24,9 @@ class ValidationError {
 				throw new Error('The payload must be an object.');
 			}
 
-			this.payload = Object.assign({}, payload);
+			this.payload = {...payload};
 		}
 	}
-
 }
 
 module.exports = ValidationError;

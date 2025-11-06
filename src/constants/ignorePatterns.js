@@ -1,8 +1,8 @@
-const XML_STYLE = /<!--[\s\S]*?-->/g;
-const C_STYLE = /\/\*\*?[\s\S@{}]*?\*\//g;
-const PYTHON = /'''[\s\S]*?'''/g;
-const RUBY = /=begin[\s\S]*?=end/g;
-const APPLESCRIPT = /\(\*[\s\S]*?\*\)/g;
+const XML_STYLE = /<!--[\s\S]*?-->/gv;
+const C_STYLE = /\/\*\*?[\s\S]*?\*\//gv;
+const PYTHON = /'''[\s\S]*?'''/gv;
+const RUBY = /=begin[\s\S]*?=end/gv;
+const APPLESCRIPT = /\(\*[\s\S]*?\*\)/gv;
 
 module.exports = {
 	'xml-comments': XML_STYLE,
