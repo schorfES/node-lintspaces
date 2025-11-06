@@ -1,3 +1,4 @@
+import {describe, expect, it} from '@jest/globals';
 const extend = require('deep-extend');
 const fs = require('fs');
 const path = require('path');
@@ -9,12 +10,10 @@ const Validator = require('./Validator');
 
 const __fromFixtures = (...args) => path.join.apply(null, [__dirname, '__fixtures__'].concat(args));
 
-describe('The validator', () => {
-
+describe('the validator', () => {
 	// Static
 	// -------------------------------------------------------------------------
 	describe('static', () => {
-
 		it('should export appname', () => {
 			expect(Validator.APPNAME).toBe('lintspaces');
 		});
@@ -30,20 +29,19 @@ describe('The validator', () => {
 		it('should export ignore patterns', () => {
 			expect(Validator.PATTERNS).toEqual(Patterns);
 		});
-
 	});
 
 	// Core
 	// -------------------------------------------------------------------------
 	describe('core', () => {
-
 		it('should throw if file does not exist', () => {
 			const validator = new Validator({trailingspaces: true});
 			const cases = [path.join('this', 'file', 'does', 'not', 'exists.js')];
 
-			cases.forEach((file) => {
+			cases.forEach(file => {
 				const message = Messages.PATH_INVALID.message.replace('{a}', file);
 				const error = new Error(message);
+
 				expect(() => validator.validate(file)).toThrow(error);
 			});
 		});
@@ -56,18 +54,17 @@ describe('The validator', () => {
 				__fromFixtures(),
 			];
 
-			cases.forEach((file) => {
+			cases.forEach(file => {
 				const message = Messages.PATH_ISNT_FILE.message.replace('{a}', file);
 				const error = new Error(message);
+
 				expect(() => validator.validate(file)).toThrow(error);
 			});
-
 		});
 
 		describe('rcconfig', () => {
-
 			it('should override settings', () => {
-				// fake loading:
+				// Fake loading:
 				const validator = new Validator({
 					trailingspaces: false,
 					newlineMaximum: false,
@@ -93,13 +90,13 @@ describe('The validator', () => {
 			it('should load by appname', () => {
 				const config = path.join(__dirname, '..', `.${Validator.APPNAME}rc`);
 
-				// create config file:
+				// Create config file:
 				fs.writeFileSync(config, JSON.stringify({
 					indentation: 'spaces',
 					trailingspaces: true,
 				}));
 
-				// fake loading:
+				// Fake loading:
 				const validator = new Validator({rcconfig: true});
 				validator._path = __filename;
 				validator._loadSettings();
@@ -107,7 +104,7 @@ describe('The validator', () => {
 				expect(validator._settings.indentation).toBe('spaces');
 				expect(validator._settings.trailingspaces).toBeTruthy();
 
-				// remove config file:
+				// Remove config file:
 				fs.unlinkSync(config);
 			});
 
@@ -116,9 +113,10 @@ describe('The validator', () => {
 				[
 					'.',
 					__dirname,
-				].forEach((rcconfig) => {
+				].forEach(rcconfig => {
 					const message = Messages.PATH_ISNT_FILE.message.replace('{a}', rcconfig);
 					const error = new Error(message);
+
 					expect(() => new Validator({rcconfig}).validate(file)).toThrow(error);
 				});
 			});
@@ -127,19 +125,18 @@ describe('The validator', () => {
 				const file = __fromFixtures('core.fixture');
 				[
 					path.join(__dirname, 'path', 'that', 'doesnt', 'existis', '.rcconfig'),
-				].forEach((rcconfig) => {
+				].forEach(rcconfig => {
 					const message = Messages.RCCONFIG_NOTFOUND.message.replace('{a}', rcconfig);
 					const error = new Error(message);
+
 					expect(() => new Validator({rcconfig}).validate(file)).toThrow(error);
 				});
 			});
-
 		});
 
 		describe('editorconfig', () => {
-
 			it('should override settings', () => {
-				// fake loading:
+				// Fake loading:
 				const validator = new Validator({
 					editorconfig: __fromFixtures('.editorconfig'),
 
@@ -168,7 +165,7 @@ describe('The validator', () => {
 			});
 
 			it('should load specific settings by extension', () => {
-				// fake loading:
+				// Fake loading:
 				const validator = new Validator({
 					editorconfig: __fromFixtures('.editorconfig'),
 
@@ -186,6 +183,7 @@ describe('The validator', () => {
 				// Load editorconfig with extension where options are disabled:
 				validator._path = __fromFixtures('core.fixture');
 				validator._loadSettings();
+
 				expect(validator._settings.trailingspaces).toBeFalsy();
 				expect(validator._settings.newline).toBeFalsy();
 				expect(validator._settings.endOfLine).toBe('lf');
@@ -193,13 +191,14 @@ describe('The validator', () => {
 				// Load editorconfig with extension where options are enabled:
 				validator._path = __fromFixtures('corer.other-fixture');
 				validator._loadSettings();
+
 				expect(validator._settings.trailingspaces).toBeTruthy();
 				expect(validator._settings.newline).toBeTruthy();
 				expect(validator._settings.endOfLine).toBe('crlf');
 			});
 
 			it('should be more relevant than rcconfig', () => {
-				// fake loading:
+				// Fake loading:
 				const validator = new Validator({
 					rcconfig: __fromFixtures('.lintspacesrc'),
 					editorconfig: __fromFixtures('.editorconfig'),
@@ -208,7 +207,7 @@ describe('The validator', () => {
 				validator._path = __fromFixtures('corer.other-fixture');
 				validator._loadSettings();
 
-				// test for expected properties by editorconfig:
+				// Test for expected properties by editorconfig:
 				expect(validator._settings.indentation).toBe('tabs');
 				expect(validator._settings.spaces).toBe(false);
 				expect(validator._settings.trailingspaces).toBeTruthy();
@@ -216,7 +215,7 @@ describe('The validator', () => {
 			});
 
 			it('should parse "unset" value as false', () => {
-				// fake loading:
+				// Fake loading:
 				const validator = new Validator({
 					editorconfig: __fromFixtures('.editorconfig.unset'),
 
@@ -231,17 +230,18 @@ describe('The validator', () => {
 				// Load editorconfig with extension where options are disabled:
 				validator._path = __fromFixtures('core.fixture');
 				validator._loadSettings();
+
 				expect(validator._settings).toEqual(expect.objectContaining({
 					trailingspaces: false,
 					newline: false,
 					indentation: false,
 					spaces: false,
 					endOfLine: false,
-				}))
+				}));
 			});
 
 			it('should parse invalid value as false', () => {
-				// fake loading:
+				// Fake loading:
 				const validator = new Validator({
 					editorconfig: __fromFixtures('.editorconfig.invalid'),
 
@@ -256,13 +256,14 @@ describe('The validator', () => {
 				// Load editorconfig with extension where options are disabled:
 				validator._path = __fromFixtures('core.fixture');
 				validator._loadSettings();
+
 				expect(validator._settings).toEqual(expect.objectContaining({
 					trailingspaces: false,
 					newline: false,
 					indentation: false,
 					spaces: false,
 					endOfLine: false,
-				}))
+				}));
 			});
 
 			it('should throw if is not a file', () => {
@@ -270,9 +271,10 @@ describe('The validator', () => {
 				[
 					'.',
 					__dirname,
-				].forEach((editorconfig) => {
+				].forEach(editorconfig => {
 					const message = Messages.PATH_ISNT_FILE.message.replace('{a}', editorconfig);
 					const error = new Error(message);
+
 					expect(() => new Validator({editorconfig}).validate(file)).toThrow(error);
 				});
 			});
@@ -281,25 +283,24 @@ describe('The validator', () => {
 				const file = __fromFixtures('core.fixture');
 				[
 					path.join(__dirname, 'path', 'that', 'doesnt', 'existis', '.editorconfig'),
-				].forEach((editorconfig) => {
+				].forEach(editorconfig => {
 					const message = Messages.EDITORCONFIG_NOTFOUND.message.replace('{a}', editorconfig);
 					const error = new Error(message);
+
 					expect(() => new Validator({editorconfig}).validate(file)).toThrow(error);
 				});
 			});
-
 		});
-
 	});
 
 	// Reports
 	// -------------------------------------------------------------------------
 	describe('reports', () => {
-
 		describe('invalid files', () => {
 			it('should initially be empty', () => {
 				const validator = new Validator({endOfLine: 'CR'});
 				const report = validator.getInvalidFiles();
+
 				expect(report).toEqual({});
 			});
 
@@ -315,15 +316,16 @@ describe('The validator', () => {
 				const payload = {expected: 'CR', end_of_line: 'LF'};
 				const defaults = extend({payload}, Messages.END_OF_LINE);
 				const report = validator.getInvalidFiles();
+
 				expect(report).toEqual({
 					[file1]: {
-						'1': [extend({}, defaults, {line: 1})],
-						'2': [extend({}, defaults, {line: 2})],
-						'3': [extend({}, defaults, {line: 3})],
-						'4': [extend({}, defaults, {line: 4})],
-						'5': [extend({}, defaults, {line: 5})],
-						'6': [extend({}, defaults, {line: 6})],
-						'7': [extend({}, defaults, {line: 7})],
+						1: [extend({}, defaults, {line: 1})],
+						2: [extend({}, defaults, {line: 2})],
+						3: [extend({}, defaults, {line: 3})],
+						4: [extend({}, defaults, {line: 4})],
+						5: [extend({}, defaults, {line: 5})],
+						6: [extend({}, defaults, {line: 6})],
+						7: [extend({}, defaults, {line: 7})],
 					},
 				});
 			});
@@ -333,6 +335,7 @@ describe('The validator', () => {
 			it('should be empty when passing invalid path', () => {
 				const validator = new Validator({endOfLine: 'CR'});
 				const report = validator.getInvalidLines('foo/bar/');
+
 				expect(report).toEqual({});
 			});
 
@@ -342,6 +345,7 @@ describe('The validator', () => {
 				validator.validate(file);
 
 				const report = validator.getInvalidLines(file);
+
 				expect(report).toEqual({});
 			});
 
@@ -353,57 +357,57 @@ describe('The validator', () => {
 				const payload = {expected: 'CR', end_of_line: 'LF'};
 				const defaults = extend({payload}, Messages.END_OF_LINE);
 				const report = validator.getInvalidLines(file);
+
 				expect(report).toEqual({
-					'1': [extend({}, defaults, {line: 1})],
-					'2': [extend({}, defaults, {line: 2})],
-					'3': [extend({}, defaults, {line: 3})],
-					'4': [extend({}, defaults, {line: 4})],
-					'5': [extend({}, defaults, {line: 5})],
-					'6': [extend({}, defaults, {line: 6})],
-					'7': [extend({}, defaults, {line: 7})],
+					1: [extend({}, defaults, {line: 1})],
+					2: [extend({}, defaults, {line: 2})],
+					3: [extend({}, defaults, {line: 3})],
+					4: [extend({}, defaults, {line: 4})],
+					5: [extend({}, defaults, {line: 5})],
+					6: [extend({}, defaults, {line: 6})],
+					7: [extend({}, defaults, {line: 7})],
 				});
 			});
 		});
 
 		describe('processed files', () => {
-
 			it('should return number of processed files', () => {
 				const validator = new Validator({endOfLine: 'CR'});
+
 				expect(validator.getProcessedFiles()).toBe(0);
 
 				let file = __fromFixtures('endofline.cr.fixture');
 				validator.validate(file);
+
 				expect(validator.getProcessedFiles()).toBe(1);
 
 				file = __fromFixtures('endofline.lf.fixture');
 				validator.validate(file);
+
 				expect(validator.getProcessedFiles()).toBe(2);
 			});
 
 			it('should not increase number of processed files when validate file twice', () => {
 				const validator = new Validator({endOfLine: 'CR'});
+
 				expect(validator.getProcessedFiles()).toBe(0);
 
 				const file = __fromFixtures('endofline.cr.fixture');
 				validator.validate(file);
 				validator.validate(file);
+
 				expect(validator.getProcessedFiles()).toBe(1);
 			});
-
 		});
-
 	});
 
 	// Validations
 	// -------------------------------------------------------------------------
 	describe('validations', () => {
-
 		// End of line
 		// ---------------------------------------------------------------------
 		describe('end of line', () => {
-
 			describe('carriage return', () => {
-
 				it('should pass', () => {
 					const file = __fromFixtures('endofline.cr.fixture');
 					const validator = new Validator({endOfLine: 'CR'});
@@ -420,15 +424,16 @@ describe('The validator', () => {
 					const payload = {expected: 'CR', end_of_line: 'LF'};
 					const defaults = extend({payload}, Messages.END_OF_LINE);
 					const report = validator.getInvalidFiles();
+
 					expect(report).toEqual({
 						[file]: {
-							'1': [extend({}, defaults, {line: 1})],
-							'2': [extend({}, defaults, {line: 2})],
-							'3': [extend({}, defaults, {line: 3})],
-							'4': [extend({}, defaults, {line: 4})],
-							'5': [extend({}, defaults, {line: 5})],
-							'6': [extend({}, defaults, {line: 6})],
-							'7': [extend({}, defaults, {line: 7})],
+							1: [extend({}, defaults, {line: 1})],
+							2: [extend({}, defaults, {line: 2})],
+							3: [extend({}, defaults, {line: 3})],
+							4: [extend({}, defaults, {line: 4})],
+							5: [extend({}, defaults, {line: 5})],
+							6: [extend({}, defaults, {line: 6})],
+							7: [extend({}, defaults, {line: 7})],
 						},
 					});
 				});
@@ -441,11 +446,12 @@ describe('The validator', () => {
 					const payload = {expected: 'CR', end_of_line: 'CRLF'};
 					const defaults = extend({payload}, Messages.END_OF_LINE);
 					const report = validator.getInvalidFiles();
+
 					expect(report).toEqual({
 						[file]: {
-							'1': [extend({}, defaults, {line: 1})],
-							'2': [extend({}, defaults, {line: 2})],
-							'3': [extend({}, defaults, {line: 3})],
+							1: [extend({}, defaults, {line: 1})],
+							2: [extend({}, defaults, {line: 2})],
+							3: [extend({}, defaults, {line: 3})],
 						},
 					});
 				});
@@ -458,24 +464,24 @@ describe('The validator', () => {
 					const payload = {expected: 'CR'};
 					const defaults = extend({payload}, Messages.END_OF_LINE);
 					const report = validator.getInvalidFiles();
+
 					expect(report).toEqual({
 						[file]: {
-							'2': [extend({}, defaults, {line: 2}, {payload: {end_of_line: 'LF'}})],
-							'3': [extend({}, defaults, {line: 3}, {payload: {end_of_line: 'CRLF'}})],
+							2: [extend({}, defaults, {line: 2}, {payload: {end_of_line: 'LF'}})],
+							3: [extend({}, defaults, {line: 3}, {payload: {end_of_line: 'CRLF'}})],
 						},
 					});
 				});
-
 			});
 
 			describe('line feed', () => {
-
 				it('should pass', () => {
 					const file = __fromFixtures('endofline.lf.fixture');
 					const validator = new Validator({endOfLine: 'LF'});
 					validator.validate(file);
 
 					const report = validator.getInvalidFiles();
+
 					expect(report).toEqual({});
 				});
 
@@ -487,15 +493,16 @@ describe('The validator', () => {
 					const payload = {expected: 'LF', end_of_line: 'CR'};
 					const defaults = extend({payload}, Messages.END_OF_LINE);
 					const report = validator.getInvalidFiles();
+
 					expect(report).toEqual({
 						[file]: {
-							'1': [extend({}, defaults, {line: 1})],
-							'2': [extend({}, defaults, {line: 2})],
-							'3': [extend({}, defaults, {line: 3})],
-							'4': [extend({}, defaults, {line: 4})],
-							'5': [extend({}, defaults, {line: 5})],
-							'6': [extend({}, defaults, {line: 6})],
-							'7': [extend({}, defaults, {line: 7})],
+							1: [extend({}, defaults, {line: 1})],
+							2: [extend({}, defaults, {line: 2})],
+							3: [extend({}, defaults, {line: 3})],
+							4: [extend({}, defaults, {line: 4})],
+							5: [extend({}, defaults, {line: 5})],
+							6: [extend({}, defaults, {line: 6})],
+							7: [extend({}, defaults, {line: 7})],
 						},
 					});
 				});
@@ -508,11 +515,12 @@ describe('The validator', () => {
 					const payload = {expected: 'LF', end_of_line: 'CRLF'};
 					const defaults = extend({payload}, Messages.END_OF_LINE);
 					const report = validator.getInvalidFiles();
+
 					expect(report).toEqual({
 						[file]: {
-							'1': [extend({}, defaults, {line: 1})],
-							'2': [extend({}, defaults, {line: 2})],
-							'3': [extend({}, defaults, {line: 3})],
+							1: [extend({}, defaults, {line: 1})],
+							2: [extend({}, defaults, {line: 2})],
+							3: [extend({}, defaults, {line: 3})],
 						},
 					});
 				});
@@ -525,24 +533,24 @@ describe('The validator', () => {
 					const payload = {expected: 'LF'};
 					const defaults = extend({payload}, Messages.END_OF_LINE);
 					const report = validator.getInvalidFiles();
+
 					expect(report).toEqual({
 						[file]: {
-							'1': [extend({}, defaults, {line: 1}, {payload: {end_of_line: 'CR'}})],
-							'3': [extend({}, defaults, {line: 3}, {payload: {end_of_line: 'CRLF'}})],
+							1: [extend({}, defaults, {line: 1}, {payload: {end_of_line: 'CR'}})],
+							3: [extend({}, defaults, {line: 3}, {payload: {end_of_line: 'CRLF'}})],
 						},
 					});
 				});
-
 			});
 
 			describe('carriage return, line feed', () => {
-
 				it('should pass', () => {
 					const file = __fromFixtures('endofline.crlf.fixture');
 					const validator = new Validator({endOfLine: 'CRLF'});
 					validator.validate(file);
 
 					const report = validator.getInvalidFiles();
+
 					expect(report).toEqual({});
 				});
 
@@ -554,15 +562,16 @@ describe('The validator', () => {
 					const payload = {expected: 'CRLF', end_of_line: 'CR'};
 					const defaults = extend({payload}, Messages.END_OF_LINE);
 					const report = validator.getInvalidFiles();
+
 					expect(report).toEqual({
 						[file]: {
-							'1': [extend({}, defaults, {line: 1})],
-							'2': [extend({}, defaults, {line: 2})],
-							'3': [extend({}, defaults, {line: 3})],
-							'4': [extend({}, defaults, {line: 4})],
-							'5': [extend({}, defaults, {line: 5})],
-							'6': [extend({}, defaults, {line: 6})],
-							'7': [extend({}, defaults, {line: 7})],
+							1: [extend({}, defaults, {line: 1})],
+							2: [extend({}, defaults, {line: 2})],
+							3: [extend({}, defaults, {line: 3})],
+							4: [extend({}, defaults, {line: 4})],
+							5: [extend({}, defaults, {line: 5})],
+							6: [extend({}, defaults, {line: 6})],
+							7: [extend({}, defaults, {line: 7})],
 						},
 					});
 				});
@@ -575,15 +584,16 @@ describe('The validator', () => {
 					const payload = {expected: 'CRLF', end_of_line: 'LF'};
 					const defaults = extend({payload}, Messages.END_OF_LINE);
 					const report = validator.getInvalidFiles();
+
 					expect(report).toEqual({
 						[file]: {
-							'1': [extend({}, defaults, {line: 1})],
-							'2': [extend({}, defaults, {line: 2})],
-							'3': [extend({}, defaults, {line: 3})],
-							'4': [extend({}, defaults, {line: 4})],
-							'5': [extend({}, defaults, {line: 5})],
-							'6': [extend({}, defaults, {line: 6})],
-							'7': [extend({}, defaults, {line: 7})],
+							1: [extend({}, defaults, {line: 1})],
+							2: [extend({}, defaults, {line: 2})],
+							3: [extend({}, defaults, {line: 3})],
+							4: [extend({}, defaults, {line: 4})],
+							5: [extend({}, defaults, {line: 5})],
+							6: [extend({}, defaults, {line: 6})],
+							7: [extend({}, defaults, {line: 7})],
 						},
 					});
 				});
@@ -596,30 +606,28 @@ describe('The validator', () => {
 					const payload = {expected: 'CRLF'};
 					const defaults = extend({payload}, Messages.END_OF_LINE);
 					const report = validator.getInvalidFiles();
+
 					expect(report).toEqual({
 						[file]: {
-							'1': [extend({}, defaults, {line: 1}, {payload: {end_of_line: 'CR'}})],
-							'2': [extend({}, defaults, {line: 2}, {payload: {end_of_line: 'LF'}})],
+							1: [extend({}, defaults, {line: 1}, {payload: {end_of_line: 'CR'}})],
+							2: [extend({}, defaults, {line: 2}, {payload: {end_of_line: 'LF'}})],
 						},
 					});
 				});
-
 			});
-
 		});
 
 		// Indentation
 		// ---------------------------------------------------------------------
 		describe('indentation', () => {
-
 			describe('tabs', () => {
-
 				it('should pass', () => {
 					const file = __fromFixtures('indentation.tabs.fixture');
 					const validator = new Validator({indentation: 'tabs'});
 					validator.validate(file);
 
 					const report = validator.getInvalidFiles();
+
 					expect(report).toEqual({});
 				});
 
@@ -629,10 +637,11 @@ describe('The validator', () => {
 					validator.validate(file);
 
 					const report = validator.getInvalidFiles();
+
 					expect(report).toEqual({
 						[file]: {
-							'5': [extend({}, Messages.INDENTATION_TABS, {line: 5})],
-							'6': [extend({}, Messages.INDENTATION_TABS, {line: 6})],
+							5: [extend({}, Messages.INDENTATION_TABS, {line: 5})],
+							6: [extend({}, Messages.INDENTATION_TABS, {line: 6})],
 						},
 					});
 				});
@@ -646,6 +655,7 @@ describe('The validator', () => {
 					validator.validate(file);
 
 					const report = validator.getInvalidFiles();
+
 					expect(report).toEqual({});
 				});
 
@@ -658,23 +668,23 @@ describe('The validator', () => {
 					validator.validate(file);
 
 					const report = validator.getInvalidFiles();
+
 					expect(report).toEqual({
 						[file]: {
-							'1': [extend({}, Messages.INDENTATION_TABS, {line: 1})],
+							1: [extend({}, Messages.INDENTATION_TABS, {line: 1})],
 						},
 					});
 				});
-
 			});
 
 			describe('spaces', () => {
-
 				it('should pass', () => {
 					const file = __fromFixtures('indentation.spaces.fixture');
 					const validator = new Validator({indentation: 'spaces'});
 					validator.validate(file);
 
 					const report = validator.getInvalidFiles();
+
 					expect(report).toEqual({});
 				});
 
@@ -684,14 +694,15 @@ describe('The validator', () => {
 					validator.validate(file);
 
 					const report = validator.getInvalidFiles();
+
 					expect(report).toEqual({
 						[file]: {
-							'2': [extend({}, Messages.INDENTATION_SPACES, {line: 2})],
-							'3': [extend({}, Messages.INDENTATION_SPACES, {line: 3})],
-							'4': [extend({}, Messages.INDENTATION_SPACES, {line: 4})],
-							'5': [extend({}, Messages.INDENTATION_SPACES, {line: 5})],
-							'6': [extend({}, Messages.INDENTATION_SPACES, {line: 6})],
-							'7': [extend({}, Messages.INDENTATION_SPACES, {line: 7})],
+							2: [extend({}, Messages.INDENTATION_SPACES, {line: 2})],
+							3: [extend({}, Messages.INDENTATION_SPACES, {line: 3})],
+							4: [extend({}, Messages.INDENTATION_SPACES, {line: 4})],
+							5: [extend({}, Messages.INDENTATION_SPACES, {line: 5})],
+							6: [extend({}, Messages.INDENTATION_SPACES, {line: 6})],
+							7: [extend({}, Messages.INDENTATION_SPACES, {line: 7})],
 						},
 					});
 				});
@@ -702,13 +713,14 @@ describe('The validator', () => {
 					validator.validate(file);
 
 					const report = validator.getInvalidFiles();
+
 					expect(report).toEqual({
 						[file]: {
-							'2': [extend({}, Messages.INDENTATION_SPACES, {line: 2})],
-							'3': [extend({}, Messages.INDENTATION_SPACES, {line: 3})],
-							'4': [extend({}, Messages.INDENTATION_SPACES, {line: 4})],
-							'5': [extend({}, Messages.INDENTATION_SPACES, {line: 5})],
-							'7': [extend({}, Messages.INDENTATION_SPACES, {line: 7})],
+							2: [extend({}, Messages.INDENTATION_SPACES, {line: 2})],
+							3: [extend({}, Messages.INDENTATION_SPACES, {line: 3})],
+							4: [extend({}, Messages.INDENTATION_SPACES, {line: 4})],
+							5: [extend({}, Messages.INDENTATION_SPACES, {line: 5})],
+							7: [extend({}, Messages.INDENTATION_SPACES, {line: 7})],
 						},
 					});
 				});
@@ -722,9 +734,10 @@ describe('The validator', () => {
 					validator.validate(file);
 
 					const report = validator.getInvalidFiles();
+
 					expect(report).toEqual({
 						[file]: {
-							'3': [extend({}, Messages.INDENTATION_SPACES_AMOUNT, {
+							3: [extend({}, Messages.INDENTATION_SPACES_AMOUNT, {
 								message: Messages
 									.INDENTATION_SPACES_AMOUNT
 									.message
@@ -736,7 +749,7 @@ describe('The validator', () => {
 									indent: 5,
 								},
 							})],
-							'5': [extend({}, Messages.INDENTATION_SPACES_AMOUNT, {
+							5: [extend({}, Messages.INDENTATION_SPACES_AMOUNT, {
 								message: Messages
 									.INDENTATION_SPACES_AMOUNT
 									.message
@@ -761,6 +774,7 @@ describe('The validator', () => {
 					validator.validate(file);
 
 					const report = validator.getInvalidFiles();
+
 					expect(report).toEqual({});
 				});
 
@@ -773,17 +787,16 @@ describe('The validator', () => {
 					validator.validate(file);
 
 					const report = validator.getInvalidFiles();
+
 					expect(report).toEqual({
 						[file]: {
-							'1': [extend({}, Messages.INDENTATION_SPACES, {line: 1})],
+							1: [extend({}, Messages.INDENTATION_SPACES, {line: 1})],
 						},
 					});
 				});
-
 			});
 
 			describe('guess', () => {
-
 				it('should guess incorrect using tabs', () => {
 					const file = __fromFixtures('indentation.guess.tabs.fixture');
 					const validator = new Validator({
@@ -793,9 +806,10 @@ describe('The validator', () => {
 					validator.validate(file);
 
 					const report = validator.getInvalidFiles();
+
 					expect(report).toEqual({
 						[file]: {
-							'10': [extend({}, Messages.INDENTATION_GUESS, {
+							10: [extend({}, Messages.INDENTATION_GUESS, {
 								message: Messages
 									.INDENTATION_GUESS
 									.message
@@ -807,7 +821,7 @@ describe('The validator', () => {
 									expected: 2,
 								},
 							})],
-							'15': [extend({}, Messages.INDENTATION_GUESS, {
+							15: [extend({}, Messages.INDENTATION_GUESS, {
 								message: Messages
 									.INDENTATION_GUESS
 									.message
@@ -833,9 +847,10 @@ describe('The validator', () => {
 					validator.validate(file);
 
 					const report = validator.getInvalidFiles();
+
 					expect(report).toEqual({
 						[file]: {
-							'10': [extend({}, Messages.INDENTATION_GUESS, {
+							10: [extend({}, Messages.INDENTATION_GUESS, {
 								message: Messages
 									.INDENTATION_GUESS
 									.message
@@ -847,7 +862,7 @@ describe('The validator', () => {
 									expected: 2,
 								},
 							})],
-							'15': [extend({}, Messages.INDENTATION_GUESS, {
+							15: [extend({}, Messages.INDENTATION_GUESS, {
 								message: Messages
 									.INDENTATION_GUESS
 									.message
@@ -872,9 +887,10 @@ describe('The validator', () => {
 					validator.validate(file);
 
 					const report = validator.getInvalidFiles();
+
 					expect(report).toEqual({
 						[file]: {
-							'7': [extend({}, Messages.INDENTATION_GUESS, {
+							7: [extend({}, Messages.INDENTATION_GUESS, {
 								message: Messages
 									.INDENTATION_GUESS
 									.message
@@ -896,42 +912,41 @@ describe('The validator', () => {
 					validator.validate(file);
 
 					const report = validator.getInvalidFiles();
+
 					expect(report).toEqual({
 						[file]: {
-							'2': [extend({}, Messages.INDENTATION_SPACES, {line: 2})],
-							'3': [extend({}, Messages.INDENTATION_SPACES, {line: 3})],
-							'5': [extend({}, Messages.INDENTATION_SPACES, {line: 5})],
-							'6': [extend({}, Messages.INDENTATION_SPACES, {line: 6})],
-							'7': [extend({}, Messages.INDENTATION_SPACES, {line: 7})],
-							'9': [extend({}, Messages.INDENTATION_SPACES, {line: 9})],
-							'10': [extend({}, Messages.INDENTATION_SPACES, {line: 10})],
-							'11': [extend({}, Messages.INDENTATION_SPACES, {line: 11})],
-							'13': [extend({}, Messages.INDENTATION_SPACES, {line: 13})],
-							'14': [extend({}, Messages.INDENTATION_SPACES, {line: 14})],
-							'15': [extend({}, Messages.INDENTATION_SPACES, {line: 15})],
-							'16': [extend({}, Messages.INDENTATION_SPACES, {line: 16})],
-							'17': [extend({}, Messages.INDENTATION_SPACES, {line: 17})],
-							'18': [extend({}, Messages.INDENTATION_SPACES, {line: 18})],
-							'19': [extend({}, Messages.INDENTATION_SPACES, {line: 19})],
-							'20': [extend({}, Messages.INDENTATION_SPACES, {line: 20})],
+							2: [extend({}, Messages.INDENTATION_SPACES, {line: 2})],
+							3: [extend({}, Messages.INDENTATION_SPACES, {line: 3})],
+							5: [extend({}, Messages.INDENTATION_SPACES, {line: 5})],
+							6: [extend({}, Messages.INDENTATION_SPACES, {line: 6})],
+							7: [extend({}, Messages.INDENTATION_SPACES, {line: 7})],
+							9: [extend({}, Messages.INDENTATION_SPACES, {line: 9})],
+							10: [extend({}, Messages.INDENTATION_SPACES, {line: 10})],
+							11: [extend({}, Messages.INDENTATION_SPACES, {line: 11})],
+							13: [extend({}, Messages.INDENTATION_SPACES, {line: 13})],
+							14: [extend({}, Messages.INDENTATION_SPACES, {line: 14})],
+							15: [extend({}, Messages.INDENTATION_SPACES, {line: 15})],
+							16: [extend({}, Messages.INDENTATION_SPACES, {line: 16})],
+							17: [extend({}, Messages.INDENTATION_SPACES, {line: 17})],
+							18: [extend({}, Messages.INDENTATION_SPACES, {line: 18})],
+							19: [extend({}, Messages.INDENTATION_SPACES, {line: 19})],
+							20: [extend({}, Messages.INDENTATION_SPACES, {line: 20})],
 						},
 					});
 				});
-
 			});
-
 		});
 
 		// Trailing spaces
 		// ---------------------------------------------------------------------
 		describe('trailingspaces', () => {
-
 			it('should pass', () => {
 				const file = __fromFixtures('trailingspaces.valid.fixture');
 				const validator = new Validator({trailingspaces: true});
 				validator.validate(file);
 
-				const report = validator.getInvalidFiles()
+				const report = validator.getInvalidFiles();
+
 				expect(report).toEqual({});
 			});
 
@@ -940,12 +955,13 @@ describe('The validator', () => {
 				const validator = new Validator({trailingspaces: true});
 				validator.validate(file);
 
-				const report = validator.getInvalidFiles()
+				const report = validator.getInvalidFiles();
+
 				expect(report).toEqual({
 					[file]: {
-						'2': [extend({}, Messages.TRAILINGSPACES, {line: 2})],
-						'5': [extend({}, Messages.TRAILINGSPACES, {line: 5})],
-						'8': [extend({}, Messages.TRAILINGSPACES, {line: 8})],
+						2: [extend({}, Messages.TRAILINGSPACES, {line: 2})],
+						5: [extend({}, Messages.TRAILINGSPACES, {line: 5})],
+						8: [extend({}, Messages.TRAILINGSPACES, {line: 8})],
 					},
 				});
 			});
@@ -959,15 +975,16 @@ describe('The validator', () => {
 				});
 				validator.validate(file);
 
-				const report = validator.getInvalidFiles()
+				const report = validator.getInvalidFiles();
+
 				expect(report).toEqual({
 					[file]: {
-						'9': [extend({}, Messages.TRAILINGSPACES, {line: 9})], // singleline
-						'11': [extend({}, Messages.TRAILINGSPACES, {line: 11})], // singleline
-						'15': [extend({}, Messages.TRAILINGSPACES, {line: 15})], // multiline
-						'17': [extend({}, Messages.TRAILINGSPACES, {line: 17})], // singleline
-						'21': [extend({}, Messages.TRAILINGSPACES, {line: 21})], // multiline
-						'26': [extend({}, Messages.TRAILINGSPACES, {line: 26})], // multiline
+						9: [extend({}, Messages.TRAILINGSPACES, {line: 9})], // Singleline
+						11: [extend({}, Messages.TRAILINGSPACES, {line: 11})], // Singleline
+						15: [extend({}, Messages.TRAILINGSPACES, {line: 15})], // Multiline
+						17: [extend({}, Messages.TRAILINGSPACES, {line: 17})], // Singleline
+						21: [extend({}, Messages.TRAILINGSPACES, {line: 21})], // Multiline
+						26: [extend({}, Messages.TRAILINGSPACES, {line: 26})], // Multiline
 					},
 				});
 			});
@@ -980,27 +997,27 @@ describe('The validator', () => {
 				});
 				validator.validate(file);
 
-				const report = validator.getInvalidFiles()
+				const report = validator.getInvalidFiles();
+
 				expect(report).toEqual({
 					[file]: {
-						'2': [extend({}, Messages.TRAILINGSPACES, {line: 2})],
-						'8': [extend({}, Messages.TRAILINGSPACES, {line: 8})],
+						2: [extend({}, Messages.TRAILINGSPACES, {line: 2})],
+						8: [extend({}, Messages.TRAILINGSPACES, {line: 8})],
 					},
 				});
 			});
-
 		});
 
 		// Newline (at the end of file)
 		// ---------------------------------------------------------------------
 		describe('newline (at the end of file)', () => {
-
 			it('should pass', () => {
 				const file = __fromFixtures('newlines.endoffile.valid.fixture');
 				const validator = new Validator({newline: true});
 				validator.validate(file);
 
-				const report = validator.getInvalidFiles()
+				const report = validator.getInvalidFiles();
+
 				expect(report).toEqual({});
 			});
 
@@ -1009,10 +1026,11 @@ describe('The validator', () => {
 				const validator = new Validator({newline: true});
 				validator.validate(file);
 
-				const report = validator.getInvalidFiles()
+				const report = validator.getInvalidFiles();
+
 				expect(report).toEqual({
 					[file]: {
-						'8': [extend({}, Messages.NEWLINE, {line: 8})],
+						8: [extend({}, Messages.NEWLINE, {line: 8})],
 					},
 				});
 			});
@@ -1022,10 +1040,11 @@ describe('The validator', () => {
 				const validator = new Validator({newline: true});
 				validator.validate(file);
 
-				const report = validator.getInvalidFiles()
+				const report = validator.getInvalidFiles();
+
 				expect(report).toEqual({
 					[file]: {
-						'1': [extend({}, Messages.NEWLINE, {line: 1})],
+						1: [extend({}, Messages.NEWLINE, {line: 1})],
 					},
 				});
 			});
@@ -1035,26 +1054,26 @@ describe('The validator', () => {
 				const validator = new Validator({newline: true});
 				validator.validate(file);
 
-				const report = validator.getInvalidFiles()
+				const report = validator.getInvalidFiles();
+
 				expect(report).toEqual({
 					[file]: {
-						'12': [extend({}, Messages.NEWLINE_AMOUNT, {line: 12})],
+						12: [extend({}, Messages.NEWLINE_AMOUNT, {line: 12})],
 					},
 				});
 			});
-
 		});
 
 		// Newlines maximum
 		// ---------------------------------------------------------------------
 		describe('newlines maximum', () => {
-
 			it('should pass', () => {
 				const file = __fromFixtures('newlines.blocks.fixture');
 				const validator = new Validator({newlineMaximum: 4});
 				validator.validate(file);
 
-				const report = validator.getInvalidFiles()
+				const report = validator.getInvalidFiles();
+
 				expect(report).toEqual({});
 			});
 
@@ -1063,10 +1082,11 @@ describe('The validator', () => {
 				const validator = new Validator({newlineMaximum: 2});
 				validator.validate(file);
 
-				const report = validator.getInvalidFiles()
+				const report = validator.getInvalidFiles();
+
 				expect(report).toEqual({
 					[file]: {
-						'8': [extend({}, Messages.NEWLINE_MAXIMUM, {
+						8: [extend({}, Messages.NEWLINE_MAXIMUM, {
 							message: Messages.NEWLINE_MAXIMUM
 								.message
 								.replace('{a}', 3)
@@ -1077,7 +1097,7 @@ describe('The validator', () => {
 								maximum: 2,
 							},
 						})],
-						'16': [extend({}, Messages.NEWLINE_MAXIMUM, {
+						16: [extend({}, Messages.NEWLINE_MAXIMUM, {
 							message: Messages.NEWLINE_MAXIMUM
 								.message
 								.replace('{a}', 4)
@@ -1098,15 +1118,12 @@ describe('The validator', () => {
 
 				expect(() => validator.validate(file)).toThrow(Error);
 			});
-
 		});
 
 		// Ignores
 		// ---------------------------------------------------------------------
 		describe('ignores', () => {
-
 			describe('build in', () => {
-
 				it('should ignore indentaion', () => {
 					const file = __fromFixtures('ignores.buildin.js.fixture');
 					const validator = new Validator({
@@ -1116,9 +1133,10 @@ describe('The validator', () => {
 					validator.validate(file);
 
 					const report = validator.getInvalidFiles();
+
 					expect(report).toEqual({
 						[file]: {
-							'16': [extend({}, Messages.INDENTATION_TABS, {line: 16})],
+							16: [extend({}, Messages.INDENTATION_TABS, {line: 16})],
 						},
 					});
 				});
@@ -1132,12 +1150,13 @@ describe('The validator', () => {
 					validator.validate(file);
 
 					const report = validator.getInvalidFiles();
+
 					expect(report).toEqual({
 						[file]: {
-							'3': [extend({}, Messages.TRAILINGSPACES, {line: 3})],
-							'11': [extend({}, Messages.TRAILINGSPACES, {line: 11})],
-							'19': [extend({}, Messages.TRAILINGSPACES, {line: 19})],
-							'28': [extend({}, Messages.TRAILINGSPACES, {line: 28})],
+							3: [extend({}, Messages.TRAILINGSPACES, {line: 3})],
+							11: [extend({}, Messages.TRAILINGSPACES, {line: 11})],
+							19: [extend({}, Messages.TRAILINGSPACES, {line: 19})],
+							28: [extend({}, Messages.TRAILINGSPACES, {line: 28})],
 						},
 					});
 				});
@@ -1153,21 +1172,20 @@ describe('The validator', () => {
 					validator.validate(file);
 
 					const report = validator.getInvalidFiles();
+
 					expect(report).toEqual({
 						[file]: {
-							'3': [extend({}, Messages.TRAILINGSPACES, {line: 3})],
-							'11': [extend({}, Messages.TRAILINGSPACES, {line: 11})],
-							'16': [extend({}, Messages.INDENTATION_TABS, {line: 16})],
-							'19': [extend({}, Messages.TRAILINGSPACES, {line: 19})],
-							'28': [extend({}, Messages.TRAILINGSPACES, {line: 28})],
+							3: [extend({}, Messages.TRAILINGSPACES, {line: 3})],
+							11: [extend({}, Messages.TRAILINGSPACES, {line: 11})],
+							16: [extend({}, Messages.INDENTATION_TABS, {line: 16})],
+							19: [extend({}, Messages.TRAILINGSPACES, {line: 19})],
+							28: [extend({}, Messages.TRAILINGSPACES, {line: 28})],
 						},
 					});
 				});
-
 			});
 
 			describe('user defined', () => {
-
 				it('should ignore indentaion', () => {
 					const file = __fromFixtures('ignores.userdefined.fixture');
 					const validator = new Validator({
@@ -1179,12 +1197,13 @@ describe('The validator', () => {
 					validator.validate(file);
 
 					const report = validator.getInvalidFiles();
+
 					expect(report).toEqual({
 						[file]: {
-							'1': [extend({}, Messages.INDENTATION_TABS, {line: 1})],
-							'4': [extend({}, Messages.INDENTATION_TABS, {line: 4})],
-							'10': [extend({}, Messages.INDENTATION_TABS, {line: 10})],
-							'11': [extend({}, Messages.INDENTATION_TABS, {line: 11})],
+							1: [extend({}, Messages.INDENTATION_TABS, {line: 1})],
+							4: [extend({}, Messages.INDENTATION_TABS, {line: 4})],
+							10: [extend({}, Messages.INDENTATION_TABS, {line: 10})],
+							11: [extend({}, Messages.INDENTATION_TABS, {line: 11})],
 						},
 					});
 				});
@@ -1200,9 +1219,10 @@ describe('The validator', () => {
 					validator.validate(file);
 
 					const report = validator.getInvalidFiles();
+
 					expect(report).toEqual({
 						[file]: {
-							'7': [extend({}, Messages.TRAILINGSPACES, {line: 7})],
+							7: [extend({}, Messages.TRAILINGSPACES, {line: 7})],
 						},
 					});
 				});
@@ -1220,21 +1240,18 @@ describe('The validator', () => {
 					validator.validate(file);
 
 					const report = validator.getInvalidFiles();
+
 					expect(report).toEqual({
 						[file]: {
-							'1': [extend({}, Messages.INDENTATION_TABS, {line: 1})],
-							'4': [extend({}, Messages.INDENTATION_TABS, {line: 4})],
-							'7': [extend({}, Messages.TRAILINGSPACES, {line: 7})],
-							'10': [extend({}, Messages.INDENTATION_TABS, {line: 10})],
-							'11': [extend({}, Messages.INDENTATION_TABS, {line: 11})],
+							1: [extend({}, Messages.INDENTATION_TABS, {line: 1})],
+							4: [extend({}, Messages.INDENTATION_TABS, {line: 4})],
+							7: [extend({}, Messages.TRAILINGSPACES, {line: 7})],
+							10: [extend({}, Messages.INDENTATION_TABS, {line: 10})],
+							11: [extend({}, Messages.INDENTATION_TABS, {line: 11})],
 						},
 					});
 				});
-
 			});
-
 		});
-
 	});
-
 });
