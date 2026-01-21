@@ -19,6 +19,7 @@ const REGEXP_EOL = new RegExp(EOF);
 
 const REGEXP_INDENTATION_TABS = /^\t*(?!\s).*$/; // leading tabs without leading spaces
 const REGEXP_INDENTATION_TABS_WITH_BOM = /^\t*(?! |\t).*$/; // leading tabs without leading spaces (allows BOM)
+const REGEXP_INDENTATION_TABS_INSIDE_COMMENT = /^\t* ?\*/; // leading tabs inside comment might have an extra space
 const REGEXP_INDENTATION_SPACES = /^ *(?!\s).*$/; // leading spaces without leading tabs
 const REGEXP_INDENTATION_SPACES_WITH_BOM = /^ *(?!\t).*$/; // leading spaces without leading tabs (allows BOM)
 
@@ -90,8 +91,29 @@ class Validator {
 			this._validateEndOfLine();
 
 			// Validate single lines:
+			let insideComment = false;
+			const enteringCommentRegex = /^\s*\/\*\*?/;
+			const exitingCommentRegex = /^\s*\*\/$/;
+			const exitingCommentSameLineRegex = /\*\/\s*$/;
+
 			this._lines.forEach((line, index) => {
-				this._validateIndentation(line, index);
+				if (index > 0) {
+					const previousLine = this._lines[index - 1];
+
+					if (
+						enteringCommentRegex.test(previousLine)
+						&& !exitingCommentSameLineRegex.test(previousLine)
+					) {
+						insideComment = true;
+					} else if (
+						insideComment
+						&& exitingCommentRegex.test(previousLine)
+					) {
+						insideComment = false;
+					}
+				}
+
+				this._validateIndentation(line, index, insideComment);
 				this._validateTrailingspaces(line, index);
 			});
 
@@ -525,23 +547,21 @@ class Validator {
 	 * Check indentations
 	 * @private
 	 */
-	_validateIndentation(line, index) {
+	_validateIndentation(line, index, insideComment) {
 		if (!this._ignoredLines[index] &&
 			typeof this._settings.indentation === 'string' &&
 			typeof line === 'string') {
 
 			const tabsRegExpFinal = this._settings.allowsBOM
 				? REGEXP_INDENTATION_TABS_WITH_BOM
-				: REGEXP_INDENTATION_TABS;
+				: (
+					insideComment
+						? REGEXP_INDENTATION_TABS_INSIDE_COMMENT
+						: REGEXP_INDENTATION_TABS
+				);
 			const spacesRegExpFinal = this._settings.allowsBOM
 				? REGEXP_INDENTATION_SPACES_WITH_BOM
 				: REGEXP_INDENTATION_SPACES;
-
-			let spacesExpected;
-			let indent;
-			let message;
-			let data;
-			let payload;
 
 			switch (this._settings.indentation) {
 				case 'tabs':
@@ -560,22 +580,28 @@ class Validator {
 					} else {
 						// Indentation correct, is amount of spaces correct?
 						if (typeof this._settings.spaces === 'number') {
-							indent = line.match(REGEXP_LEADING_SPACES)[1].length;
-							if (indent % this._settings.spaces !== 0) {
+							const indent = line.match(REGEXP_LEADING_SPACES)[1].length;
+
+							if (
+								indent % this._settings.spaces !== 0
+								&& (
+									!insideComment
+									|| (indent - 1) % this._settings.spaces !== 0
+								)
+							) {
 								// Indentation incorrect, create message and report:
-								spacesExpected = Math.round(indent / this._settings.spaces) * this._settings.spaces;
-								message = MESSAGES.INDENTATION_SPACES_AMOUNT.message
+								const spacesExpected = Math.round(indent / this._settings.spaces) * this._settings.spaces;
+								const message = MESSAGES.INDENTATION_SPACES_AMOUNT.message
 									.replace('{a}', spacesExpected)
 									.replace('{b}', indent);
 
-								data = {message: message};
+								let data = {message};
 								data = extend({}, MESSAGES.INDENTATION_SPACES_AMOUNT, data);
-								payload = {
-									expected: spacesExpected,
-									indent: indent,
-								};
 
-								this._report(data, index + 1, payload);
+								this._report(data, index + 1, {
+									expected: spacesExpected,
+									indent,
+								});
 							}
 						}
 					}

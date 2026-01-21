@@ -692,6 +692,9 @@ describe('The validator', () => {
 							'5': [extend({}, Messages.INDENTATION_SPACES, {line: 5})],
 							'6': [extend({}, Messages.INDENTATION_SPACES, {line: 6})],
 							'7': [extend({}, Messages.INDENTATION_SPACES, {line: 7})],
+							'8': [extend({}, Messages.INDENTATION_SPACES, {line: 8})],
+							'9': [extend({}, Messages.INDENTATION_SPACES, {line: 9})],
+							'10': [extend({}, Messages.INDENTATION_SPACES, {line: 10})],
 						},
 					});
 				});
@@ -736,13 +739,13 @@ describe('The validator', () => {
 									indent: 5,
 								},
 							})],
-							'5': [extend({}, Messages.INDENTATION_SPACES_AMOUNT, {
+							'8': [extend({}, Messages.INDENTATION_SPACES_AMOUNT, {
 								message: Messages
 									.INDENTATION_SPACES_AMOUNT
 									.message
 									.replace('{a}', 12)
 									.replace('{b}', 10),
-								line: 5,
+								line: 8,
 								payload: {
 									expected: 12,
 									indent: 10,
