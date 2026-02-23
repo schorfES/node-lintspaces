@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Library for checking spaces in files",
   "engines": {
-    "node": ">=18"
+    "node": ">=20"
   },
   "repository": {
     "type": "git",
