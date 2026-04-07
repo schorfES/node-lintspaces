@@ -16,4 +16,3 @@ hooks:
     - npm run test
   before:bump:
     - npm run docs
-    - npm publish --dry-run
