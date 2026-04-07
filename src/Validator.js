@@ -1,9 +1,8 @@
 const fs = require('fs');
 const rc = require('rc');
-const extend = require('deep-extend');
 const editorconfig = require('editorconfig');
 
-const DEFAULTS = extend({}, require('./constants/defaults'));
+const DEFAULTS = require('./constants/defaults');
 const MESSAGES = require('./constants/messages');
 const PATTERNS = require('./constants/ignorePatterns');
 const MAPPINGS = require('./constants/editorconfigMappings');
@@ -53,7 +52,7 @@ class Validator {
 	 * @param {Object} options
 	 */
 	constructor(options = {}) {
-		this._options = extend({}, DEFAULTS, options);
+		this._options = {...DEFAULTS, ...options};
 		this._processedFiles = [];
 		this._invalid = {};
 	}
@@ -170,7 +169,7 @@ class Validator {
 	 */
 	_loadSettings() {
 		// Initially the users options are the current settings:
-		this._settings = extend({}, this._options);
+		this._settings = {...this._options};
 		this._loadSettingsRCconfig();
 		this._loadSettingsEditorconfig();
 	}
@@ -416,8 +415,7 @@ class Validator {
 							.replace('{a}', amount)
 							.replace('{b}', this._settings.newlineMaximum);
 
-						let data = {message};
-						data = extend({}, MESSAGES.NEWLINE_MAXIMUM, data);
+						const data = {...MESSAGES.NEWLINE_MAXIMUM, message};
 						const line = atLine + 1;
 						const payload = {
 							amount,
@@ -528,8 +526,7 @@ class Validator {
 									.replace('{a}', spacesExpected)
 									.replace('{b}', indent);
 
-								let data = {message};
-								data = extend({}, MESSAGES.INDENTATION_SPACES_AMOUNT, data);
+								const data = {...MESSAGES.INDENTATION_SPACES_AMOUNT, message};
 								const payload = {
 									expected: spacesExpected,
 									indent,
@@ -608,9 +605,7 @@ class Validator {
 				.replace('{a}', indentationPrevious + 1)
 				.replace('{b}', indentation);
 
-			let data = {message};
-			data = extend({}, MESSAGES.INDENTATION_GUESS, data);
-
+			const data = {...MESSAGES.INDENTATION_GUESS, message};
 			this._report(data, index + 1, {
 				indentation,
 				expected: indentationPrevious + 1,
@@ -681,14 +676,13 @@ class Validator {
 
 	/**
 	 * Add an invalid line
-	 * @param {Object} data Data message and errocode
+	 * @param {Object} data message and error code
 	 * @param {Number} linenumber where error appeared
 	 * @param {String} payload Optional data for the validation error
 	 */
 	_report(data, linenumber, payload) {
 		// Build dataset, aware to not overwrite the given data:
-		data = extend({}, data);
-		data.line = linenumber;
+		const dataset = {...data, line: linenumber};
 
 		// Lookup for current file:
 		this._invalid[this._path] ||= {};
@@ -699,7 +693,7 @@ class Validator {
 		const line = file[linenumber];
 
 		// Build error:
-		const validationError = new ValidationError(data, payload);
+		const validationError = new ValidationError(dataset, payload);
 
 		// Store error:
 		line.push(validationError);
