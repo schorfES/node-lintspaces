@@ -180,9 +180,9 @@ class Validator {
 	 * @private
 	 */
 	_loadSettingsRCconfig() {
-		let stat;
-
 		if (this._settings.rcconfig) {
+			let stat;
+
 			switch (typeof this._settings.rcconfig) {
 				case 'boolean':
 					// Lookup for config file by APPNAME:
@@ -222,11 +222,8 @@ class Validator {
 	 * @private
 	 */
 	_loadSettingsEditorconfig() {
-		let config;
-		let key;
-		let stat;
-
 		if (typeof this._settings.editorconfig === 'string') {
+			let stat;
 			try {
 				stat = fs.statSync(this._settings.editorconfig);
 			} catch (_ /* Error */) {
@@ -240,12 +237,13 @@ class Validator {
 				// To work on windows, the config path should be relative to the
 				// current cwd. See: Issue #40
 				const relative = this._settings.editorconfig.replace(process.cwd(), '');
-				config = editorconfig.parseSync(this._path, {
+				const config = editorconfig.parseSync(this._path, {
 					config: relative,
 				});
 
 				if (typeof config === 'object') {
 					// Merge editorconfig values into the correct settings names:
+					let key;
 					for (key in config) {
 						if (typeof MAPPINGS[key] === 'object') {
 							// Handle "unset" special value given by editorconfig file
@@ -378,10 +376,6 @@ class Validator {
 					const newlines = substring.match(new RegExp(EOF, 'gv'));
 					let amount = match.match(new RegExp(EOF, 'gv')).length;
 					let atLine = 0;
-					let message;
-					let data;
-					let line;
-					let payload;
 
 					// When current match is not at the beginning of a file,
 					// newlines is defined. In this case update variables:
@@ -418,14 +412,14 @@ class Validator {
 
 					if (amount > this._settings.newlineMaximum) {
 						// Build message and report:
-						message = MESSAGES.NEWLINE_MAXIMUM.message
+						const message = MESSAGES.NEWLINE_MAXIMUM.message
 							.replace('{a}', amount)
 							.replace('{b}', this._settings.newlineMaximum);
 
-						data = {message};
+						let data = {message};
 						data = extend({}, MESSAGES.NEWLINE_MAXIMUM, data);
-						line = atLine + 1;
-						payload = {
+						const line = atLine + 1;
+						const payload = {
 							amount,
 							maximum: this._settings.newlineMaximum,
 						};
@@ -512,12 +506,6 @@ class Validator {
 				? REGEXP_INDENTATION_SPACES_WITH_BOM
 				: REGEXP_INDENTATION_SPACES;
 
-			let spacesExpected;
-			let indent;
-			let message;
-			let data;
-			let payload;
-
 			switch (this._settings.indentation) {
 				case 'tabs':
 					if (!tabsRegExpFinal.test(line)) {
@@ -532,17 +520,17 @@ class Validator {
 					if (spacesRegExpFinal.test(line)) {
 						// Indentation correct, is amount of spaces correct?
 						if (typeof this._settings.spaces === 'number') {
-							indent = line.match(REGEXP_LEADING_SPACES)[1].length;
+							const indent = line.match(REGEXP_LEADING_SPACES)[1].length;
 							if (indent % this._settings.spaces !== 0) {
 								// Indentation incorrect, create message and report:
-								spacesExpected = Math.round(indent / this._settings.spaces) * this._settings.spaces;
-								message = MESSAGES.INDENTATION_SPACES_AMOUNT.message
+								const spacesExpected = Math.round(indent / this._settings.spaces) * this._settings.spaces;
+								const message = MESSAGES.INDENTATION_SPACES_AMOUNT.message
 									.replace('{a}', spacesExpected)
 									.replace('{b}', indent);
 
-								data = {message};
+								let data = {message};
 								data = extend({}, MESSAGES.INDENTATION_SPACES_AMOUNT, data);
-								payload = {
+								const payload = {
 									expected: spacesExpected,
 									indent,
 								};
@@ -576,11 +564,8 @@ class Validator {
 				? REGEXP_LEADING_TABS
 				: REGEXP_LEADING_SPACES;
 
-			let indentation;
 			let match = line.match(regExp);
 			let matchPrevious = 0;
-			let indentationPrevious;
-			let data;
 			let n = 1;
 
 			// Get amount of whitespaces at the beginnig of a line for the
@@ -593,8 +578,8 @@ class Validator {
 			}
 
 			// Calculate the indentation for both lines:
-			indentation = match;
-			indentationPrevious = matchPrevious;
+			let indentation = match;
+			let indentationPrevious = matchPrevious;
 			if (this._settings.indentation === 'spaces') {
 				indentation = match / this._settings.spaces;
 				indentationPrevious = matchPrevious / this._settings.spaces;
@@ -623,7 +608,7 @@ class Validator {
 				.replace('{a}', indentationPrevious + 1)
 				.replace('{b}', indentation);
 
-			data = {message};
+			let data = {message};
 			data = extend({}, MESSAGES.INDENTATION_GUESS, data);
 
 			this._report(data, index + 1, {
@@ -642,12 +627,6 @@ class Validator {
 			const isEOL = ch => ch === '\r' || ch === '\n';
 
 			let desiredEOL = '\n';
-			let atLine = 1;
-			let pos = 0;
-			let aCharacter;
-			let totalEOL;
-			let payload;
-
 			switch (this._settings.endOfLine.toUpperCase()) {
 				case 'CR':
 					desiredEOL = '\r';
@@ -662,9 +641,11 @@ class Validator {
 					throw new Error('Unsupported "endOfLine" setting value.');
 			}
 
-			for (pos = 0; pos < this._data.length; pos++) {
-				aCharacter = this._data[pos];
+			let atLine = 1;
+			for (let pos = 0; pos < this._data.length; pos++) {
+				const aCharacter = this._data[pos];
 				if (isEOL(aCharacter)) {
+					let totalEOL;
 					if (aCharacter === '\r' && this._data.length > pos + 1 && this._data[pos + 1] === '\n') {
 						totalEOL = aCharacter + this._data[pos + 1];
 						pos++;
@@ -673,7 +654,7 @@ class Validator {
 					}
 
 					if (totalEOL !== desiredEOL) {
-						payload = {
+						const payload = {
 							expected: this._settings.endOfLine,
 							// This would cause a BREAKING CHANGE:
 							// eslint-disable-next-line camelcase
