@@ -73,6 +73,6 @@
     "jest": "^30.1.2",
     "lint-staged": "^16.1.0",
     "prettier": "^3.0.3",
-    "release-it": "^19.0.2"
+    "release-it": "^20.0.1"
   }
 }
