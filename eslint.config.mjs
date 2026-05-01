@@ -5,7 +5,7 @@ import ConfigJest from 'eslint-plugin-jest';
 
 export default defineConfig([
 	{languageOptions: {globals: {...globals.node}}},
-	...ConfigXo,
+	...ConfigXo(),
 	{
 		files: ['**/*.test.*'],
 		languageOptions: {globals: {...globals.jest}},
