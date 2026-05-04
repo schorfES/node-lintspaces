@@ -1,6 +1,7 @@
 const fs = require('fs');
 const rc = require('rc');
 const editorconfig = require('editorconfig');
+const path = require('path');
 
 const DEFAULTS = require('./constants/defaults');
 const MESSAGES = require('./constants/messages');
@@ -232,12 +233,8 @@ class Validator {
 
 			if (stat.isFile()) {
 				// Load config for current path
-				//
-				// To work on windows, the config path should be relative to the
-				// current cwd. See: Issue #40
-				const relative = this._settings.editorconfig.replace(process.cwd(), '');
 				const config = editorconfig.parseSync(this._path, {
-					config: relative,
+					config: path.basename(this._settings.editorconfig),
 				});
 
 				if (typeof config === 'object') {
