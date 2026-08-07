@@ -222,61 +222,44 @@ class Validator {
 	 */
 	_loadSettingsEditorconfig() {
 		if (typeof this._settings.editorconfig === 'string') {
-			let stat;
-			try {
-				stat = fs.statSync(this._settings.editorconfig);
-			} catch (_ /* Error */) {
-				this._fail(MESSAGES.EDITORCONFIG_NOTFOUND.message
-					.replace('{a}', this._settings.editorconfig));
-			}
+			// Load config for current path
+			const config = editorconfig.parseSync(this._path, {
+				config: this._settings.editorconfig,
+			});
 
-			if (stat.isFile()) {
-				// Load config for current path
-				//
-				// To work on windows, the config path should be relative to the
-				// current cwd. See: Issue #40
-				const relative = this._settings.editorconfig.replace(process.cwd(), '');
-				const config = editorconfig.parseSync(this._path, {
-					config: relative,
-				});
+			if (typeof config === 'object') {
+				// Merge editorconfig values into the correct settings names:
+				let key;
+				for (key in config) {
+					if (typeof MAPPINGS[key] === 'object') {
+						// Handle "unset" special value given by editorconfig file
+						// and consider not to parse invalid types and value.
+						// See: Issue #47
+						if (
+							config[key] === 'unset'
+							|| !MAPPINGS[key].types.includes(typeof config[key])
+							|| (
+								typeof config[key] === 'string'
+								&& MAPPINGS[key].regexp instanceof RegExp
+								&& !MAPPINGS[key].regexp.test(config[key])
+							)
+						) {
+							this._settings[MAPPINGS[key].name] = false;
+							continue;
+						}
 
-				if (typeof config === 'object') {
-					// Merge editorconfig values into the correct settings names:
-					let key;
-					for (key in config) {
-						if (typeof MAPPINGS[key] === 'object') {
-							// Handle "unset" special value given by editorconfig file
-							// and consider not to parse invalid types and value.
-							// See: Issue #47
-							if (
-								config[key] === 'unset'
-								|| !MAPPINGS[key].types.includes(typeof config[key])
-								|| (
-									typeof config[key] === 'string'
-									&& MAPPINGS[key].regexp instanceof RegExp
-									&& !MAPPINGS[key].regexp.test(config[key])
-								)
-							) {
-								this._settings[MAPPINGS[key].name] = false;
-								continue;
-							}
-
-							switch (key) {
-								case 'indent_style':
-									// The 'indent_style' property value isn't
-									// equal to the expected setting value:
-									this._settings[MAPPINGS[key].name] = config[key] + 's';
-									break;
-								default:
-									this._settings[MAPPINGS[key].name] = config[key];
-									break;
-							}
+						switch (key) {
+							case 'indent_style':
+								// The 'indent_style' property value isn't
+								// equal to the expected setting value:
+								this._settings[MAPPINGS[key].name] = config[key] + 's';
+								break;
+							default:
+								this._settings[MAPPINGS[key].name] = config[key];
+								break;
 						}
 					}
 				}
-			} else {
-				this._fail(MESSAGES.PATH_ISNT_FILE.message
-					.replace('{a}', this._settings.editorconfig));
 			}
 		}
 	}
