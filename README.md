@@ -252,10 +252,11 @@ option and set them to `true`.
 
 ### .editorconfig option
 
-It's possible to overwrite the default and given options by setting up a path
-to an external editorconfig file by using the `editorconfig` option. For a basic
+It's possible to overwrite the default and given options by setting up the
+editorconfig filename with the `editorconfig` option. For a basic
 configuration of a _.editorconfig_ file check out the
 [EditorConfig Documentation](http://editorconfig.org/).
+Pass the filename of the configuration file; EditorConfig will look for it in the current directory and all of its parent directories.
 
 ```javascript
 editorconfig: '.editorconfig';
