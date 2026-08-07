@@ -1,6 +1,10 @@
 const extend = require('deep-extend');
 const fs = require('fs');
 const path = require('path');
+const {
+	chdir,
+	cwd,
+} = require('process');
 
 const Defaults = require('./constants/defaults');
 const Messages = require('./constants/messages');
@@ -144,7 +148,7 @@ describe('the validator', () => {
 			it('should override settings', () => {
 				// Fake loading:
 				const validator = new Validator({
-					editorconfig: __fromFixtures('.editorconfig'),
+					editorconfig: '.editorconfig',
 
 					trailingspaces: true,
 					newline: true,
@@ -173,7 +177,7 @@ describe('the validator', () => {
 			it('should load specific settings by extension', () => {
 				// Fake loading:
 				const validator = new Validator({
-					editorconfig: __fromFixtures('.editorconfig'),
+					editorconfig: '.editorconfig',
 
 					trailingspaces: true,
 					newline: true,
@@ -207,7 +211,7 @@ describe('the validator', () => {
 				// Fake loading:
 				const validator = new Validator({
 					rcconfig: __fromFixtures('.lintspacesrc'),
-					editorconfig: __fromFixtures('.editorconfig'),
+					editorconfig: '.editorconfig',
 					newline: 'foo',
 				});
 				validator._path = __fromFixtures('corer.other-fixture');
@@ -223,7 +227,7 @@ describe('the validator', () => {
 			it('should parse "unset" value as false', () => {
 				// Fake loading:
 				const validator = new Validator({
-					editorconfig: __fromFixtures('.editorconfig.unset'),
+					editorconfig: '.editorconfig.unset',
 
 					trailingspaces: true,
 					newline: true,
@@ -249,7 +253,7 @@ describe('the validator', () => {
 			it('should parse invalid value as false', () => {
 				// Fake loading:
 				const validator = new Validator({
-					editorconfig: __fromFixtures('.editorconfig.invalid'),
+					editorconfig: '.editorconfig.invalid',
 
 					trailingspaces: true,
 					newline: true,
@@ -272,29 +276,84 @@ describe('the validator', () => {
 				}));
 			});
 
-			it('should throw if is not a file', () => {
-				const file = __fromFixtures('core.fixture');
-				[
-					'.',
-					__dirname,
-				].forEach(editorconfig => {
-					const message = Messages.PATH_ISNT_FILE.message.replace('{a}', editorconfig);
-					const error = new Error(message);
+			it('should not throw if file does not exist', () => {
+				// Fake loading:
+				const validator = new Validator({
+					editorconfig: '.editorconfig.notexists',
 
-					expect(() => new Validator({editorconfig}).validate(file)).toThrow(error);
+					trailingspaces: true,
+					newline: true,
+
+					indentation: 'spaces',
+					spaces: 2,
+					endOfLine: false,
+
+					newlineMaximum: false,
+					ignores: ['js-comments'],
 				});
+				validator._path = __fromFixtures('core.fixture');
+				validator._loadSettings();
+
+				expect(validator._settings.trailingspaces).toBeTruthy();
+				expect(validator._settings.newline).toBeTruthy();
+				expect(validator._settings.indentation).toBe('spaces');
+				expect(validator._settings.spaces).toBe(2);
+				expect(validator._settings.endOfLine).toBeFalsy();
+
+				// Unchanged:
+				expect(validator._settings.newlineMaximum).toBe(false);
+				expect(validator._settings.ignores).toEqual(['js-comments']);
 			});
 
-			it('should throw if file does not exist', () => {
-				const file = __fromFixtures('core.fixture');
-				[
-					path.join(__dirname, 'path', 'that', 'doesnt', 'existis', '.editorconfig'),
-				].forEach(editorconfig => {
-					const message = Messages.EDITORCONFIG_NOTFOUND.message.replace('{a}', editorconfig);
-					const error = new Error(message);
+			it('should allow working from another directory', () => {
+				const originalCwd = cwd();
 
-					expect(() => new Validator({editorconfig}).validate(file)).toThrow(error);
+				chdir(path.resolve(__dirname, '__fixtures__/deep'));
+
+				// Fake loading:
+				const validator = new Validator({
+					editorconfig: '.editorconfig',
+
+					trailingspaces: true,
+					newline: true,
+
+					indentation: 'spaces',
+					spaces: 2,
+					endOfLine: false,
+
+					newlineMaximum: false,
+					ignores: ['js-comments'],
 				});
+				validator._path = __fromFixtures('core.fixture');
+				validator._loadSettings();
+
+				expect(validator._settings.trailingspaces).toBeFalsy();
+				expect(validator._settings.newline).toBeFalsy();
+				expect(validator._settings.indentation).toBe('tabs');
+				expect(validator._settings.spaces).toBe(false);
+				expect(validator._settings.endOfLine).toBe('lf');
+
+				// Unchanged:
+				expect(validator._settings.newlineMaximum).toBe(false);
+				expect(validator._settings.ignores).toEqual(['js-comments']);
+
+				chdir(originalCwd);
+			});
+
+			it('will correctly read editorconfig hierarchically', () => {
+				// Fake loading:
+				const validator = new Validator({
+					editorconfig: '.editorconfig',
+				});
+				validator._path = __fromFixtures('deep/core.fixture');
+				validator._loadSettings();
+
+				expect(validator._settings.newline).toBeTruthy();
+
+				validator._path = __fromFixtures('core.fixture');
+				validator._loadSettings();
+
+				expect(validator._settings.newline).toBeFalsy();
 			});
 		});
 	});
