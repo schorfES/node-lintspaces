@@ -1,1 +1,1 @@
-./node_modules/.bin/lint-staged --config ./.lintstagedrc
+./node_modules/.bin/lint-staged --config ./.lintstagedrc.json
