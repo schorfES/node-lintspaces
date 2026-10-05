@@ -2,14 +2,24 @@
   "name": "lintspaces",
   "version": "3.0.0",
   "description": "Library for checking spaces in files",
+  "license": "MIT",
+  "repository": "github:schorfES/node-lintspaces",
+  "author": "Norman Rusch",
+  "contributors": [
+    "Norman Rusch (https://github.com/schorfES)",
+    "Christopher Knötschke (https://github.com/ck86)",
+    "Will Anderson (https://github.com/itsananderson)",
+    "Chandler Kent (https://github.com/chandlerkent)",
+    "Casey Crabb (https://github.com/crabbkw)",
+    "David Pagini (https://github.com/dpagini)"
+  ],
+  "main": "./src/index.js",
+  "files": [
+    "src"
+  ],
   "engines": {
     "node": ">=20"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/schorfES/node-lintspaces.git"
-  },
-  "main": "src/index.js",
   "scripts": {
     "docs": "concat -o README.md ./docs/intro.md ./docs/installation.md ./docs/usage.md ./docs/options.md ./docs/functions.md ./docs/contribution.md ./docs/license.md",
     "test": "jest ./src --verbose --coverage",
@@ -28,36 +38,6 @@
     "eof",
     "eol"
   ],
-  "author": {
-    "name": "Norman Rusch"
-  },
-  "contributors": [
-    {
-      "name": "Norman Rusch",
-      "url": "https://github.com/schorfES"
-    },
-    {
-      "name": "Christopher Knötschke",
-      "url": "https://github.com/ck86"
-    },
-    {
-      "name": "Will Anderson",
-      "url": "https://github.com/itsananderson"
-    },
-    {
-      "name": "Chandler Kent",
-      "url": "https://github.com/chandlerkent"
-    },
-    {
-      "name": "Casey Crabb",
-      "url": "https://github.com/crabbkw"
-    },
-    {
-      "name": "David Pagini",
-      "url": "https://github.com/dpagini"
-    }
-  ],
-  "license": "MIT",
   "dependencies": {
     "editorconfig": "^3.0.1",
     "minimist": "^1.2.6",
