@@ -1,6 +1,6 @@
 {
   "name": "lintspaces",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Library for checking spaces in files",
   "license": "MIT",
   "repository": "github:schorfES/node-lintspaces",
