@@ -1,21 +1,26 @@
 import {defineConfig, globalIgnores} from 'eslint/config';
 import globals from 'globals';
-import ConfigXo from 'eslint-config-xo';
-import ConfigJest from 'eslint-plugin-jest';
+import configXo from 'eslint-config-xo';
+import configJest from 'eslint-plugin-jest';
 
 export default defineConfig([
 	{languageOptions: {globals: {...globals.node}}},
-	...ConfigXo,
+	...configXo({space: false, semicolon: true}),
 	{
 		files: ['**/*.test.*'],
 		languageOptions: {globals: {...globals.jest}},
-		...ConfigJest.configs['flat/recommended'],
-		...ConfigJest.configs['flat/style'],
+		...configJest.configs['flat/recommended'],
+		...configJest.configs['flat/style'],
 	},
 	{
 		rules: {
 			'max-depth': ['warn', 6],
 			'max-nested-callbacks': ['warn', 6],
+			'package-json/prefer-exports': ['off'],
+			'package-json/prefer-type-module': ['off'],
+			'unicorn/filename-case': ['off'],
+			'unicorn/prefer-module': ['off'],
+			'unicorn/prefer-private-class-fields': ['off'],
 		},
 	},
 	globalIgnores([
