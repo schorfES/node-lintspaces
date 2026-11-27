@@ -2,7 +2,7 @@ module.exports = {
 	charset: {
 		name: 'encoding',
 		types: ['string'],
-		regexp: /^.*$/v,
+		regexp: /^latin1|utf-8|utf8|utf-16le|utf16le$/iv,
 	},
 	// This would cause a BREAKING CHANGE and might change in an later version:
 	// eslint-disable-next-line camelcase
